@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Button, IconButton, TextField } from '@mui/material';
 import { ControlPoint } from '@mui/icons-material';
 
 type AddItemFormPropsType = {
   onClick: (newTitle: string) => void
 }
-export const AddItemForm: React.FC<AddItemFormPropsType> = ({ onClick }) => {
+export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({ onClick }) => {
+
+  console.log('AddItemForm render');
 
   const [newTitle, setNewTitle] = useState<string>('');
   const [error, setError] = useState<boolean>(false);
-
 
   const addTitleHandler = () => {
     if (newTitle.trim() !== '') {
@@ -23,7 +24,7 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = ({ onClick }) => {
 
   const pressEnterHandler = (key: string) => {
     if (key === 'Enter') {
-      addTitleHandler()
+      addTitleHandler();
     }
   };
 
@@ -36,14 +37,14 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = ({ onClick }) => {
         onChange={(event) => setNewTitle(event.target.value)}
         onKeyPress={(event) => pressEnterHandler(event.key)}
         error={error}
-        helperText={error? 'error' : ''}
+        helperText={error ? 'error' : ''}
       />
       <IconButton
         color={'primary'}
         onClick={addTitleHandler}
       >
-        <ControlPoint/>
+        <ControlPoint />
       </IconButton>
     </div>
   );
-};
+})

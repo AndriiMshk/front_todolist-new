@@ -12,13 +12,7 @@ type ActionsType =
   | ChangeFilterActionType
   | ChangeTodoListTitleActionType
 
-export let todolistID1 = v1();
-export let todolistID2 = v1();
-
-const initialState: TodolistsType[] = [
-  { id: todolistID1, title: 'What to learn', filter: 'all' },
-  { id: todolistID2, title: 'What to buy', filter: 'all' },
-]
+const initialState: TodolistsType[] = [];
 
 export const todoListReducer = (state: TodolistsType[] = initialState, action: ActionsType): TodolistsType[] => {
   switch (action.type) {

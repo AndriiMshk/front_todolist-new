@@ -6,7 +6,9 @@ export type EditableSpanPropsType = {
   refactor: (title: string) => void
 }
 
-export const EditableSpan: React.FC<EditableSpanPropsType> = (props) => {
+export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo((props) => {
+
+  console.log(`EditableSpan ${props.title} render`);
 
   const [editMode, setEditMode] = useState<boolean>(false);
   const [title, setTitle] = useState(props.title);
@@ -15,8 +17,8 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = (props) => {
     if (title.trim() !== '') {
       props.refactor(title);
     } else {
-      props.refactor(props.title)
-      setTitle(props.title)
+      props.refactor(props.title);
+      setTitle(props.title);
     }
     setEditMode(false);
   };
@@ -38,4 +40,4 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = (props) => {
         autoFocus />
       : <span onDoubleClick={() => setEditMode(true)}>{props.title}</span>
   );
-};
+});
