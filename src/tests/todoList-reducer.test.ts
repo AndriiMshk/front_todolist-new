@@ -3,7 +3,7 @@ import { addTodoLIstAC,
   changeFilterTodoLIstAC,
   removeTodoLIstAC,
   todoListReducer,
-  changeTitleTodoLIstAC } from './todoList-reducer';
+  changeTitleTodoLIstAC } from '../state/todoList-reducer';
 import { FilterValuesType } from '../App';
 
 test('REMOVE-TODOLIST', () => {

@@ -18,6 +18,7 @@ import {
 } from './state/todoList-reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootType } from './state/store';
+import { GetTodoListsComponent } from './TodoLists-api';
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
 export type TodolistsType = {
@@ -103,9 +104,16 @@ function App() {
           })}
         </Grid>
       </Container>
+      <div>
+        <h2>TodoListsApi</h2>
+        <GetTodoListsComponent />
+        {/*<CreateTodoListsComponent/>*/}
+        {/*<DeleteTodoListsComponent/>*/}
+      </div>
     </>
   );
 }
 
 export default App;
+
 

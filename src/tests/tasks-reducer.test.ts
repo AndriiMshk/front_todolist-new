@@ -5,7 +5,7 @@ import {
   changeTaskTitleAC,
   removeTaskAC,
   tasksReducer,
-} from './tasks-reducer';
+} from '../state/tasks-reducer';
 
 
 test('DELETE-TASK', () => {
