@@ -107,8 +107,6 @@ function App() {
       <div>
         <h2>TodoListsApi</h2>
         <GetTodoListsComponent />
-        {/*<CreateTodoListsComponent/>*/}
-        {/*<DeleteTodoListsComponent/>*/}
       </div>
     </>
   );
