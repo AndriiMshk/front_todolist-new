@@ -1,15 +1,5 @@
 import React, { useCallback } from 'react';
 import './App.css';
-import { Todolist } from './Todolist';
-import { AddItemForm } from './AddItemForm';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Container, Grid, Paper } from '@mui/material';
 import {
   addTodoLIstAC,
   changeFilterTodoLIstAC,
@@ -18,7 +8,7 @@ import {
 } from './state/todoList-reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootType } from './state/store';
-import { GetTodoListsComponent } from './TodoLists-api';
+import { TestTodoListsComponent } from './todoList-api-test/TodoLists-api';
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
 export type TodolistsType = {
@@ -106,7 +96,7 @@ function App() {
       {/*</Container>*/}
       <div>
         <h2>TodoListsApi</h2>
-        <GetTodoListsComponent />
+        <TestTodoListsComponent />
       </div>
     </>
   );
