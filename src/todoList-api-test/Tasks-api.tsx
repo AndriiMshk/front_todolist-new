@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { todoListsAPI } from './api/todolists-api';
-import { TaskType, TestTasksComponentPropsType } from './types';
+import { TestTaskType, TestTasksComponentPropsType } from './types';
 import { TestTaskComponent } from './Task-api';
 
 export const TestTasksComponent: React.FC<TestTasksComponentPropsType> = ({ todoListId }) => {
 
-  const [state, setState] = useState<TaskType[]>([]);
+  const [state, setState] = useState<TestTaskType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ export const TestTasksComponent: React.FC<TestTasksComponentPropsType> = ({ todo
           >add task
           </button>
           <div>
-            {state.map((el: TaskType) =>
+            {state.map((el: TestTaskType) =>
               <TestTaskComponent
                 key={el.id}
                 task={el}

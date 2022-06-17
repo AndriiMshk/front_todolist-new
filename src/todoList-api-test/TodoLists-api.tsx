@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { todoListsAPI } from './api/todolists-api';
-import { TodoListType } from './types';
+import { TestTodoListType } from './types';
 import { TestTodoListComponent } from './TodoList-api';
 
 export const TestTodoListsComponent = () => {
 
-  const [state, setState] = useState<TodoListType[]>([]);
+  const [state, setState] = useState<TestTodoListType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -63,7 +63,7 @@ export const TestTodoListsComponent = () => {
         :
         <>
           <button onClick={addTodoListHandler}>add</button>
-          {state.map((el: TodoListType) => {
+          {state.map((el: TestTodoListType) => {
               return <TestTodoListComponent
                 key={el.id}
                 todoList={el}
