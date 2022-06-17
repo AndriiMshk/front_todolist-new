@@ -35,3 +35,5 @@ export const todoListsAPI = {
     return axios.put(`${mainAPI}/${todoListId}/tasks/${taskId}`, payload, settings);
   },
 };
+
+// уточнить типы которые возвращают запросы axios.delete< ENTER TYPE FROM REQUEST >(...);
