@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const mainAPI = 'https://social-network.samuraijs.com/api/1.1/todo-lists';
-
 const settings = {
   withCredentials: true,
   headers: {
@@ -9,31 +7,34 @@ const settings = {
   },
 };
 
+const instance = axios.create({
+  baseURL: 'https://social-network.samuraijs.com/api/1.1/',
+  ...settings
+})
+
 export const todoListsAPI = {
   getTodolists() {
-    return axios.get(`${mainAPI}`, settings);
+    return instance.get('todo-lists')
   },
   postTodoList(payload: { title: string | null }) {
-    return axios.post(`${mainAPI}`, payload, settings);
+    return instance.post('todo-lists', payload)
   },
   deleteTodoList(todoListId: string) {
-    return axios.delete(`${mainAPI}/${todoListId}`, settings);
+    return instance.delete(`todo-lists/${todoListId}`)
   },
   updateTodoList(todoListId: string, payload: { title: string | null }) {
-    return axios.put(`${mainAPI}/${todoListId}`, payload, settings);
+    return instance.put(`todo-lists/${todoListId}`, payload)
   },
   getTasks(todoListId: string) {
-    return axios.get(`${mainAPI}/${todoListId}/tasks`, settings);
+    return instance.get(`todo-lists/${todoListId}/tasks`)
   },
   postTask(todoListId: string, payload: { title: string | null }) {
-    return axios.post(`${mainAPI}/${todoListId}/tasks`, payload, settings);
+    return instance.post(`todo-lists//${todoListId}/tasks`, payload)
   },
   deleteTask(todoListId: string, taskId: string) {
-    return axios.delete(`${mainAPI}/${todoListId}/tasks/${taskId}`, settings);
+    return instance.delete(`todo-lists/${todoListId}/tasks/${taskId}`)
   },
   updateTask(todoListId: string, taskId: string, payload: { title: string | null }) {
-    return axios.put(`${mainAPI}/${todoListId}/tasks/${taskId}`, payload, settings);
+    return instance.put(`todo-lists/${todoListId}/tasks/${taskId}`, payload)
   },
 };
-
-// уточнить типы которые возвращают запросы axios.delete< ENTER TYPE FROM REQUEST >(...);

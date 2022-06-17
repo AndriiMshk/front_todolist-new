@@ -71,8 +71,8 @@ export const TestTasksComponent: React.FC<TestTasksComponentPropsType> = ({ todo
               <TestTaskComponent
                 key={el.id}
                 task={el}
-                updateTask={deleteTaskHandler}
-                deleteTask={updateTaskHandler}
+                updateTask={updateTaskHandler}
+                deleteTask={deleteTaskHandler}
               />)}
           </div>
         </>}
