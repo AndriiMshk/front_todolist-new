@@ -1,5 +1,5 @@
 import React from 'react';
-import { TestTaskComponentPropsType } from './types';
+import { TestTaskComponentPropsType } from './TestTypes';
 
 export const TestTaskComponent: React.FC<TestTaskComponentPropsType> = ({ task, deleteTask, updateTask }) => {
   return (

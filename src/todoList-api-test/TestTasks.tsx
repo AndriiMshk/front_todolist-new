@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { todoListsAPI } from './api/todolists-api';
-import { TestTaskType, TestTasksComponentPropsType } from './types';
-import { TestTaskComponent } from './Task-api';
+import { testTodolistsApi } from './api/TestTodolists-api';
+import { TestTaskType, TestTasksComponentPropsType } from './TestTypes';
+import { TestTaskComponent } from './TestTask';
 
 export const TestTasksComponent: React.FC<TestTasksComponentPropsType> = ({ todoListId }) => {
 
@@ -10,7 +10,7 @@ export const TestTasksComponent: React.FC<TestTasksComponentPropsType> = ({ todo
 
   useEffect(() => {
     setLoading(true);
-    todoListsAPI.getTasks(todoListId)
+    testTodolistsApi.getTasks(todoListId)
       .then((res) => {
         console.log('Tasks are loaded');
         setState(res.data.items);
@@ -23,7 +23,7 @@ export const TestTasksComponent: React.FC<TestTasksComponentPropsType> = ({ todo
     setLoading(true);
     const newTaskTitle = prompt();
     try {
-      const res = await todoListsAPI.postTask(todoListId, { title: newTaskTitle });
+      const res = await testTodolistsApi.postTask(todoListId, { title: newTaskTitle });
       console.log(`Task ${newTaskTitle} added`);
       setState([res.data.data.item, ...state]);
     } catch (err) {
@@ -31,10 +31,10 @@ export const TestTasksComponent: React.FC<TestTasksComponentPropsType> = ({ todo
     }
     setLoading(false);
   };
-  const deleteTaskHandler = async(taskId: string, taskTitle: string | null) => {
+  const deleteTaskHandler = async(taskId: string, taskTitle: string| null) => {
     setLoading(true);
     try {
-      await todoListsAPI.deleteTask(todoListId, taskId);
+      await testTodolistsApi.deleteTask(todoListId, taskId);
       console.log(`Task ${taskTitle} deleted`);
       setState(state.filter(el => el.id !== taskId));
     } catch (err) {
@@ -46,7 +46,7 @@ export const TestTasksComponent: React.FC<TestTasksComponentPropsType> = ({ todo
     setLoading(true);
     const newTaskTitle = prompt();
     try {
-      await todoListsAPI.updateTask(todoListId, taskId, { title: newTaskTitle });
+      await testTodolistsApi.updateTask(todoListId, taskId, { title: newTaskTitle });
       console.log(`Task ${taskTitle} changed to ${newTaskTitle}`);
       setState(state.map(el => el.id === taskId ? { ...el, title: newTaskTitle } : el));
     } catch (err) {

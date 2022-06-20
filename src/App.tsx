@@ -1,14 +1,14 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import './App.css';
 import {
   addTodoLIstAC,
-  // changeFilterTodoLIstAC,
-  changeTitleTodoLIstAC, getTodoListsAC,
+  changeFilterTodoLIstAC,
+  changeTitleTodoLIstAC,
   removeTodoLIstAC,
 } from './state/todoList-reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootType } from './state/store';
-import { TestTodoListsComponent } from './todoList-api-test/TodoLists-api';
+import { TestTodoListsComponent } from './todoList-api-test/TestTodoLists';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -19,7 +19,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Container, Grid, Paper } from '@mui/material';
 import { AddItemForm } from './AddItemForm';
 import { Todolist } from './Todolist';
-import { todoListsAPI } from './todoList-api-test/api/todolists-api';
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
 export type TodolistsType = {
@@ -27,80 +26,34 @@ export type TodolistsType = {
   title: string
   filter: string
 }
-export type TodoListsTypeAPI = {
-  id: string
-  addedDate: string
-  order: number
-  title: string
-}
-export type TasksTypeAPI = {
-  description: string
-  title: string
-  completed: boolean
-  status: number
-  priority: number
-  startDate: string
-  deadline: string
-  id: string
-  todoListId: string
-  order: number
-  addedDate: string
-}
-
 export type TaskType = {
   id: string
   title: string
   isDone: boolean
 }
 export type TasksType = {
-  [key: string]: TasksTypeAPI[]
+  [key: string]: TaskType[]
 }
 
 function App() {
 
-  console.log('App render');
-
   const dispatch = useDispatch();
 
-  useEffect(()=> {
-    todoListsAPI.getTodolists()
-      .then((res) => {
-        dispatch(getTodoListsAC(res.data))
-      })
-  }, [])
+  const todolists = useSelector<RootType, TodolistsType[]>(state => state.todoLists);
 
-  const todolists = useSelector<RootType, TodoListsTypeAPI[]>(state => state.todoLists);
+  const addTodoListHandler = useCallback((newTodoList: string) =>
+    dispatch(addTodoLIstAC(newTodoList)), []);
 
-  const addTodoListHandler = useCallback(async (newTodoList: string) => {
-    try {
-      const res = await todoListsAPI.postTodoList({ title: newTodoList });
-      dispatch(addTodoLIstAC(newTodoList))
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
+  const deleteTodoListHandler = useCallback((todoListId: string) =>
+    dispatch(removeTodoLIstAC(todoListId)), []);
 
-  const deleteTodoListHandler = useCallback(async (todoListId: string) => {
-    try {
-      await todoListsAPI.deleteTodoList(todoListId);
-      dispatch(removeTodoLIstAC(todoListId))
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
-
-  // const changeFilterHandler = useCallback(
-  //   (todoListId: string, filter: FilterValuesType) => dispatch(changeFilterTodoLIstAC(todoListId, filter)), []);
+  const changeFilterHandler = useCallback(
+    (todoListId: string, filter: FilterValuesType) =>
+      dispatch(changeFilterTodoLIstAC(todoListId, filter)), []);
 
   const changeTodoListTitleHandler = useCallback(
-    async (todoListId: string, title: string) => {
-      try {
-        await todoListsAPI.updateTodoList(todoListId, { title: title });
-        dispatch(changeTitleTodoLIstAC(todoListId, title))
-      } catch (err) {
-        console.log(err);
-      }
-    }, []);
+    (todoListId: string, title: string) =>
+      dispatch(changeTitleTodoLIstAC(todoListId, title)), []);
 
   return (
     <>
@@ -142,9 +95,9 @@ function App() {
                   <Todolist
                     todolistId={el.id}
                     title={el.title}
-                    // filter={el.filter}
+                    filter={el.filter}
                     deleteTodoList={() => deleteTodoListHandler(el.id)}
-                    // changeFilterHandler={(filter: FilterValuesType) => changeFilterHandler(el.id, filter)}
+                    changeFilterHandler={(filter: FilterValuesType) => changeFilterHandler(el.id, filter)}
                     changeTodoListTitle={(title) => changeTodoListTitleHandler(el.id, title)}
                   />
                 </Paper>

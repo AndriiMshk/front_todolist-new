@@ -6,15 +6,15 @@ import { Delete } from '@mui/icons-material';
 
 type TaskPropsType = {
   title: string
-  // isDone: boolean
-  // onChangeTaskStatus: (isCheck: boolean) => void
+  isDone: boolean
+  onChangeTaskStatus: (isCheck: boolean) => void
   changeTaskTitle: (title: string) => void
   removeTask: () => void
 }
 export const Task: React.FC<TaskPropsType> = React.memo(({
     title,
-    // isDone,
-    // onChangeTaskStatus,
+    isDone,
+    onChangeTaskStatus,
     changeTaskTitle,
     removeTask,
   }) => {
@@ -23,10 +23,10 @@ export const Task: React.FC<TaskPropsType> = React.memo(({
 
       <div style={{ display: 'flex', justifyContent: 'space-between', width: '200px' }}>
         <div>
-          {/*<Checkbox*/}
-          {/*  checked={isDone}*/}
-          {/*  onChange={(event) => onChangeTaskStatus(event.target.checked)}*/}
-          {/*/>*/}
+          <Checkbox
+            checked={isDone}
+            onChange={(event) => onChangeTaskStatus(event.target.checked)}
+          />
           <EditableSpan
             title={title}
             refactor={(title) => changeTaskTitle(title)}

@@ -1,8 +1,9 @@
 import React from 'react';
-import { TestTodoListComponentPropsType } from './types';
-import { TestTasksComponent } from './Tasks-api';
+import { TestTodoListComponentPropsType } from './TestTypes';
+import { TestTasksComponent } from './TestTasks';
 
-export const TestTodoListComponent: React.FC<TestTodoListComponentPropsType> = ({ todoList, deleteTodoList, updateTodoList }) => {
+export const TestTodoListComponent: React.FC<TestTodoListComponentPropsType> = (
+  { todoList, deleteTodoList, updateTodoList }) => {
   return (
     <div key={todoList.id}>
       <div style={{ margin: '10px' }}>

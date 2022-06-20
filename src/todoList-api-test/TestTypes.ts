@@ -31,6 +31,29 @@ export type TestTaskComponentPropsType = {
   updateTask: (taskId: string, taskTitle: string | null) => void
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export type ResponseGetTodoList = TestTodoListType[]
 export type ResponsePostTodoList = {
   resultCode: number
