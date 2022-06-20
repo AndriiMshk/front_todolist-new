@@ -4,11 +4,14 @@ import { v1 } from 'uuid';
 import { combineReducers, legacy_createStore as createStore } from 'redux';
 import { tasksReducer } from '../state/tasks-reducer';
 import { todoListReducer } from '../state/todoList-reducer';
+import { FilterValuesType } from '../api/TypesAPI';
 
 const rootReducer = combineReducers({
   tasks: tasksReducer,
   todoLists: todoListReducer,
 });
+
+
 
 const initialState = {
   todolists: [
@@ -27,9 +30,18 @@ const initialState = {
   },
 };
 
-type initialStateType = typeof initialState
+// type initialStateType = typeof initialState
 
-export const storyBookStore = createStore(rootReducer, initialState as initialStateType);
+/*
+type initialStateType = {
+  todolists: {id: string, title: string, filter: FilterValuesType}[]
+  tasks: {
+    [key: string]: { id: string, title: string, isDone: boolean }[]
+  }
+}
+*/
+
+export const storyBookStore = createStore(rootReducer, initialState as any);
 
 // do not work with initial state
 

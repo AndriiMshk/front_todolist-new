@@ -18,28 +18,14 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Container, Grid, Paper } from '@mui/material';
 import { AddItemForm } from './AddItemForm';
-import { Todolist } from './Todolist';
-
-export type FilterValuesType = 'all' | 'active' | 'completed';
-export type TodolistsType = {
-  id: string
-  title: string
-  filter: string
-}
-export type TaskType = {
-  id: string
-  title: string
-  isDone: boolean
-}
-export type TasksType = {
-  [key: string]: TaskType[]
-}
+import { FilterValuesType, TodoListType } from './api/TypesAPI';
+import { TodoList } from './TodoList';
 
 function App() {
 
   const dispatch = useDispatch();
 
-  const todolists = useSelector<RootType, TodolistsType[]>(state => state.todoLists);
+  const todoLists = useSelector<RootType, TodoListType[]>(state => state.todoLists);
 
   const addTodoListHandler = useCallback((newTodoList: string) =>
     dispatch(addTodoLIstAC(newTodoList)), []);
@@ -83,7 +69,7 @@ function App() {
           />
         </Grid>
         <Grid container spacing={3}>
-          {todolists.map(el => {
+          {todoLists.map(el => {
             return (
               <Grid
                 item
@@ -92,8 +78,8 @@ function App() {
                 <Paper
                   style={{ padding: '10px' }}
                 >
-                  <Todolist
-                    todolistId={el.id}
+                  <TodoList
+                    todoListId={el.id}
                     title={el.title}
                     filter={el.filter}
                     deleteTodoList={() => deleteTodoListHandler(el.id)}

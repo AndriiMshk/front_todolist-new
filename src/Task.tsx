@@ -3,28 +3,28 @@ import Checkbox from '@mui/material/Checkbox';
 import { EditableSpan } from './EditableSpan';
 import { IconButton } from '@mui/material';
 import { Delete } from '@mui/icons-material';
+import { TaskTypeStatus } from './api/TypesAPI';
 
 type TaskPropsType = {
   title: string
-  isDone: boolean
+  status: TaskTypeStatus
   onChangeTaskStatus: (isCheck: boolean) => void
   changeTaskTitle: (title: string) => void
   removeTask: () => void
 }
 export const Task: React.FC<TaskPropsType> = React.memo(({
     title,
-    isDone,
+    status,
     onChangeTaskStatus,
     changeTaskTitle,
     removeTask,
   }) => {
 
     return (
-
       <div style={{ display: 'flex', justifyContent: 'space-between', width: '200px' }}>
         <div>
           <Checkbox
-            checked={isDone}
+            checked={status === TaskTypeStatus.Completed}
             onChange={(event) => onChangeTaskStatus(event.target.checked)}
           />
           <EditableSpan

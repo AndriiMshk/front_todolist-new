@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import { FilterValuesType, TaskType } from './App';
 import { EditableSpan } from './EditableSpan';
 import { AddItemForm } from './AddItemForm';
 import { Button, IconButton } from '@mui/material';
@@ -8,19 +7,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootType } from './state/store';
 import { addTaskAC, changeTaskCheckboxAC, changeTaskTitleAC, removeTaskAC } from './state/tasks-reducer';
 import { Task } from './Task';
+import { FilterValuesType, TaskType, TaskTypeStatus } from './api/TypesAPI';
 
-type TodolistPropsType = {
-  todolistId: string
+type TodoListPropsType = {
+  todoListId: string
   title: string
-  filter: string
-  deleteTodoList: (todolistId: string) => void
+  filter: FilterValuesType
+  deleteTodoList: (todoListId: string) => void
   changeFilterHandler: (filter: FilterValuesType) => void
   changeTodoListTitle: (title: string) => void
 }
 
-export const Todolist: React.FC<TodolistPropsType> = React.memo((
+export const TodoList: React.FC<TodoListPropsType> = React.memo((
   {
-    todolistId,
+    todoListId,
     title,
     filter,
     deleteTodoList,
@@ -31,29 +31,29 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo((
 
     const dispatch = useDispatch();
 
-    const tasks = useSelector<RootType, TaskType[]>(state => state.tasks[todolistId]);
+    const tasks = useSelector<RootType, TaskType[]>(state => state.tasks[todoListId]);
 
     let currentTasks = tasks;
     if (filter === 'active') {
-      currentTasks = tasks.filter(task => !task.isDone);
+      currentTasks = tasks.filter(task => task.status === TaskTypeStatus.New);
     }
     if (filter === 'completed') {
-      currentTasks = tasks.filter(task => task.isDone);
+      currentTasks = tasks.filter(task => task.status === TaskTypeStatus.Completed);
     }
 
-    const addTaskHandler = useCallback((newTitle: string) => dispatch(addTaskAC(todolistId, newTitle)),
-      [todolistId]);
+    const addTaskHandler = useCallback((newTitle: string) => dispatch(addTaskAC(todoListId, newTitle)),
+      [todoListId]);
 
     const onChangeTaskStatus = useCallback(
-      (todolistId: string, taskId: string, isCheck: boolean) => dispatch(
-        changeTaskCheckboxAC(todolistId, taskId, isCheck)), []);
+      (todoListId: string, taskId: string, isCheck: boolean) => dispatch(
+        changeTaskCheckboxAC(todoListId, taskId, isCheck)), []);
 
     const changeTaskTitle = useCallback(
-      (todolistId: string, taskId: string, title: string) => dispatch(changeTaskTitleAC(todolistId, taskId, title)),
-      [todolistId]);
+      (todoListId: string, taskId: string, title: string) => dispatch(changeTaskTitleAC(todoListId, taskId, title)),
+      [todoListId]);
 
     const removeTask = useCallback(
-      (todolistId: string, taskId: string) => dispatch(removeTaskAC(todolistId, taskId)), [todolistId]);
+      (todoListId: string, taskId: string) => dispatch(removeTaskAC(todoListId, taskId)), [todoListId]);
 
     return (
       <div>
@@ -66,7 +66,7 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo((
             padding: '20px',
           }}>
             <EditableSpan title={title} refactor={(title) => changeTodoListTitle(title)} />
-            <IconButton onClick={() => deleteTodoList(todolistId)}>
+            <IconButton onClick={() => deleteTodoList(todoListId)}>
               <Delete />
             </IconButton>
           </div>
@@ -77,10 +77,10 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo((
             <Task
               key={el.id}
               title={el.title}
-              isDone={el.isDone}
-              changeTaskTitle={(title: string) => changeTaskTitle(todolistId, el.id, title)}
-              onChangeTaskStatus={(isCheck) => onChangeTaskStatus(todolistId, el.id, isCheck)}
-              removeTask={() => removeTask(todolistId, el.id)}
+              status={el.status}
+              changeTaskTitle={(title: string) => changeTaskTitle(todoListId, el.id, title)}
+              onChangeTaskStatus={(isCheck) => onChangeTaskStatus(todoListId, el.id, isCheck)}
+              removeTask={() => removeTask(todoListId, el.id)}
             />)}
         </ul>
         <div>
