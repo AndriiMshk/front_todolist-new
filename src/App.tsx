@@ -1,13 +1,14 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import './App.css';
 import {
-  addTodoLIstAC,
-  changeFilterTodoLIstAC,
-  changeTitleTodoLIstAC,
-  removeTodoLIstAC,
+  addTodoListTC,
+  changeFilterTodoListAC,
+  changeTitleTodoListTC,
+  removeTodoListTC,
+  setTodoListsTC,
 } from './state/todoList-reducer';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootType } from './state/store';
+import { useSelector } from 'react-redux';
+import { RootType, useAppDispatch } from './state/store';
 import { TestTodoListsComponent } from './todoList-api-test/TestTodoLists';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -19,27 +20,29 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Container, Grid, Paper } from '@mui/material';
 import { AddItemForm } from './AddItemForm';
 import { FilterValuesType, TodoListType } from './api/TypesAPI';
-import { TodoList } from './TodoList';
+import TodoList from './TodoList';
 
 function App() {
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();  // ЕБАНУТЬСЯ МОЖНОООООООО
 
   const todoLists = useSelector<RootType, TodoListType[]>(state => state.todoLists);
 
+  useEffect(() => dispatch(setTodoListsTC()), []);
+
   const addTodoListHandler = useCallback((newTodoList: string) =>
-    dispatch(addTodoLIstAC(newTodoList)), []);
+    dispatch(addTodoListTC(newTodoList)), []);
 
   const deleteTodoListHandler = useCallback((todoListId: string) =>
-    dispatch(removeTodoLIstAC(todoListId)), []);
+    dispatch(removeTodoListTC(todoListId)), []);
 
   const changeFilterHandler = useCallback(
     (todoListId: string, filter: FilterValuesType) =>
-      dispatch(changeFilterTodoLIstAC(todoListId, filter)), []);
+      dispatch(changeFilterTodoListAC(todoListId, filter)), []);
 
   const changeTodoListTitleHandler = useCallback(
     (todoListId: string, title: string) =>
-      dispatch(changeTitleTodoLIstAC(todoListId, title)), []);
+      dispatch(changeTitleTodoListTC(todoListId, title)), []);
 
   return (
     <>

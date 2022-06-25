@@ -1,11 +1,15 @@
 import { v1 } from 'uuid';
-import { AddTodoListActionType, RemoveTodoListActionType } from './todoList-reducer';
+import { AddTodoListActionType, RemoveTodoListActionType, setTodoListsACType } from './todoList-reducer';
 import { TasksType, TaskTypePriority, TaskTypeStatus } from '../api/TypesAPI';
+import { Dispatch } from 'redux';
+import { todoListsApi } from '../api/API';
 
 type DeleteTaskActionType = ReturnType<typeof removeTaskAC>
 type ChangeTaskCheckboxActionType = ReturnType<typeof changeTaskCheckboxAC>
 type AddTaskActionType = ReturnType<typeof addTaskAC>
 type ChangeTaskTitle = ReturnType<typeof changeTaskTitleAC>
+
+type setTasksACType = ReturnType<typeof setTasksAC>
 
 type ActionsType =
   DeleteTaskActionType
@@ -14,6 +18,8 @@ type ActionsType =
   | ChangeTaskTitle
   | AddTodoListActionType
   | RemoveTodoListActionType
+  | setTodoListsACType
+  | setTasksACType
 
 const initialState: TasksType = {};
 
@@ -64,21 +70,63 @@ export const tasksReducer = (state: TasksType = initialState, action: ActionsTyp
       const copy = { ...state };
       delete copy[action.todoListId];
       return copy;
+    case 'SET-TODOLISTS':
+      const copy1 = { ...state };
+      action.payload.forEach(el => {copy1[el.id] = [];});
+      return copy1;
+    case 'SET-TASKS':
+      const copy2 = { ...state };
+      copy2[action.todoListId] = action.tasks;
+      return copy2;
     default:
       return state;
   }
 };
 
-export const removeTaskAC = (todoListId: string, taskId: string) => {
-  return { type: 'DELETE-TASK', todoListId: todoListId, taskId: taskId } as const;
+export const removeTaskAC = (todoListId: string, taskId: string) => (
+  { type: 'DELETE-TASK', todoListId, taskId } as const);
+export const changeTaskCheckboxAC = (todoListId: string, taskId: string, isCheck: boolean) => (
+  { type: 'CHANGE-TASK-CHECKBOX', todoListId, taskId, isCheck } as const);
+export const addTaskAC = (todoListId: string, newTaskTitle: string) => (
+  { type: 'ADD-TASK', todoListId, newTaskTitle } as const);
+export const changeTaskTitleAC = (todoListId: string, taskId: string, newTaskTitle: string) => (
+  { type: 'CHANGE-TASK-TITLE', todoListId, taskId, newTaskTitle } as const);
+export const setTasksAC = (todoListId: string, tasks: any) => {
+  return { type: 'SET-TASKS', todoListId, tasks } as const;
 };
-export const changeTaskCheckboxAC = (todoListId: string, taskId: string, isCheck: boolean) => {
-  return { type: 'CHANGE-TASK-CHECKBOX', todoListId: todoListId, taskId: taskId, isCheck: isCheck } as const;
-};
-export const addTaskAC = (todoListId: string, newTaskTitle: string) => {
-  return { type: 'ADD-TASK', todoListId: todoListId, newTaskTitle: newTaskTitle } as const;
-};
-export const changeTaskTitleAC = (todoListId: string, taskId: string, newTaskTitle: string) => {
-  return { type: 'CHANGE-TASK-TITLE', todoListId: todoListId, taskId: taskId, newTaskTitle: newTaskTitle } as const;
-};
+
+export const setTasksTC = (todoListId: string) => ((dispatch: Dispatch) => {
+  todoListsApi.getTasks(todoListId)
+    .then((res) => {
+      dispatch(setTasksAC(todoListId, res.data.items));
+    });
+});
+export const removeTaskTC = (todoListId: string, taskId: string) => (
+  (dispatch: Dispatch) => {
+    todoListsApi.deleteTask(todoListId, taskId)
+      .then(() => dispatch(removeTaskAC(todoListId, taskId)));
+  }
+);
+export const addTaskTC = (todoListId: string, newTaskTitle: string) => (
+  (dispatch: Dispatch) => {
+    todoListsApi.postTask(todoListId, { title: newTaskTitle })
+      .then(() => dispatch(addTaskAC(todoListId, newTaskTitle)));
+  }
+);
+export const changeTaskTitleTC = (todoListId: string, taskId: string, newTaskTitle: string) => (
+  (dispatch: Dispatch) => {
+    todoListsApi.updateTask(todoListId, taskId, { title: newTaskTitle })
+      .then(() => dispatch(changeTaskTitleAC(todoListId, taskId, newTaskTitle)));
+  }
+);
+export const changeTaskCheckboxTC = (todoListId: string, taskId: string, isCheck: boolean) => (
+  (dispatch: Dispatch) => {
+    let status = TaskTypeStatus.New;
+    if (isCheck) {
+      status = TaskTypeStatus.Completed;
+    }
+    todoListsApi.changeTaskStatus(todoListId, taskId, { status: status })
+      .then(() => dispatch(changeTaskCheckboxAC(todoListId, taskId, isCheck)));
+  }
+);
 

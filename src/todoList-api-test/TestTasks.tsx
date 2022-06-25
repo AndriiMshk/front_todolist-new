@@ -3,7 +3,7 @@ import { testTodolistsApi } from './api/TestTodolists-api';
 import { TestTaskType, TestTasksComponentPropsType } from './TestTypes';
 import { TestTaskComponent } from './TestTask';
 
-export const TestTasksComponent: React.FC<TestTasksComponentPropsType> = ({ todoListId }) => {
+export const TestTasksComponent: React.FC<TestTasksComponentPropsType> = React.memo(({ todoListId }) => {
 
   const [state, setState] = useState<TestTaskType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -78,4 +78,4 @@ export const TestTasksComponent: React.FC<TestTasksComponentPropsType> = ({ todo
         </>}
     </div>
   );
-};
+})

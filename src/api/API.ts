@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { TaskTypeStatus } from './TypesAPI';
 
 const settings = {
   withCredentials: true,
   headers: {
-    'API-KEY': '73298759-1bcc-4e14-8998-d86b90add1ac',
+    'API-KEY': 'abb3a345-b7d8-4f0f-8c61-af2582f7869f',
   },
 };
 
@@ -12,7 +13,7 @@ const instance = axios.create({
   ...settings
 })
 
-export const testTodolistsApi = {
+export const todoListsApi = {
   getTodolists() {
     return instance.get('todo-lists')
   },
@@ -37,4 +38,7 @@ export const testTodolistsApi = {
   updateTask(todoListId: string, taskId: string, payload: { title: string}) {
     return instance.put(`todo-lists/${todoListId}/tasks/${taskId}`, payload)
   },
+  changeTaskStatus(todoListId: string, taskId: string, payload: { status: TaskTypeStatus}) {
+    return instance.put(`todo-lists/${todoListId}/tasks/${taskId}`, payload)
+  }
 };

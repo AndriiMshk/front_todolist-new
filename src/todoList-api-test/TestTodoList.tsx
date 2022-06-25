@@ -2,7 +2,7 @@ import React from 'react';
 import { TestTodoListComponentPropsType } from './TestTypes';
 import { TestTasksComponent } from './TestTasks';
 
-export const TestTodoListComponent: React.FC<TestTodoListComponentPropsType> = (
+export const TestTodoListComponent: React.FC<TestTodoListComponentPropsType> = React.memo((
   { todoList, deleteTodoList, updateTodoList }) => {
   return (
     <div key={todoList.id}>
@@ -22,4 +22,4 @@ export const TestTodoListComponent: React.FC<TestTodoListComponentPropsType> = (
       </div>
     </div>
   );
-};
+})

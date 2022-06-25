@@ -11,7 +11,7 @@ export type TodoListType = TodoListTypeAPI & {
   filter: FilterValuesType
 }
 
-export type TaskType = {
+export type TaskTypeAPI = {
   todoListId: string
   id: string
   title: string
@@ -27,7 +27,7 @@ export type TaskType = {
 }
 
 export type TasksType = {
-  [key: string]: TaskType[]
+  [key: string]: TaskTypeAPI[]
 }
 
 export enum TaskTypeStatus {
