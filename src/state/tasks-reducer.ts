@@ -1,6 +1,6 @@
 import { v1 } from 'uuid';
 import { AddTodoListActionType, RemoveTodoListActionType, setTodoListsACType } from './todoList-reducer';
-import { TasksType, TaskTypePriority, TaskTypeStatus } from '../api/TypesAPI';
+import { TasksType, TaskTypeAPI, TaskTypePriority, TaskTypeStatus } from '../api/TypesAPI';
 import { Dispatch } from 'redux';
 import { todoListsApi } from '../api/API';
 
@@ -119,14 +119,15 @@ export const changeTaskTitleTC = (todoListId: string, taskId: string, newTaskTit
       .then(() => dispatch(changeTaskTitleAC(todoListId, taskId, newTaskTitle)));
   }
 );
-export const changeTaskCheckboxTC = (todoListId: string, taskId: string, isCheck: boolean) => (
+export const changeTaskCheckboxTC = (todoListId: string, taskId: string, isCheck: boolean,
+  task: TaskTypeAPI | undefined) => (
   (dispatch: Dispatch) => {
     let status = TaskTypeStatus.New;
-    if (isCheck) {
-      status = TaskTypeStatus.Completed;
+    if (isCheck) {status = TaskTypeStatus.Completed;}
+    if (task) {
+      todoListsApi.changeTaskStatus(todoListId, taskId, { ...task, status: status })
+        .then(() => dispatch(changeTaskCheckboxAC(todoListId, taskId, isCheck)));
     }
-    todoListsApi.changeTaskStatus(todoListId, taskId, { status: status })
-      .then(() => dispatch(changeTaskCheckboxAC(todoListId, taskId, isCheck)));
   }
 );
 

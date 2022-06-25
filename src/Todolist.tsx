@@ -51,8 +51,10 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
       [todoListId]);
 
     const onChangeTaskStatus = useCallback(
-      (todoListId: string, taskId: string, isCheck: boolean) => dispatch(
-        changeTaskCheckboxTC(todoListId, taskId, isCheck)), []);
+      (todoListId: string, taskId: string, isCheck: boolean) => {
+        const currentTask = tasks.find(el => el.id === taskId)
+       return (dispatch(changeTaskCheckboxTC(todoListId, taskId, isCheck, currentTask)) )
+      }, [todoListId, tasks]);
 
     const changeTaskTitle = useCallback(
       (todoListId: string, taskId: string, title: string) => dispatch(changeTaskTitleTC(todoListId,
@@ -62,7 +64,9 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
     const removeTask = useCallback(
       (todoListId: string, taskId: string) => dispatch(removeTaskTC(todoListId, taskId)),
       [todoListId]);
-    return (
+  console.log(tasks);
+
+  return (
       <div>
         <div>
           <div style={{
