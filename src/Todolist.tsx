@@ -3,10 +3,9 @@ import { EditableSpan } from './EditableSpan';
 import { AddItemForm } from './AddItemForm';
 import { Button, IconButton } from '@mui/material';
 import { Delete } from '@mui/icons-material';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootType, useAppDispatch } from './state/store';
-import { addTaskAC, addTaskTC, changeTaskCheckboxAC, changeTaskCheckboxTC, changeTaskTitleAC,
-  changeTaskTitleTC, removeTaskAC, removeTaskTC, setTasksTC } from './state/tasks-reducer';
+import { addTaskTC, removeTaskTC, setTasksTC, updateTaskTC } from './state/tasks-reducer';
 import { Task } from './Task';
 import { FilterValuesType, TaskTypeAPI, TaskTypeStatus } from './api/TypesAPI';
 
@@ -30,7 +29,6 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
   },
   ) => {
 
-    // const dispatch = useDispatch();
     const dispatch = useAppDispatch();
 
     const tasks = useSelector<RootType, TaskTypeAPI[]>(state => {
@@ -47,24 +45,24 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
       currentTasks = tasks.filter(task => task.status === TaskTypeStatus.Completed);
     }
 
-    const addTaskHandler = useCallback((newTitle: string) => dispatch(addTaskTC(todoListId, newTitle)),
-      [todoListId]);
+    const addTaskHandler = useCallback((newTitle: string) =>
+        dispatch(addTaskTC(todoListId, newTitle)), [todoListId]);
 
     const onChangeTaskStatus = useCallback(
       (todoListId: string, taskId: string, isCheck: boolean) => {
-        const currentTask = tasks.find(el => el.id === taskId)
-       return (dispatch(changeTaskCheckboxTC(todoListId, taskId, isCheck, currentTask)) )
+        let status = TaskTypeStatus.New;
+        if (isCheck) {status = TaskTypeStatus.Completed;}
+        // временная мера по замене статуса таски
+        return (dispatch(updateTaskTC(todoListId, taskId, { status })) )
       }, [todoListId, tasks]);
 
     const changeTaskTitle = useCallback(
-      (todoListId: string, taskId: string, title: string) => dispatch(changeTaskTitleTC(todoListId,
-        taskId, title)),
+      (todoListId: string, taskId: string, title: string) =>
+        dispatch(updateTaskTC(todoListId, taskId, { title })),
       [todoListId]);
 
-    const removeTask = useCallback(
-      (todoListId: string, taskId: string) => dispatch(removeTaskTC(todoListId, taskId)),
-      [todoListId]);
-  console.log(tasks);
+    const removeTask = useCallback((todoListId: string, taskId: string) =>
+        dispatch(removeTaskTC(todoListId, taskId)), [todoListId]);
 
   return (
       <div>

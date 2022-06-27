@@ -1,6 +1,6 @@
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
-type TodoListTypeAPI = {
+export type TodoListTypeAPI = {
   id: string
   title: string
   addedDate: string

@@ -9,7 +9,6 @@ import {
 } from './state/todoList-reducer';
 import { useSelector } from 'react-redux';
 import { RootType, useAppDispatch } from './state/store';
-import { TestTodoListsComponent } from './todoList-api-test/TestTodoLists';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -95,10 +94,6 @@ function App() {
           })}
         </Grid>
       </Container>
-      <div>
-        <h2>TodoListsApi</h2>
-        <TestTodoListsComponent />
-      </div>
     </>
   );
 }

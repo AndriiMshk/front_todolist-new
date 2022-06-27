@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TasksType, TaskTypeAPI, TaskTypeStatus } from './TypesAPI';
+import { updateTaskModelType } from '../state/tasks-reducer';
 
 const settings = {
   withCredentials: true,
@@ -10,35 +10,32 @@ const settings = {
 
 const instance = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.1/',
-  ...settings
-})
+  ...settings,
+});
 
 export const todoListsApi = {
   getTodolists() {
-    return instance.get('todo-lists')
+    return instance.get('todo-lists');
   },
-  postTodoList(payload: { title: string}) {
-    return instance.post('todo-lists', payload)
+  postTodoList(payload: { title: string }) {
+    return instance.post('todo-lists', payload);
   },
   deleteTodoList(todoListId: string) {
-    return instance.delete(`todo-lists/${todoListId}`)
+    return instance.delete(`todo-lists/${todoListId}`);
   },
-  updateTodoList(todoListId: string, payload: { title: string}) {
-    return instance.put(`todo-lists/${todoListId}`, payload)
+  updateTodoList(todoListId: string, payload: { title: string }) {
+    return instance.put(`todo-lists/${todoListId}`, payload);
   },
   getTasks(todoListId: string) {
-    return instance.get(`todo-lists/${todoListId}/tasks`)
+    return instance.get(`todo-lists/${todoListId}/tasks`);
   },
-  postTask(todoListId: string, payload: { title: string}) {
-    return instance.post(`todo-lists//${todoListId}/tasks`, payload)
+  postTask(todoListId: string, payload: { title: string }) {
+    return instance.post(`todo-lists//${todoListId}/tasks`, payload);
   },
   deleteTask(todoListId: string, taskId: string) {
-    return instance.delete(`todo-lists/${todoListId}/tasks/${taskId}`)
+    return instance.delete(`todo-lists/${todoListId}/tasks/${taskId}`);
   },
-  updateTask(todoListId: string, taskId: string, payload: { title: string}) {
-    return instance.put(`todo-lists/${todoListId}/tasks/${taskId}`, payload)
+  updateTask(todoListId: string, taskId: string, payload: updateTaskModelType) {
+    return instance.put(`todo-lists/${todoListId}/tasks/${taskId}`, payload);
   },
-  changeTaskStatus(todoListId: string, taskId: string, payload: TaskTypeAPI) {
-    return instance.put(`todo-lists/${todoListId}/tasks/${taskId}`, payload)
-  }
 };
