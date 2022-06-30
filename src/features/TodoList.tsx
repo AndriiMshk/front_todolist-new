@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect } from 'react';
-import { EditableSpan } from './EditableSpan';
-import { AddItemForm } from './AddItemForm';
+import { EditableSpan } from '../components/EditableSpan';
+import { AddItemForm } from '../components/AddItemForm';
 import { Button, IconButton } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
-import { RootType, useAppDispatch } from './state/store';
-import { addTaskTC, removeTaskTC, setTasksTC, updateTaskTC } from './state/tasks-reducer';
+import { RootType, useAppDispatch } from '../state/store';
+import { addTaskTC, removeTaskTC, setTasksTC, updateTaskTC } from '../state/tasks-reducer';
 import { Task } from './Task';
-import { FilterValuesType, TaskTypeAPI, TaskTypeStatus } from './api/TypesAPI';
+import { FilterValuesType, TaskTypeAPI, TaskTypeStatus } from '../api/TypesAPI';
 
 type TodoListPropsType = {
   todoListId: string

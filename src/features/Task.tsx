@@ -1,9 +1,9 @@
 import React from 'react';
 import Checkbox from '@mui/material/Checkbox';
-import { EditableSpan } from './EditableSpan';
+import { EditableSpan } from '../components/EditableSpan';
 import { IconButton } from '@mui/material';
 import { Delete } from '@mui/icons-material';
-import { TaskTypeStatus } from './api/TypesAPI';
+import { TaskTypeStatus } from '../api/TypesAPI';
 
 type TaskPropsType = {
   title: string
