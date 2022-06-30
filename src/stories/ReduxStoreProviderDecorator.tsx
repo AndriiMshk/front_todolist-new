@@ -2,8 +2,8 @@ import { Provider } from 'react-redux';
 import React from 'react';
 import { v1 } from 'uuid';
 import { combineReducers, legacy_createStore as createStore } from 'redux';
-import { tasksReducer } from '../state/tasks-reducer';
-import { todoListReducer } from '../state/todoList-reducer';
+import { tasksReducer } from '../features/todolists/todolist/tasks-reducer';
+import { todoListReducer } from '../features/todolists/todoList-reducer';
 import { FilterValuesType } from '../api/TypesAPI';
 
 const rootReducer = combineReducers({

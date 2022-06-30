@@ -1,8 +1,8 @@
-import { AddTodoListACType, RemoveTodoListACType, SetTodoListsACType } from './todoList-reducer';
-import { TasksType, TaskTypeAPI, TaskTypePriority, TaskTypeStatus } from '../api/TypesAPI';
+import { AddTodoListACType, RemoveTodoListACType, SetTodoListsACType } from '../todoList-reducer';
+import { TasksType, TaskTypeAPI, TaskTypePriority, TaskTypeStatus } from '../../../api/TypesAPI';
 import { Dispatch } from 'redux';
-import { todoListsApi } from '../api/API';
-import { RootType } from './store';
+import { todoListsApi } from '../../../api/API';
+import { RootType } from '../../../app/store';
 
 type ActionsType =
   | ReturnType<typeof removeTaskAC>

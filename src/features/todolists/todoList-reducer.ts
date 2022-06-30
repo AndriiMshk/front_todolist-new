@@ -1,6 +1,6 @@
-import { FilterValuesType, TodoListType, TodoListTypeAPI } from '../api/TypesAPI';
+import { FilterValuesType, TodoListType, TodoListTypeAPI } from '../../api/TypesAPI';
 import { Dispatch } from 'redux';
-import { todoListsApi } from '../api/API';
+import { todoListsApi } from '../../api/API';
 
 export type AddTodoListACType = ReturnType<typeof addTodoListAC>
 export type RemoveTodoListACType = ReturnType<typeof removeTodoListAC>

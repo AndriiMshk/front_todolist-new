@@ -1,17 +1,17 @@
 import React, { useCallback, useEffect } from 'react';
-import { RootType, useAppDispatch } from '../state/store';
+import { RootType, useAppDispatch } from '../../app/store';
 import { useSelector } from 'react-redux';
-import { FilterValuesType, TodoListType } from '../api/TypesAPI';
+import { FilterValuesType, TodoListType } from '../../api/TypesAPI';
 import {
   addTodoListTC,
   changeFilterTodoListAC,
   changeTitleTodoListTC,
   removeTodoListTC,
   setTodoListsTC,
-} from '../state/todoList-reducer';
+} from './todoList-reducer';
 import { Grid, Paper } from '@mui/material';
-import { AddItemForm } from '../components/AddItemForm';
-import TodoList from './TodoList';
+import { AddItemForm } from '../../components/AddItemForm';
+import TodoList from './todolist/TodoList';
 
 export const TodoLists: React.FC = () => {
 

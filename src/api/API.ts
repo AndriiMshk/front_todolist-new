@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { updateTaskModelType } from '../state/tasks-reducer';
+import { updateTaskModelType } from '../features/todolists/todolist/tasks-reducer';
 
 const settings = {
   withCredentials: true,
