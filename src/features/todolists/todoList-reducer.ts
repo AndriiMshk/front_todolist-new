@@ -1,6 +1,7 @@
 import { FilterValuesType, TodoListType, TodoListTypeAPI } from '../../api/TypesAPI';
 import { Dispatch } from 'redux';
 import { todoListsApi } from '../../api/API';
+import { setStatusAC, SetStatusACType } from '../../app/app-reducer';
 
 export type AddTodoListACType = ReturnType<typeof addTodoListAC>
 export type RemoveTodoListACType = ReturnType<typeof removeTodoListAC>
@@ -21,7 +22,7 @@ export const todoListReducer = (state: TodoListType[] = initialState, action: Ac
     case 'REMOVE-TODOLIST':
       return state.filter(({ id }) => id !== action.todoListId);
     case 'ADD-TODOLIST':
-      return [{ ...action.todoList, filter: 'all' }, ...state];
+      return [{ ...action.todoList, filter: 'all', status: 'idle' }, ...state];
     case 'CHANGE-FILTER':
       return state.map(el => el.id === action.todoListId
         ? { ...el, filter: action.newFilter }
@@ -50,22 +51,38 @@ export const setTodoListsAC = (todoLists: TodoListType[]) => ({
   payload: todoLists,
 } as const);
 
-export const setTodoListsTC = () => ((dispatch: Dispatch<ActionsType>) => {
+export const setTodoListsTC = () => ((dispatch: Dispatch<ActionsType | SetStatusACType>) => {
+  dispatch(setStatusAC('loading'));
   todoListsApi.getTodolists()
-    .then(res => dispatch(setTodoListsAC(res.data)));
+    .then(res => {
+      dispatch(setTodoListsAC(res.data));
+      dispatch(setStatusAC('succeeded'));
+    });
 });
-export const removeTodoListTC = (todoListId: string) => ((dispatch: Dispatch<ActionsType>) => {
+export const removeTodoListTC = (todoListId: string) => ((dispatch: Dispatch<ActionsType | SetStatusACType>) => {
+  dispatch(setStatusAC('loading'));
   todoListsApi.deleteTodoList(todoListId)
-    .then(() => dispatch(removeTodoListAC(todoListId)));
+    .then(() => {
+      dispatch(removeTodoListAC(todoListId));
+      dispatch(setStatusAC('succeeded'));
+    });
 });
-export const addTodoListTC = (title: string) => ((dispatch: Dispatch<ActionsType>) => {
+export const addTodoListTC = (title: string) => ((dispatch: Dispatch<ActionsType | SetStatusACType>) => {
+  dispatch(setStatusAC('loading'));
   todoListsApi.postTodoList({ title })
-    .then(res => dispatch(addTodoListAC(res.data.data.item)));
+    .then(res => {
+      dispatch(addTodoListAC(res.data.data.item));
+      dispatch(setStatusAC('succeeded'));
+    });
 });
 export const changeTitleTodoListTC = (todoListId: string, title: string) => (
-  (dispatch: Dispatch<ActionsType>) => {
+  (dispatch: Dispatch<ActionsType | SetStatusACType>) => {
+    dispatch(setStatusAC('loading'));
     todoListsApi.updateTodoList(todoListId, { title })
-      .then(() => dispatch(changeTitleTodoListAC(todoListId, title)));
+      .then(() => {
+        dispatch(changeTitleTodoListAC(todoListId, title));
+        dispatch(setStatusAC('succeeded'));
+      });
   }
 );
 

@@ -7,10 +7,17 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Container } from '@mui/material';
+import { Container, LinearProgress } from '@mui/material';
 import { TodoLists } from '../features/todolists/TodoLists';
+import { ErrorMessage } from '../components/ErrorMessage';
+import { useSelector } from 'react-redux';
+import { RootType } from './store';
+import { AppStatusType } from './app-reducer';
 
 function App() {
+
+  const status = useSelector<RootType, AppStatusType>(state => state.app.status)
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -31,9 +38,11 @@ function App() {
             <Button color="inherit">Login</Button>
           </Toolbar>
         </AppBar>
+        {status === 'loading' && <LinearProgress />}
       </Box>
       <Container fixed>
         <TodoLists />
+        <ErrorMessage />
       </Container>
     </>
   );

@@ -1,3 +1,5 @@
+import { AppStatusType } from '../app/app-reducer';
+
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
 export type TodoListTypeAPI = {
@@ -9,6 +11,7 @@ export type TodoListTypeAPI = {
 
 export type TodoListType = TodoListTypeAPI & {
   filter: FilterValuesType
+  status: AppStatusType
 }
 
 export type TaskTypeAPI = {
