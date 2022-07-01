@@ -7,12 +7,11 @@ import { useSelector } from 'react-redux';
 import { RootType, useAppDispatch } from '../../../app/store';
 import { addTaskTC, removeTaskTC, setTasksTC, updateTaskTC } from './tasks-reducer';
 import { Task } from './task/Task';
-import { FilterValuesType, TaskTypeAPI, TaskTypeStatus } from '../../../api/TypesAPI';
+import { FilterValuesType, TaskTypeAPI, TaskTypeStatus, TodoListType } from '../../../api/TypesAPI';
+import { AppStatusType } from '../../../app/app-reducer';
 
 type TodoListPropsType = {
-  todoListId: string
-  title: string
-  filter: FilterValuesType
+  todoList: TodoListType
   deleteTodoList: (todoListId: string) => void
   changeFilterHandler: (filter: FilterValuesType) => void
   changeTodoListTitle: (title: string) => void
@@ -20,9 +19,7 @@ type TodoListPropsType = {
 
 const TodoList: React.FC<TodoListPropsType> = React.memo((
   {
-    todoListId,
-    title,
-    filter,
+    todoList,
     deleteTodoList,
     changeFilterHandler,
     changeTodoListTitle,
@@ -31,40 +28,37 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
 
     const dispatch = useAppDispatch();
 
-    const tasks = useSelector<RootType, TaskTypeAPI[]>(state => {
-      return (state.tasks[todoListId]);
-    });
-
-    useEffect(() => dispatch(setTasksTC(todoListId)), []);
+    const tasks = useSelector<RootType, TaskTypeAPI[]>(state => (state.tasks[todoList.id]));
+    useEffect(() => dispatch(setTasksTC(todoList.id)), []);
 
     let currentTasks = tasks;
-    if (filter === 'active') {
+    if (todoList.filter === 'active') {
       currentTasks = tasks.filter(task => task.status === TaskTypeStatus.New);
     }
-    if (filter === 'completed') {
+    if (todoList.filter === 'completed') {
       currentTasks = tasks.filter(task => task.status === TaskTypeStatus.Completed);
     }
 
     const addTaskHandler = useCallback((newTitle: string) =>
-        dispatch(addTaskTC(todoListId, newTitle)), [todoListId]);
+      dispatch(addTaskTC(todoList.id, newTitle)), [todoList.id]);
 
     const onChangeTaskStatus = useCallback(
       (todoListId: string, taskId: string, isCheck: boolean) => {
         let status = TaskTypeStatus.New;
         if (isCheck) {status = TaskTypeStatus.Completed;}
         // временная мера по замене статуса таски
-        return (dispatch(updateTaskTC(todoListId, taskId, { status })) )
-      }, [todoListId, tasks]);
+        return (dispatch(updateTaskTC(todoListId, taskId, { status })));
+      }, [todoList.id, tasks]);
 
     const changeTaskTitle = useCallback(
       (todoListId: string, taskId: string, title: string) =>
         dispatch(updateTaskTC(todoListId, taskId, { title })),
-      [todoListId]);
+      [todoList.id]);
 
     const removeTask = useCallback((todoListId: string, taskId: string) =>
-        dispatch(removeTaskTC(todoListId, taskId)), [todoListId]);
+      dispatch(removeTaskTC(todoListId, taskId)), [todoList.id]);
 
-  return (
+    return (
       <div>
         <div>
           <div style={{
@@ -74,40 +68,48 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
             alignItems: 'center',
             padding: '20px',
           }}>
-            <EditableSpan title={title} refactor={(title) => changeTodoListTitle(title)} />
-            <IconButton onClick={() => deleteTodoList(todoListId)}>
+            <EditableSpan
+              disabled={todoList.status === AppStatusType.loading}  //qqqqqqq
+              title={todoList.title}
+              refactor={(title) => changeTodoListTitle(title)} />
+            <IconButton
+              onClick={() => deleteTodoList(todoList.id)}
+              disabled={todoList.status === AppStatusType.loading} // qqqqqqqqqqqq
+            >
               <Delete />
             </IconButton>
           </div>
         </div>
-        <AddItemForm onClick={addTaskHandler} />
+        <AddItemForm
+          disabled={todoList.status === AppStatusType.loading} ///qqqqq
+          onClick={addTaskHandler} />
         <ul style={{ padding: '0 20px' }}>
           {currentTasks && currentTasks.map(el => <Task
             key={el.id}
             title={el.title}
             status={el.status}
-            changeTaskTitle={(title: string) => changeTaskTitle(todoListId, el.id, title)}
-            onChangeTaskStatus={(isCheck) => onChangeTaskStatus(todoListId, el.id, isCheck)}
-            removeTask={() => removeTask(todoListId, el.id)}
+            changeTaskTitle={(title: string) => changeTaskTitle(todoList.id, el.id, title)}
+            onChangeTaskStatus={(isCheck) => onChangeTaskStatus(todoList.id, el.id, isCheck)}
+            removeTask={() => removeTask(todoList.id, el.id)}
           />)}
         </ul>
         <div>
           <Button
             color={'primary'}
-            variant={filter === 'all' ? 'contained' : 'text'}
-            onClick={() => changeFilterHandler('all')}
+            variant={todoList.filter === 'all' ? 'contained' : 'text'}
+            onClick={() => changeFilterHandler(FilterValuesType.all)}
           >ALL
           </Button>
           <Button
             color={'secondary'}
-            variant={filter === 'completed' ? 'contained' : 'text'}
-            onClick={() => changeFilterHandler('completed')}
+            variant={todoList.filter === 'completed' ? 'contained' : 'text'}
+            onClick={() => changeFilterHandler(FilterValuesType.completed)}
           >CHECKED
           </Button>
           <Button
             color={'secondary'}
-            variant={filter === 'active' ? 'contained' : 'text'}
-            onClick={() => changeFilterHandler('active')}
+            variant={todoList.filter === 'active' ? 'contained' : 'text'}
+            onClick={() => changeFilterHandler(FilterValuesType.active)}
           >UNCHECKED
           </Button>
         </div>

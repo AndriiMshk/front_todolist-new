@@ -1,6 +1,10 @@
 import { AppStatusType } from '../app/app-reducer';
 
-export type FilterValuesType = 'all' | 'active' | 'completed';
+export enum FilterValuesType {
+  all = 'all',
+  active = 'active',
+  completed = 'completed'
+}
 
 export type TodoListTypeAPI = {
   id: string
@@ -45,6 +49,12 @@ export enum TaskTypePriority {
   Middle = 1,
   Hi = 2,
   Urgently = 3
+}
+
+export type ResponseType<Data> = {
+  resultCode: number
+  messages: string[]
+  data: Data
 }
 
 

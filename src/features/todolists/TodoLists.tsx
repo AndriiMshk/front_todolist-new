@@ -4,10 +4,9 @@ import { useSelector } from 'react-redux';
 import { FilterValuesType, TodoListType } from '../../api/TypesAPI';
 import {
   addTodoListTC,
-  changeFilterTodoListAC,
   changeTitleTodoListTC,
   removeTodoListTC,
-  setTodoListsTC,
+  setTodoListsTC, updateTodoListAC,
 } from './todoList-reducer';
 import { Grid, Paper } from '@mui/material';
 import { AddItemForm } from '../../components/AddItemForm';
@@ -29,11 +28,11 @@ export const TodoLists: React.FC = () => {
 
   const changeFilterHandler = useCallback(
     (todoListId: string, filter: FilterValuesType) =>
-      dispatch(changeFilterTodoListAC(todoListId, filter)), []);
+      dispatch(updateTodoListAC(todoListId, { filter })), []);
 
   const changeTodoListTitleHandler = useCallback(
     (todoListId: string, title: string) =>
-      dispatch(changeTitleTodoListTC(todoListId, title)), []);
+      dispatch(changeTitleTodoListTC(todoListId,  title )), []);
 
   return (
     <>
@@ -53,9 +52,7 @@ export const TodoLists: React.FC = () => {
                 style={{ padding: '10px' }}
               >
                 <TodoList
-                  todoListId={el.id}
-                  title={el.title}
-                  filter={el.filter}
+                  todoList={el}
                   deleteTodoList={() => deleteTodoListHandler(el.id)}
                   changeFilterHandler={(filter: FilterValuesType) => changeFilterHandler(el.id, filter)}
                   changeTodoListTitle={(title) => changeTodoListTitleHandler(el.id, title)}

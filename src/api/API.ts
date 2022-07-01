@@ -39,3 +39,5 @@ export const todoListsApi = {
     return instance.put(`todo-lists/${todoListId}/tasks/${taskId}`, payload);
   },
 };
+
+/// протипизировать респонсы тип в типах

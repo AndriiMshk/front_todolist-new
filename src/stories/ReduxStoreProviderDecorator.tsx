@@ -1,49 +1,53 @@
 import { Provider } from 'react-redux';
 import React from 'react';
 import { v1 } from 'uuid';
-import { combineReducers, legacy_createStore as createStore } from 'redux';
+import { applyMiddleware, combineReducers, legacy_createStore as createStore } from 'redux';
 import { tasksReducer } from '../features/todolists/todolist/tasks-reducer';
 import { todoListReducer } from '../features/todolists/todoList-reducer';
-import { FilterValuesType } from '../api/TypesAPI';
+import { TaskTypePriority, TaskTypeStatus } from '../api/TypesAPI';
+import { appReducer } from '../app/app-reducer';
+import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
   tasks: tasksReducer,
   todoLists: todoListReducer,
+  app: appReducer,
 });
-
-
 
 const initialState = {
   todolists: [
-    { id: 'todolistId1', title: 'What to learn', filter: 'all' },
-    { id: 'todolistId2', title: 'What to buy', filter: 'all' },
+    { id: 'todolistId1', title: 'What to learn', filter: 'all', status: 'idle' },
+    { id: 'todolistId2', title: 'What to buy', filter: 'all', status: 'idle' },
   ],
   tasks: {
     ['todolistId1']: [
-      { id: v1(), title: 'HTML&CSS', isDone: true },
-      { id: v1(), title: 'JS', isDone: true },
+      {
+        id: v1(), title: 'HTML&CSS', status: TaskTypeStatus.Completed,
+        todoListId: 'todolistId1', startDate: '', priority: TaskTypePriority.Low,
+        description: '', deadline: '', addedDate: '', order: 0,
+      },
+      {
+        id: v1(), title: 'JS', status: TaskTypeStatus.New,
+        todoListId: 'todolistId1', startDate: '', priority: TaskTypePriority.Low,
+        description: '', deadline: '', addedDate: '', order: 0,
+      },
     ],
     ['todolistId2']: [
-      { id: v1(), title: 'Milk', isDone: true },
-      { id: v1(), title: 'React Book', isDone: true },
+      {
+        id: v1(), title: '111111', status: TaskTypeStatus.Completed,
+        todoListId: 'todolistId2', startDate: '', priority: TaskTypePriority.Low,
+        description: '', deadline: '', addedDate: '', order: 0,
+      },
+      {
+        id: v1(), title: '222222222', status: TaskTypeStatus.New,
+        todoListId: 'todolistId2', startDate: '', priority: TaskTypePriority.Low,
+        description: '', deadline: '', addedDate: '', order: 0,
+      },
     ],
   },
 };
 
-// type initialStateType = typeof initialState
-
-/*
-type initialStateType = {
-  todolists: {id: string, title: string, filter: FilterValuesType}[]
-  tasks: {
-    [key: string]: { id: string, title: string, isDone: boolean }[]
-  }
-}
-*/
-
-export const storyBookStore = createStore(rootReducer, initialState as any);
-
-// do not work with initial state
+export const storyBookStore = createStore(rootReducer, initialState, applyMiddleware(thunk));
 
 export const ReduxStoreProviderDecorator = (story: any) => {
   return <Provider store={storyBookStore}> {story()} </Provider>;
