@@ -14,11 +14,10 @@ import TodoList from './todolist/TodoList';
 
 export const TodoLists: React.FC = () => {
 
-  const dispatch = useAppDispatch();  // ЕБАНУТЬСЯ МОЖНОООООООО
-
+  const dispatch = useAppDispatch();
   const todoLists = useSelector<RootType, TodoListType[]>(state => state.todoLists);
 
-  useEffect(() => dispatch(setTodoListsTC()), []);
+  useEffect(() => {dispatch(setTodoListsTC())}, []);
 
   const addTodoListHandler = useCallback((newTodoList: string) =>
     dispatch(addTodoListTC(newTodoList)), []);

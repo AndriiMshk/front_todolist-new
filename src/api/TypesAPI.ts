@@ -51,7 +51,7 @@ export enum TaskTypePriority {
   Urgently = 3
 }
 
-export type ResponseType<Data> = {
+export type ResponseType<Data = {}> = {
   resultCode: number
   messages: string[]
   data: Data

@@ -29,7 +29,7 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
     const dispatch = useAppDispatch();
 
     const tasks = useSelector<RootType, TaskTypeAPI[]>(state => (state.tasks[todoList.id]));
-    useEffect(() => dispatch(setTasksTC(todoList.id)), []);
+    useEffect(() => {dispatch(setTasksTC(todoList.id));}, []);
 
     let currentTasks = tasks;
     if (todoList.filter === 'active') {
@@ -46,7 +46,6 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
       (todoListId: string, taskId: string, isCheck: boolean) => {
         let status = TaskTypeStatus.New;
         if (isCheck) {status = TaskTypeStatus.Completed;}
-        // временная мера по замене статуса таски
         return (dispatch(updateTaskTC(todoListId, taskId, { status })));
       }, [todoList.id, tasks]);
 
@@ -69,19 +68,19 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
             padding: '20px',
           }}>
             <EditableSpan
-              disabled={todoList.status === AppStatusType.loading}  //qqqqqqq
+              disabled={todoList.status === AppStatusType.loading}
               title={todoList.title}
               refactor={(title) => changeTodoListTitle(title)} />
             <IconButton
               onClick={() => deleteTodoList(todoList.id)}
-              disabled={todoList.status === AppStatusType.loading} // qqqqqqqqqqqq
+              disabled={todoList.status === AppStatusType.loading}
             >
               <Delete />
             </IconButton>
           </div>
         </div>
         <AddItemForm
-          disabled={todoList.status === AppStatusType.loading} ///qqqqq
+          disabled={todoList.status === AppStatusType.loading}
           onClick={addTaskHandler} />
         <ul style={{ padding: '0 20px' }}>
           {currentTasks && currentTasks.map(el => <Task

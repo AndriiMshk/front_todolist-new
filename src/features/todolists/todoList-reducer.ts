@@ -1,14 +1,14 @@
 import { FilterValuesType, TodoListType } from '../../api/TypesAPI';
-import { Dispatch } from 'redux';
 import { todoListsApi } from '../../api/API';
-import { AppStatusType, setAppStatusAC, SetErrorACType, SetStatusACType } from '../../app/app-reducer';
+import { AppStatusType, setAppStatusAC } from '../../app/app-reducer';
 import { handleAppError, handleNetworkError } from '../../helpers/error-utils';
+import { ThunkTypes } from '../../app/store';
 
 export type AddTodoListACType = ReturnType<typeof addTodoListAC>
 export type RemoveTodoListACType = ReturnType<typeof removeTodoListAC>
 export type SetTodoListsACType = ReturnType<typeof setTodoListsAC>
 
-type ActionsType =
+export type TodoListsActionsType =
   | RemoveTodoListACType
   | AddTodoListACType
   | SetTodoListsACType
@@ -23,7 +23,7 @@ export type updateTodoListModelType = {
 
 const initialState: TodoListType[] = [];
 
-export const todoListReducer = (state: TodoListType[] = initialState, action: ActionsType): TodoListType[] => {
+export const todoListReducer = (state: TodoListType[] = initialState, action: TodoListsActionsType): TodoListType[] => {
   switch (action.type) {
     case 'REMOVE-TODOLIST':
       return state.filter(({ id }) => id !== action.todoListId);
@@ -52,52 +52,56 @@ export const updateTodoListAC = (todoListId: string, todoListModel: updateTodoLi
   { type: 'UPDATE-TODOLIST', todoListId, todoListModel } as const
 );
 
-export const setTodoListsTC = () => (
-  (dispatch: Dispatch<ActionsType | SetStatusACType | SetErrorACType>) => {
+export const setTodoListsTC = (): ThunkTypes => (
+  async(dispatch) => {
     dispatch(setAppStatusAC(AppStatusType.loading));
-    todoListsApi.getTodolists()
-      .then(res => {
-        dispatch(setTodoListsAC(res.data));
-        dispatch(setAppStatusAC(AppStatusType.succeeded));
-      })
-      .catch(err => handleNetworkError(err, dispatch));
+    try {
+      const res = await todoListsApi.getTodolists();
+      dispatch(setTodoListsAC(res.data));
+      dispatch(setAppStatusAC(AppStatusType.succeeded));
+    } catch (err) {
+      handleNetworkError(err, dispatch);
+    }
   });
-export const addTodoListTC = (title: string) => (
-  (dispatch: Dispatch<ActionsType | SetStatusACType | SetErrorACType>) => {
+export const addTodoListTC = (title: string): ThunkTypes => (
+  async(dispatch) => {
     dispatch(setAppStatusAC(AppStatusType.loading));
-    todoListsApi.postTodoList({ title })
-      .then(res => {
-        dispatch(addTodoListAC(res.data.data.item));
-        dispatch(setAppStatusAC(AppStatusType.succeeded));
-      })
-      .catch(err => handleNetworkError(err, dispatch));
+    try {
+      const res = await todoListsApi.postTodoList({ title });
+      dispatch(addTodoListAC(res.data.data.item));
+      dispatch(setAppStatusAC(AppStatusType.succeeded));
+    } catch (err) {
+      handleNetworkError(err, dispatch);
+    }
   });
-export const removeTodoListTC = (todoListId: string) => (
-  (dispatch: Dispatch<ActionsType | SetStatusACType | SetErrorACType>) => {
+export const removeTodoListTC = (todoListId: string): ThunkTypes => (
+  async(dispatch) => {
     dispatch(updateTodoListAC(todoListId, { status: AppStatusType.loading }));
     dispatch(setAppStatusAC(AppStatusType.loading));
-    todoListsApi.deleteTodoList(todoListId)
-      .then(() => {
-        dispatch(removeTodoListAC(todoListId));
-        dispatch(setAppStatusAC(AppStatusType.succeeded));
-      })
-      .catch(err => handleNetworkError(err, dispatch));
+    try {
+      await todoListsApi.deleteTodoList(todoListId);
+      dispatch(removeTodoListAC(todoListId));
+      dispatch(setAppStatusAC(AppStatusType.succeeded));
+    } catch (err) {
+      handleNetworkError(err, dispatch);
+    }
   });
-export const changeTitleTodoListTC = (todoListId: string, title: string) => (
-  (dispatch: Dispatch<ActionsType | SetStatusACType | SetErrorACType>) => {
+export const changeTitleTodoListTC = (todoListId: string, title: string): ThunkTypes => (
+  async(dispatch) => {
     dispatch(updateTodoListAC(todoListId, { status: AppStatusType.loading }));
     dispatch(setAppStatusAC(AppStatusType.loading));
-    todoListsApi.updateTodoList(todoListId, { title })
-      .then((res) => {
-        if (res.data.resultCode === 0) {
-          dispatch(updateTodoListAC(todoListId, { title }));
-          dispatch(setAppStatusAC(AppStatusType.succeeded));
-          dispatch(updateTodoListAC(todoListId, { status: AppStatusType.succeeded }));
-        } else {
-          handleAppError(res.data, dispatch);
-        }
-      })
-      .catch(err => handleNetworkError(err, dispatch));
+    try {
+      const res = await todoListsApi.updateTodoList(todoListId, { title });
+      if (res.data.resultCode === 0) {
+        dispatch(updateTodoListAC(todoListId, { title }));
+        dispatch(setAppStatusAC(AppStatusType.succeeded));
+        dispatch(updateTodoListAC(todoListId, { status: AppStatusType.succeeded }));
+      } else {
+        handleAppError(res.data, dispatch);
+      }
+    } catch (err) {
+      handleNetworkError(err, dispatch);
+    }
   }
 );
 
