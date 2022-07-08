@@ -15,3 +15,6 @@ export const handleNetworkError = (message: string,
   dispatch(setAppStatusAC(AppStatusType.failed));
   dispatch(setAppErrorAC(message ? message : 'SOME ERROR'));
 };
+
+// realized check fo errors
+//fix test & storybook

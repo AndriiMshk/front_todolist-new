@@ -43,3 +43,22 @@ export const todoListsApi = {
       `todo-lists/${todoListId}/tasks/${taskId}`, payload);
   },
 };
+
+export type LoginParamsType = {
+  email: string
+  password: string
+  rememberMe: boolean
+  captcha?: string
+}
+
+export const authApi = {
+  authMe() {
+    return instance.get<ResponseType<{ id: number, email: string, login: string }>>('/auth/me');
+  },
+  login(params: LoginParamsType) {
+    return instance.post<ResponseType<{ userId?: number }>>('/auth/login', params);
+  },
+  logout() {
+    return instance.delete<ResponseType>('/auth/login');
+  },
+};

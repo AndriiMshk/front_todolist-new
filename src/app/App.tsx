@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import './App.css';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -10,12 +10,35 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Container, LinearProgress } from '@mui/material';
 import { TodoLists } from '../features/todolists/TodoLists';
 import { ErrorMessage } from '../components/ErrorMessage';
-import { useSelector } from 'react-redux';
-import { RootType } from './store';
-import { AppStatusType } from '../api/TypesAPI';
+import { useAppDispatch, useAppSelector } from './store';
+import { Login } from '../features/Login/Login';
+import { Route, Routes } from 'react-router-dom';
+import { logoutTC } from '../features/Login/login-reducer';
+import CircularProgress from '@mui/material/CircularProgress';
+import { setAppInitializedTC } from './app-reducer';
 
 function App() {
-  const status = useSelector<RootType, AppStatusType>(state => state.app.status)
+  const status = useAppSelector(state => state.app.status);
+  const isLogin = useAppSelector(state => state.login.isLogin);
+  const isInitialized = useAppSelector(state => state.app.isInitialized);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setAppInitializedTC());
+  }, []);
+
+  const logoutHandler = useCallback(() => {
+    dispatch(logoutTC(false));
+  }, []);
+
+  if (!isInitialized) {
+    return (
+      <div style={{ width: '100%', position: 'fixed', top: '30%', textAlign: 'center' }}>
+        <CircularProgress size={200} />
+      </div>
+    );
+  }
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -33,13 +56,22 @@ function App() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               My TodoLists
             </Typography>
-            <Button color="inherit">Login</Button>
+            {!isLogin
+              ? <Button color="inherit">Login</Button>
+              : <Button
+                onClick={logoutHandler}
+                color="inherit"
+              >Exit</Button>
+            }
           </Toolbar>
         </AppBar>
         {status === 'loading' && <LinearProgress />}
       </Box>
       <Container fixed>
-        <TodoLists />
+        <Routes>
+          <Route path={'/login'} element={<Login />} />
+          <Route path={'/'} element={<TodoLists />} />
+        </Routes>
         <ErrorMessage />
       </Container>
     </>

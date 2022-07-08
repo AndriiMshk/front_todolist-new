@@ -4,7 +4,7 @@ import { AddItemForm } from '../../../components/AddItemForm';
 import { Button, IconButton } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
-import { RootType, useAppDispatch } from '../../../app/store';
+import { RootType, useAppDispatch, useAppSelector } from '../../../app/store';
 import { addTaskTC, removeTaskTC, setTasksTC, updateTaskTC } from './tasks-reducer';
 import { Task } from './task/Task';
 import { AppStatusType, FilterValuesType, TaskTypeAPI, TaskTypeStatus, TodoListType } from '../../../api/TypesAPI';
@@ -27,7 +27,7 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
 
     const dispatch = useAppDispatch();
 
-    const tasks = useSelector<RootType, TaskTypeAPI[]>(state => (state.tasks[todoList.id]));
+    const tasks = useAppSelector(state => (state.tasks[todoList.id]));
     useEffect(() => {dispatch(setTasksTC(todoList.id));}, []);
 
     let currentTasks = tasks;

@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
-import { RootType, useAppDispatch } from '../../app/store';
-import { useSelector } from 'react-redux';
-import { FilterValuesType, TodoListType } from '../../api/TypesAPI';
+import { useAppDispatch, useAppSelector } from '../../app/store';
+import { FilterValuesType } from '../../api/TypesAPI';
 import {
   addTodoListTC,
   removeTodoListTC,
@@ -12,13 +11,19 @@ import {
 import { Grid, Paper } from '@mui/material';
 import { AddItemForm } from '../../components/AddItemForm';
 import TodoList from './todolist/TodoList';
+import { Navigate } from 'react-router-dom';
 
 export const TodoLists: React.FC = () => {
 
   const dispatch = useAppDispatch();
-  const todoLists = useSelector<RootType, TodoListType[]>(state => state.todoLists);
+  const todoLists = useAppSelector(state => state.todoLists);
+  const isLogin = useAppSelector(state => state.login.isLogin);
 
-  useEffect(() => {dispatch(setTodoListsTC());}, []);
+  useEffect(() => {
+    if (isLogin) {
+      dispatch(setTodoListsTC());
+    }
+  }, []);
 
   const addTodoListHandler = useCallback((newTodoList: string) =>
     dispatch(addTodoListTC(newTodoList)), []);
@@ -37,6 +42,10 @@ export const TodoLists: React.FC = () => {
         dispatch(updateTodoListTC(todoListId, title));
       }
     }, [todoLists]);
+
+  if (!isLogin) {
+    return <Navigate to="/login" replace />;
+  }
 
   return (
     <>

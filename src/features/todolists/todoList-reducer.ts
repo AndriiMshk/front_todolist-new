@@ -26,15 +26,15 @@ const initialState: TodoListType[] = [];
 
 export const todoListReducer = (state: TodoListType[] = initialState, action: TodoListsActionsType): TodoListType[] => {
   switch (action.type) {
-    case 'REMOVE-TODOLIST':
+    case 'TODOLIST/REMOVE-TODOLIST':
       return state.filter(({ id }) => id !== action.todoListId);
-    case 'ADD-TODOLIST':
+    case 'TODOLIST/ADD-TODOLIST':
       return [{ ...action.todoList, filter: FilterValuesType.all, status: AppStatusType.idle }, ...state];
-    case 'UPDATE-TODOLIST':
+    case 'TODOLIST/UPDATE-TODOLIST':
       return state.map(el => el.id === action.todoListId
         ? { ...el, ...action.todoListModel }
         : el);
-    case 'SET-TODOLISTS':
+    case 'TODOLIST/SET-TODOLISTS':
       return action.payload.map(el => ({ ...el, filter: FilterValuesType.all, status: AppStatusType.idle }));
     default:
       return state;
@@ -42,15 +42,15 @@ export const todoListReducer = (state: TodoListType[] = initialState, action: To
 };
 
 export const removeTodoListAC = (todoListId: string) => (
-  { type: 'REMOVE-TODOLIST', todoListId } as const);
+  { type: 'TODOLIST/REMOVE-TODOLIST', todoListId } as const);
 export const addTodoListAC = (todoList: TodoListType) => (
-  { type: 'ADD-TODOLIST', todoList } as const);
+  { type: 'TODOLIST/ADD-TODOLIST', todoList } as const);
 export const setTodoListsAC = (todoLists: TodoListType[]) => ({
-  type: 'SET-TODOLISTS',
+  type: 'TODOLIST/SET-TODOLISTS',
   payload: todoLists,
 } as const);
 export const updateTodoListAC = (todoListId: string, todoListModel: UpdateTodoListModelType) => (
-  { type: 'UPDATE-TODOLIST', todoListId, todoListModel } as const
+  { type: 'TODOLIST/UPDATE-TODOLIST', todoListId, todoListModel } as const
 );
 
 export const setTodoListsTC = (): ThunkTypes => (
