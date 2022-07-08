@@ -4,9 +4,10 @@ import { useSelector } from 'react-redux';
 import { FilterValuesType, TodoListType } from '../../api/TypesAPI';
 import {
   addTodoListTC,
-  changeTitleTodoListTC,
   removeTodoListTC,
-  setTodoListsTC, updateTodoListAC,
+  setTodoListsTC,
+  updateTodoListAC,
+  updateTodoListTC,
 } from './todoList-reducer';
 import { Grid, Paper } from '@mui/material';
 import { AddItemForm } from '../../components/AddItemForm';
@@ -17,7 +18,7 @@ export const TodoLists: React.FC = () => {
   const dispatch = useAppDispatch();
   const todoLists = useSelector<RootType, TodoListType[]>(state => state.todoLists);
 
-  useEffect(() => {dispatch(setTodoListsTC())}, []);
+  useEffect(() => {dispatch(setTodoListsTC());}, []);
 
   const addTodoListHandler = useCallback((newTodoList: string) =>
     dispatch(addTodoListTC(newTodoList)), []);
@@ -30,8 +31,12 @@ export const TodoLists: React.FC = () => {
       dispatch(updateTodoListAC(todoListId, { filter })), []);
 
   const changeTodoListTitleHandler = useCallback(
-    (todoListId: string, title: string) =>
-      dispatch(changeTitleTodoListTC(todoListId,  title )), []);
+    (todoListId: string, title: string) => {
+      const currentTodoList = todoLists.find(el => el.id === todoListId);
+      if (title !== currentTodoList?.title) {
+        dispatch(updateTodoListTC(todoListId, title));
+      }
+    }, [todoLists]);
 
   return (
     <>

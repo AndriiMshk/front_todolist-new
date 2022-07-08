@@ -8,7 +8,7 @@ import {
 } from '../features/todolists/todolist/tasks-reducer';
 import { FilterValuesType, TasksType, TaskTypePriority, TaskTypeStatus, TodoListType } from '../api/TypesAPI';
 import { setTodoListsAC } from '../features/todolists/todoList-reducer';
-import { AppStatusType } from '../app/app-reducer';
+
 //
 // test('DELETE-TASK', () => {
 //   let todolistID1 = v1();

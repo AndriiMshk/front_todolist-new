@@ -1,9 +1,10 @@
 import { AddTodoListACType, RemoveTodoListACType, SetTodoListsACType } from '../todoList-reducer';
-import { TasksType, TaskTypeAPI, TaskTypePriority, TaskTypeStatus } from '../../../api/TypesAPI';
+import { AppStatusType, TasksType, TaskTypeAPI, TaskTypePriority, TaskTypeStatus } from '../../../api/TypesAPI';
 import { todoListsApi } from '../../../api/API';
 import { RootType, ThunkTypes } from '../../../app/store';
-import { AppStatusType, setAppStatusAC } from '../../../app/app-reducer';
+import { setAppStatusAC } from '../../../app/app-reducer';
 import { handleAppError, handleNetworkError } from '../../../helpers/error-utils';
+import axios from 'axios';
 
 export type TasksActionsType =
   | ReturnType<typeof removeTaskAC>
@@ -14,13 +15,14 @@ export type TasksActionsType =
   | RemoveTodoListACType
   | SetTodoListsACType
 
-export type updateTaskModelType = {
+export type UpdateTaskModelType = {
   title?: string
   deadline?: string
   startDate?: string
   description?: string
   priority?: TaskTypePriority
   status?: TaskTypeStatus
+  isDisabled?: boolean
 }
 
 const initialState: TasksType = {};
@@ -35,7 +37,7 @@ export const tasksReducer = (state: TasksType = initialState, action: TasksActio
     case 'ADD-TASK':
       return {
         ...state,
-        [action.task.todoListId]: [action.task, ...state[action.task.todoListId]],
+        [action.task.todoListId]: [{ ...action.task, isDisabled: false }, ...state[action.task.todoListId]],
       };
     case 'UPDATE-TASK':
       return {
@@ -68,7 +70,7 @@ export const removeTaskAC = (todoListId: string, taskId: string) => (
   { type: 'DELETE-TASK', todoListId, taskId } as const);
 export const addTaskAC = (task: TaskTypeAPI) => ({ type: 'ADD-TASK', task } as const);
 export const setTasksAC = (todoListId: string, tasks: any) => ({ type: 'SET-TASKS', todoListId, tasks } as const);
-export const updateTaskAC = (todoListId: string, taskId: string, taskModel: updateTaskModelType) => (
+export const updateTaskAC = (todoListId: string, taskId: string, taskModel: UpdateTaskModelType) => (
   { type: 'UPDATE-TASK', todoListId, taskId, taskModel } as const);
 
 export const setTasksTC = (todoListId: string): ThunkTypes => (
@@ -79,19 +81,26 @@ export const setTasksTC = (todoListId: string): ThunkTypes => (
       dispatch(setTasksAC(todoListId, res.data.items));
       dispatch(setAppStatusAC(AppStatusType.succeeded));
     } catch (err) {
-      handleNetworkError(err, dispatch);
+      if (axios.isAxiosError(err)) {
+        handleNetworkError(err.message, dispatch);
+      }
     }
   }
 );
 export const removeTaskTC = (todoListId: string, taskId: string): ThunkTypes => (
   async(dispatch) => {
+    dispatch(updateTaskAC(todoListId, taskId, { isDisabled: true }));
     dispatch(setAppStatusAC(AppStatusType.loading));
-    todoListsApi.deleteTask(todoListId, taskId)
-      .then(() => {
-        dispatch(removeTaskAC(todoListId, taskId));
-        dispatch(setAppStatusAC(AppStatusType.succeeded));
-      })
-      .catch(err => handleNetworkError(err, dispatch));
+    try {
+      await todoListsApi.deleteTask(todoListId, taskId);
+      dispatch(removeTaskAC(todoListId, taskId));
+      dispatch(setAppStatusAC(AppStatusType.succeeded));
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        handleNetworkError(err.message, dispatch);
+      }
+    }
+    dispatch(updateTaskAC(todoListId, taskId, { isDisabled: false }));
   }
 );
 export const addTaskTC = (todoListId: string, title: string): ThunkTypes => (
@@ -106,12 +115,15 @@ export const addTaskTC = (todoListId: string, title: string): ThunkTypes => (
         handleAppError(res.data, dispatch);
       }
     } catch (err) {
-      handleNetworkError(err, dispatch);
+      if (axios.isAxiosError(err)) {
+        handleNetworkError(err.message, dispatch);
+      }
     }
   }
 );
-export const updateTaskTC = (todoListId: string, taskId: string, taskModel: updateTaskModelType): ThunkTypes => (
+export const updateTaskTC = (todoListId: string, taskId: string, taskModel: UpdateTaskModelType): ThunkTypes => (
   (async(dispatch, getState: () => RootType) => {
+    dispatch(updateTaskAC(todoListId, taskId, { isDisabled: true }));
     dispatch(setAppStatusAC(AppStatusType.loading));
     const task = getState().tasks[todoListId].find(el => el.id === taskId);
     if (task) {
@@ -124,9 +136,12 @@ export const updateTaskTC = (todoListId: string, taskId: string, taskModel: upda
           handleAppError(res.data, dispatch);
         }
       } catch (err) {
-        handleNetworkError(err, dispatch);
+        if (axios.isAxiosError(err)) {
+          handleNetworkError(err.message, dispatch);
+        }
       }
     }
+    dispatch(updateTaskAC(todoListId, taskId, { isDisabled: false }));
   })
 );
 

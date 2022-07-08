@@ -7,7 +7,7 @@ import {
   todoListReducer,
 } from '../features/todolists/todoList-reducer';
 import { FilterValuesType, TodoListType } from '../api/TypesAPI';
-import { AppStatusType } from '../app/app-reducer';
+
 //
 // test('REMOVE-TODOLIST', () => {
 //   let todolistID1 = v1();

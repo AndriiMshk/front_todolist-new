@@ -12,12 +12,10 @@ import { TodoLists } from '../features/todolists/TodoLists';
 import { ErrorMessage } from '../components/ErrorMessage';
 import { useSelector } from 'react-redux';
 import { RootType } from './store';
-import { AppStatusType } from './app-reducer';
+import { AppStatusType } from '../api/TypesAPI';
 
 function App() {
-
   const status = useSelector<RootType, AppStatusType>(state => state.app.status)
-
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>

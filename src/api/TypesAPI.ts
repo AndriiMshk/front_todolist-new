@@ -1,4 +1,9 @@
-import { AppStatusType } from '../app/app-reducer';
+export enum AppStatusType {
+  idle = 'idle',
+  loading = 'loading',
+  succeeded = 'succeeded',
+  failed = 'failed'
+}
 
 export enum FilterValuesType {
   all = 'all',
@@ -31,6 +36,7 @@ export type TaskTypeAPI = {
   order: number
   priority: TaskTypePriority
   status: TaskTypeStatus
+  isDisabled: boolean
 }
 
 export type TasksType = {
@@ -49,6 +55,12 @@ export enum TaskTypePriority {
   Middle = 1,
   Hi = 2,
   Urgently = 3
+}
+
+export type GetTasksResponse = {
+  error: string | null
+  totalCount: number
+  items: TaskTypeAPI[]
 }
 
 export type ResponseType<Data = {}> = {

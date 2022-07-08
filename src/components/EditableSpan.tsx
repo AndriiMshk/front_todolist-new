@@ -28,6 +28,12 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo((props) 
     }
   };
 
+  const setEditModeHandler = () => {
+    if (!props.disabled) {
+      setEditMode(true);
+    }
+  };
+
   return (
     editMode
       ? <TextField
@@ -38,6 +44,6 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo((props) 
         onBlur={onChangeHandler}
         onKeyPress={onPressEnterKey}
         autoFocus />
-      : <span onDoubleClick={() => setEditMode(true)}>{props.title}</span>
+      : <span onDoubleClick={setEditModeHandler}>{props.title}</span>
   );
 });

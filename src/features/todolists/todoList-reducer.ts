@@ -1,8 +1,9 @@
-import { FilterValuesType, TodoListType } from '../../api/TypesAPI';
+import { AppStatusType, FilterValuesType, TodoListType } from '../../api/TypesAPI';
 import { todoListsApi } from '../../api/API';
-import { AppStatusType, setAppStatusAC } from '../../app/app-reducer';
+import { setAppStatusAC } from '../../app/app-reducer';
 import { handleAppError, handleNetworkError } from '../../helpers/error-utils';
 import { ThunkTypes } from '../../app/store';
+import axios from 'axios';
 
 export type AddTodoListACType = ReturnType<typeof addTodoListAC>
 export type RemoveTodoListACType = ReturnType<typeof removeTodoListAC>
@@ -14,7 +15,7 @@ export type TodoListsActionsType =
   | SetTodoListsACType
   | ReturnType<typeof updateTodoListAC>
 
-export type updateTodoListModelType = {
+export type UpdateTodoListModelType = {
   title?: string
   order?: number
   filter?: FilterValuesType
@@ -48,7 +49,7 @@ export const setTodoListsAC = (todoLists: TodoListType[]) => ({
   type: 'SET-TODOLISTS',
   payload: todoLists,
 } as const);
-export const updateTodoListAC = (todoListId: string, todoListModel: updateTodoListModelType) => (
+export const updateTodoListAC = (todoListId: string, todoListModel: UpdateTodoListModelType) => (
   { type: 'UPDATE-TODOLIST', todoListId, todoListModel } as const
 );
 
@@ -60,7 +61,9 @@ export const setTodoListsTC = (): ThunkTypes => (
       dispatch(setTodoListsAC(res.data));
       dispatch(setAppStatusAC(AppStatusType.succeeded));
     } catch (err) {
-      handleNetworkError(err, dispatch);
+      if (axios.isAxiosError(err)) {
+        handleNetworkError(err.message, dispatch);
+      }
     }
   });
 export const addTodoListTC = (title: string): ThunkTypes => (
@@ -71,7 +74,9 @@ export const addTodoListTC = (title: string): ThunkTypes => (
       dispatch(addTodoListAC(res.data.data.item));
       dispatch(setAppStatusAC(AppStatusType.succeeded));
     } catch (err) {
-      handleNetworkError(err, dispatch);
+      if (axios.isAxiosError(err)) {
+        handleNetworkError(err.message, dispatch);
+      }
     }
   });
 export const removeTodoListTC = (todoListId: string): ThunkTypes => (
@@ -83,10 +88,13 @@ export const removeTodoListTC = (todoListId: string): ThunkTypes => (
       dispatch(removeTodoListAC(todoListId));
       dispatch(setAppStatusAC(AppStatusType.succeeded));
     } catch (err) {
-      handleNetworkError(err, dispatch);
+      if (axios.isAxiosError(err)) {
+        handleNetworkError(err.message, dispatch);
+      }
     }
+    dispatch(updateTodoListAC(todoListId, { status: AppStatusType.succeeded }));
   });
-export const changeTitleTodoListTC = (todoListId: string, title: string): ThunkTypes => (
+export const updateTodoListTC = (todoListId: string, title: string): ThunkTypes => (
   async(dispatch) => {
     dispatch(updateTodoListAC(todoListId, { status: AppStatusType.loading }));
     dispatch(setAppStatusAC(AppStatusType.loading));
@@ -100,8 +108,11 @@ export const changeTitleTodoListTC = (todoListId: string, title: string): ThunkT
         handleAppError(res.data, dispatch);
       }
     } catch (err) {
-      handleNetworkError(err, dispatch);
+      if (axios.isAxiosError(err)) {
+        handleNetworkError(err.message, dispatch);
+      }
     }
+    dispatch(updateTodoListAC(todoListId, { status: AppStatusType.succeeded }));
   }
 );
 

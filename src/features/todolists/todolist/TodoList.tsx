@@ -7,8 +7,7 @@ import { useSelector } from 'react-redux';
 import { RootType, useAppDispatch } from '../../../app/store';
 import { addTaskTC, removeTaskTC, setTasksTC, updateTaskTC } from './tasks-reducer';
 import { Task } from './task/Task';
-import { FilterValuesType, TaskTypeAPI, TaskTypeStatus, TodoListType } from '../../../api/TypesAPI';
-import { AppStatusType } from '../../../app/app-reducer';
+import { AppStatusType, FilterValuesType, TaskTypeAPI, TaskTypeStatus, TodoListType } from '../../../api/TypesAPI';
 
 type TodoListPropsType = {
   todoList: TodoListType
@@ -50,9 +49,12 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
       }, [todoList.id, tasks]);
 
     const changeTaskTitle = useCallback(
-      (todoListId: string, taskId: string, title: string) =>
-        dispatch(updateTaskTC(todoListId, taskId, { title })),
-      [todoList.id]);
+      (todoListId: string, taskId: string, title: string) => {
+        const currentTask = tasks.find(el => el.id === taskId);
+        if (title !== currentTask?.title) {
+          dispatch(updateTaskTC(todoListId, taskId, { title }));
+        }
+      }, [tasks]);
 
     const removeTask = useCallback((todoListId: string, taskId: string) =>
       dispatch(removeTaskTC(todoListId, taskId)), [todoList.id]);
@@ -70,7 +72,8 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
             <EditableSpan
               disabled={todoList.status === AppStatusType.loading}
               title={todoList.title}
-              refactor={(title) => changeTodoListTitle(title)} />
+              refactor={(title) => changeTodoListTitle(title)}
+            />
             <IconButton
               onClick={() => deleteTodoList(todoList.id)}
               disabled={todoList.status === AppStatusType.loading}
@@ -87,6 +90,7 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
             key={el.id}
             title={el.title}
             status={el.status}
+            isDisabled={el.isDisabled}
             changeTaskTitle={(title: string) => changeTaskTitle(todoList.id, el.id, title)}
             onChangeTaskStatus={(isCheck) => onChangeTaskStatus(todoList.id, el.id, isCheck)}
             removeTask={() => removeTask(todoList.id, el.id)}

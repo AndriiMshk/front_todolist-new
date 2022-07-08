@@ -1,15 +1,9 @@
-export enum AppStatusType {
-  idle = 'idle',
-  loading = 'loading',
-  succeeded = 'succeeded',
-  failed = 'failed'
-}
+import { AppStatusType } from '../api/TypesAPI';
 
 export type InitialStateType = {
   status: AppStatusType
   error: string | null
 }
-
 
 export type SetErrorACType = ReturnType<typeof setAppErrorAC>
 export type SetStatusACType = ReturnType<typeof setAppStatusAC>

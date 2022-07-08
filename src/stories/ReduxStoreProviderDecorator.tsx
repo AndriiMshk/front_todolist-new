@@ -24,24 +24,24 @@ const initialState = {
       {
         id: v1(), title: 'HTML&CSS', status: TaskTypeStatus.Completed,
         todoListId: 'todolistId1', startDate: '', priority: TaskTypePriority.Low,
-        description: '', deadline: '', addedDate: '', order: 0,
+        description: '', deadline: '', addedDate: '', order: 0, isDisabled: false
       },
       {
         id: v1(), title: 'JS', status: TaskTypeStatus.New,
         todoListId: 'todolistId1', startDate: '', priority: TaskTypePriority.Low,
-        description: '', deadline: '', addedDate: '', order: 0,
+        description: '', deadline: '', addedDate: '', order: 0, isDisabled: false
       },
     ],
     ['todolistId2']: [
       {
         id: v1(), title: '111111', status: TaskTypeStatus.Completed,
         todoListId: 'todolistId2', startDate: '', priority: TaskTypePriority.Low,
-        description: '', deadline: '', addedDate: '', order: 0,
+        description: '', deadline: '', addedDate: '', order: 0, isDisabled: false
       },
       {
         id: v1(), title: '222222222', status: TaskTypeStatus.New,
         todoListId: 'todolistId2', startDate: '', priority: TaskTypePriority.Low,
-        description: '', deadline: '', addedDate: '', order: 0,
+        description: '', deadline: '', addedDate: '', order: 0, isDisabled: false
       },
     ],
   },
