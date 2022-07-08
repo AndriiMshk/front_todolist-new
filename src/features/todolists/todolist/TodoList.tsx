@@ -3,11 +3,10 @@ import { EditableSpan } from '../../../components/EditableSpan';
 import { AddItemForm } from '../../../components/AddItemForm';
 import { Button, IconButton } from '@mui/material';
 import { Delete } from '@mui/icons-material';
-import { useSelector } from 'react-redux';
-import { RootType, useAppDispatch, useAppSelector } from '../../../app/store';
+import { useAppDispatch, useAppSelector } from '../../../app/store';
 import { addTaskTC, removeTaskTC, setTasksTC, updateTaskTC } from './tasks-reducer';
 import { Task } from './task/Task';
-import { AppStatusType, FilterValuesType, TaskTypeAPI, TaskTypeStatus, TodoListType } from '../../../api/TypesAPI';
+import { AppStatusType, FilterValuesType, TaskTypeStatus, TodoListType } from '../../../api/TypesAPI';
 
 type TodoListPropsType = {
   todoList: TodoListType
