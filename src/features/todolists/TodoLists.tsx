@@ -29,7 +29,7 @@ export const TodoLists: React.FC = () => {
     dispatch(addTodoListTC(newTodoList)), []);
 
   const deleteTodoListHandler = useCallback((todoListId: string) =>
-    dispatch(removeTodoListTC(todoListId)), []);
+      (window.confirm('Are you sure?') && dispatch(removeTodoListTC(todoListId))), []);
 
   const changeFilterHandler = useCallback(
     (todoListId: string, filter: FilterValuesType) =>

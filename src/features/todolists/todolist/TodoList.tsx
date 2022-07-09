@@ -56,7 +56,7 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
       }, [tasks]);
 
     const removeTask = useCallback((todoListId: string, taskId: string) =>
-      dispatch(removeTaskTC(todoListId, taskId)), [todoList.id]);
+      (window.confirm('Are you sure?') && dispatch(removeTaskTC(todoListId, taskId))), [todoList.id]);
 
     return (
       <div>

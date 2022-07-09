@@ -47,6 +47,7 @@ function App() {
       }
     };
   });
+  window
 
   const logoutHandler = useCallback(() => {
     dispatch(logoutTC(false));
