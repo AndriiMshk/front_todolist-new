@@ -71,8 +71,12 @@ export const addTodoListTC = (title: string): ThunkTypes => (
     dispatch(setAppStatusAC(AppStatusType.loading));
     try {
       const res = await todoListsApi.postTodoList({ title });
-      dispatch(addTodoListAC(res.data.data.item));
-      dispatch(setAppStatusAC(AppStatusType.succeeded));
+      if (res.data.resultCode === 0) {
+        dispatch(addTodoListAC(res.data.data.item));
+        dispatch(setAppStatusAC(AppStatusType.succeeded));
+      } else {
+        handleAppError(res.data, dispatch);
+      }
     } catch (err) {
       if (axios.isAxiosError(err)) {
         handleNetworkError(err.message, dispatch);
@@ -84,9 +88,13 @@ export const removeTodoListTC = (todoListId: string): ThunkTypes => (
     dispatch(updateTodoListAC(todoListId, { status: AppStatusType.loading }));
     dispatch(setAppStatusAC(AppStatusType.loading));
     try {
-      await todoListsApi.deleteTodoList(todoListId);
-      dispatch(removeTodoListAC(todoListId));
-      dispatch(setAppStatusAC(AppStatusType.succeeded));
+      const res = await todoListsApi.deleteTodoList(todoListId);
+      if (res.data.resultCode === 0) {
+        dispatch(removeTodoListAC(todoListId));
+        dispatch(setAppStatusAC(AppStatusType.succeeded));
+      } else {
+        handleAppError(res.data, dispatch);
+      }
     } catch (err) {
       if (axios.isAxiosError(err)) {
         handleNetworkError(err.message, dispatch);

@@ -92,12 +92,16 @@ export const removeTaskTC = (todoListId: string, taskId: string): ThunkTypes => 
     dispatch(updateTaskAC(todoListId, taskId, { isDisabled: true }));
     dispatch(setAppStatusAC(AppStatusType.loading));
     try {
-      await todoListsApi.deleteTask(todoListId, taskId);
-      dispatch(removeTaskAC(todoListId, taskId));
-      dispatch(setAppStatusAC(AppStatusType.succeeded));
+      const res = await todoListsApi.deleteTask(todoListId, taskId);
+      if (res.data.resultCode === 0) {
+        dispatch(removeTaskAC(todoListId, taskId));
+        dispatch(setAppStatusAC(AppStatusType.succeeded));
+      } else {
+        handleAppError(res.data, dispatch);
+      }
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        handleNetworkError(err.message, dispatch);
+        handleNetworkError(err?.message, dispatch);
       }
     }
     dispatch(updateTaskAC(todoListId, taskId, { isDisabled: false }));

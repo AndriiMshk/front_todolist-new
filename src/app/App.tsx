@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './App.css';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -27,6 +27,27 @@ function App() {
     dispatch(setAppInitializedTC());
   }, []);
 
+  const [linearProgressStyle, setLinearProgressStyle] = useState<React.CSSProperties>({
+    position: 'absolute',
+    top: '60px',
+  });
+
+  useEffect(() => {
+    window.onscroll = () => {
+      if (window.pageYOffset > 60) {
+        setLinearProgressStyle({
+          position: 'fixed',
+          top: '0px',
+        });
+      } else {
+        setLinearProgressStyle({
+          position: 'absolute',
+          top: '60px',
+        });
+      }
+    };
+  });
+
   const logoutHandler = useCallback(() => {
     dispatch(logoutTC(false));
   }, []);
@@ -42,7 +63,7 @@ function App() {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="relative">
           <Toolbar>
             <IconButton
               size="large"
@@ -64,8 +85,8 @@ function App() {
               >Exit</Button>
             }
           </Toolbar>
+          {status === 'loading' && <LinearProgress style={{ ...linearProgressStyle, width: '100%' }} />}
         </AppBar>
-        {status === 'loading' && <LinearProgress />}
       </Box>
       <Container fixed>
         <Routes>
