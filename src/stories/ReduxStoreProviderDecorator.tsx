@@ -7,11 +7,13 @@ import { todoListReducer } from '../features/todolists/todoList-reducer';
 import { TaskTypePriority, TaskTypeStatus } from '../api/TypesAPI';
 import { appReducer } from '../app/app-reducer';
 import thunk from 'redux-thunk';
+import { loginReducer } from '../features/Login/login-reducer';
 
 const rootReducer = combineReducers({
   tasks: tasksReducer,
   todoLists: todoListReducer,
   app: appReducer,
+  login: loginReducer,
 });
 
 const initialState = {

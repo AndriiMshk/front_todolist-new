@@ -5,7 +5,7 @@ import { authApi, LoginParamsType } from '../../api/API';
 import axios from 'axios';
 import { handleAppError, handleNetworkError } from '../../helpers/error-utils';
 
-export type InitialStateType = {
+export type LoginReducerStateType = {
   isLogin: boolean
 }
 
@@ -13,12 +13,12 @@ export type LoginActionsType =
   | loginACType
   | logoutACType
 
-const initialState: InitialStateType = {
+const initialState: LoginReducerStateType = {
   isLogin: false,
 };
 
-export const loginReducer = (state: InitialStateType = initialState, action: LoginActionsType):
-  InitialStateType => {
+export const loginReducer = (state: LoginReducerStateType = initialState, action: LoginActionsType):
+  LoginReducerStateType => {
   switch (action.type) {
     case 'LOGIN/SET-IS-LOGIN':
     case 'LOGIN/SET-IS-LOGOUT':

@@ -5,7 +5,7 @@ import { loginAC } from '../features/Login/login-reducer';
 import { handleNetworkError } from '../helpers/error-utils';
 import axios from 'axios';
 
-export type InitialStateType = {
+export type AppReducerStateType = {
   status: AppStatusType
   error: string | null
   isInitialized: boolean
@@ -20,13 +20,13 @@ export type AppActionsType =
   | SetStatusACType
   | SetInitializedACType
 
-const initialState: InitialStateType = {
+const initialState: AppReducerStateType = {
   status: AppStatusType.idle,
   error: null,
   isInitialized: false,
 };
 
-export const appReducer = (state: InitialStateType = initialState, action: AppActionsType): InitialStateType => {
+export const appReducer = (state: AppReducerStateType = initialState, action: AppActionsType): AppReducerStateType => {
   switch (action.type) {
     case 'APP/SET-STATUS' :
       return { ...state, status: action.status };
