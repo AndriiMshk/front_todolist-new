@@ -8,12 +8,12 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Container, LinearProgress } from '@mui/material';
-import { TodoLists } from '../features/todolists/TodoLists';
-import { ErrorMessage } from '../components/ErrorMessage';
+import { TodoLists } from '../components/todolists/TodoLists';
+import { ErrorMessage } from '../components/common/ErrorMessage';
 import { useAppDispatch, useAppSelector } from './store';
-import { Login } from '../features/Login/Login';
+import { Login } from '../components/login/Login';
 import { Route, Routes } from 'react-router-dom';
-import { logoutTC } from '../features/Login/login-reducer';
+import { logoutTC } from '../components/login/login-reducer';
 import CircularProgress from '@mui/material/CircularProgress';
 import { setAppInitializedTC } from './app-reducer';
 

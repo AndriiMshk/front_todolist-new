@@ -1,5 +1,5 @@
 import React from 'react';
-import { AddItemForm } from "../components/AddItemForm";
+import { AddItemForm } from "../components/common/AddItemForm";
 import {action} from '@storybook/addon-actions';
 
 export default {

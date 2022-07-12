@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { EditableSpan } from '../../../components/EditableSpan';
-import { AddItemForm } from '../../../components/AddItemForm';
+import { EditableSpan } from '../../common/EditableSpan';
+import { AddItemForm } from '../../common/AddItemForm';
 import { Button, IconButton } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../app/store';
 import { addTaskTC, removeTaskTC, setTasksTC, updateTaskTC } from './tasks-reducer';
 import { Task } from './task/Task';
 import { AppStatusType, FilterValuesType, TaskTypeStatus, TodoListType } from '../../../api/TypesAPI';
-import { Confirm } from '../../../components/Confirm';
+import { Confirm } from '../../common/Confirm';
 
 type TodoListPropsType = {
   todoList: TodoListType
@@ -15,7 +15,7 @@ type TodoListPropsType = {
   changeTodoListTitle: (title: string) => void
 }
 
-export const TodoList: React.FC<TodoListPropsType> = React.memo((
+export const Tasks: React.FC<TodoListPropsType> = React.memo((
   {
     todoList,
     deleteTodoList,
@@ -61,14 +61,14 @@ export const TodoList: React.FC<TodoListPropsType> = React.memo((
     const [openConfirm, setOpenConfirm] = useState(false);
 
     return (
-      <div>
+      <>
         <div>
           <div style={{
             display: 'flex',
             justifyContent: 'space-between',
-            width: '200px',
+            width: '240px',
             alignItems: 'center',
-            padding: '20px',
+            padding: '20px 0',
           }}>
             <EditableSpan
               disabled={todoList.status === AppStatusType.loading}
@@ -86,21 +86,21 @@ export const TodoList: React.FC<TodoListPropsType> = React.memo((
               />
             </IconButton>
           </div>
+          <AddItemForm
+            disabled={todoList.status === AppStatusType.loading}
+            onClick={addTaskHandler} />
+          <ul style={{ margin: '0', padding: '0' }}>
+            {currentTasks && currentTasks.map(el => <Task
+              key={el.id}
+              title={el.title}
+              status={el.status}
+              isDisabled={el.isDisabled}
+              changeTaskTitle={(title: string) => changeTaskTitle(todoList.id, el.id, title)}
+              onChangeTaskStatus={(isCheck) => onChangeTaskStatus(todoList.id, el.id, isCheck)}
+              removeTask={() => removeTask(todoList.id, el.id)}
+            />)}
+          </ul>
         </div>
-        <AddItemForm
-          disabled={todoList.status === AppStatusType.loading}
-          onClick={addTaskHandler} />
-        <ul style={{ padding: '0 20px' }}>
-          {currentTasks && currentTasks.map(el => <Task
-            key={el.id}
-            title={el.title}
-            status={el.status}
-            isDisabled={el.isDisabled}
-            changeTaskTitle={(title: string) => changeTaskTitle(todoList.id, el.id, title)}
-            onChangeTaskStatus={(isCheck) => onChangeTaskStatus(todoList.id, el.id, isCheck)}
-            removeTask={() => removeTask(todoList.id, el.id)}
-          />)}
-        </ul>
         <div>
           <Button
             color={'primary'}
@@ -121,7 +121,7 @@ export const TodoList: React.FC<TodoListPropsType> = React.memo((
           >UNCHECKED
           </Button>
         </div>
-      </div>
+      </>
     );
   },
 );

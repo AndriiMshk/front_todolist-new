@@ -27,12 +27,10 @@ export type TaskTypeAPI = {
   todoListId: string
   id: string
   title: string
-
   addedDate: string
   deadline: string
   startDate: string
   description: string
-
   order: number
   priority: TaskTypePriority
   status: TaskTypeStatus
@@ -67,6 +65,13 @@ export type ResponseType<Data = {}> = {
   resultCode: number
   messages: string[]
   data: Data
+}
+
+export type LoginParamsType = {
+  email: string
+  password: string
+  rememberMe: boolean
+  captcha?: string
 }
 
 

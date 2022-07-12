@@ -4,7 +4,7 @@ import {
   removeTodoListAC,
   setTodoListsAC,
   todoListReducer, updateTodoListAC,
-} from '../features/todolists/todoList-reducer';
+} from '../components/todolists/todoList-reducer';
 import { AppStatusType, FilterValuesType, TodoListType } from '../api/TypesAPI';
 
 

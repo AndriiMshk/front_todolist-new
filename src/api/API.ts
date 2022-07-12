@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
-import { UpdateTaskModelType } from '../features/todolists/todolist/tasks-reducer';
-import { GetTasksResponse, ResponseType, TaskTypeAPI, TodoListType } from './TypesAPI';
+import { UpdateTaskModelType } from '../components/todolists/tasks/tasks-reducer';
+import { GetTasksResponse, LoginParamsType, ResponseType, TaskTypeAPI, TodoListType } from './TypesAPI';
 
 const settings = {
   withCredentials: true,
@@ -43,13 +43,6 @@ export const todoListsApi = {
       `todo-lists/${todoListId}/tasks/${taskId}`, payload);
   },
 };
-
-export type LoginParamsType = {
-  email: string
-  password: string
-  rememberMe: boolean
-  captcha?: string
-}
 
 export const authApi = {
   authMe() {

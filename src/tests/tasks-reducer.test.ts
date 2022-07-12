@@ -5,7 +5,7 @@ import {
   setTasksAC,
   tasksReducer,
   updateTaskAC,
-} from '../features/todolists/todolist/tasks-reducer';
+} from '../components/todolists/tasks/tasks-reducer';
 import {
   AppStatusType,
   FilterValuesType,
@@ -14,7 +14,7 @@ import {
   TaskTypeStatus,
   TodoListType,
 } from '../api/TypesAPI';
-import { setTodoListsAC } from '../features/todolists/todoList-reducer';
+import { setTodoListsAC } from '../components/todolists/todoList-reducer';
 
 test('DELETE-TASK', () => {
   let todolistID1 = v1();

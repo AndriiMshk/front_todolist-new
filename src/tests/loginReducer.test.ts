@@ -1,4 +1,4 @@
-import { loginAC, loginReducer, LoginReducerStateType } from '../features/Login/login-reducer';
+import { loginAC, loginReducer, LoginReducerStateType } from '../components/login/login-reducer';
 
 let startState: LoginReducerStateType
 

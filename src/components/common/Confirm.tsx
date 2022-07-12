@@ -12,7 +12,7 @@ type ConfirmPropsType = {
   open: boolean
 }
 
-export const Confirm: React.FC<ConfirmPropsType> = ({ open, setOpen, confirm }) => {
+export const Confirm: React.FC<ConfirmPropsType> = React.memo(({ open, setOpen, confirm }) => {
 
   const agree = () => {
     setOpen(false);
@@ -35,4 +35,4 @@ export const Confirm: React.FC<ConfirmPropsType> = ({ open, setOpen, confirm }) 
       </Dialog>
     </div>
   );
-};
+});

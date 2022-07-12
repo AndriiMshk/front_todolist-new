@@ -28,7 +28,7 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({ onClick
   };
 
   return (
-    <div>
+    <div style={{ height: '70px' }}>
       <TextField
         disabled={disabled}
         variant={'outlined'}

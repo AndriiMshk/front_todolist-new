@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
-import { EditableSpan } from '../../../../components/EditableSpan';
+import { EditableSpan } from '../../../common/EditableSpan';
 import { IconButton } from '@mui/material';
 import { TaskTypeStatus } from '../../../../api/TypesAPI';
-import { Confirm } from '../../../../components/Confirm';
+import { Confirm } from '../../../common/Confirm';
 
 type TaskPropsType = {
   title: string
@@ -25,7 +25,7 @@ export const Task: React.FC<TaskPropsType> = React.memo(({
     const [openConfirm, setOpenConfirm] = useState(false);
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'space-between', width: '200px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', width: '240px' }}>
         <div>
           <Checkbox
             checked={status === TaskTypeStatus.Completed}

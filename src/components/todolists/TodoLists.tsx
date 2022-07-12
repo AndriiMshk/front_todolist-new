@@ -9,8 +9,8 @@ import {
   updateTodoListTC,
 } from './todoList-reducer';
 import { Grid, Paper } from '@mui/material';
-import { AddItemForm } from '../../components/AddItemForm';
-import { TodoList } from './todolist/TodoList';
+import { AddItemForm } from '../common/AddItemForm';
+import { Tasks } from './tasks/Tasks';
 import { Navigate } from 'react-router-dom';
 
 export const TodoLists: React.FC = () => {
@@ -62,9 +62,16 @@ export const TodoLists: React.FC = () => {
               key={el.id}
             >
               <Paper
-                style={{ padding: '10px' }}
-              >
-                <TodoList
+                style={{
+                  padding: '10px',
+                  minHeight: '400px',
+                  minWidth: '300px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  height: '100%', alignItems: 'center',
+                }}>
+                <Tasks
                   todoList={el}
                   deleteTodoList={() => deleteTodoListHandler(el.id)}
                   changeFilterHandler={(filter: FilterValuesType) => changeFilterHandler(el.id, filter)}

@@ -1,7 +1,7 @@
 import { AppStatusType } from '../api/TypesAPI';
 import { ThunkTypes } from './store';
 import { authApi } from '../api/API';
-import { loginAC } from '../features/Login/login-reducer';
+import { loginAC } from '../components/login/login-reducer';
 import { handleNetworkError } from '../helpers/error-utils';
 import axios from 'axios';
 
