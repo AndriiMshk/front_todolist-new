@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import { EditableSpan } from '../../../../components/EditableSpan';
 import { IconButton } from '@mui/material';
-import { Delete } from '@mui/icons-material';
 import { TaskTypeStatus } from '../../../../api/TypesAPI';
+import { Confirm } from '../../../../components/Confirm';
 
 type TaskPropsType = {
   title: string
@@ -21,6 +21,9 @@ export const Task: React.FC<TaskPropsType> = React.memo(({
     removeTask,
     isDisabled,
   }) => {
+
+    const [openConfirm, setOpenConfirm] = useState(false);
+
     return (
       <div style={{ display: 'flex', justifyContent: 'space-between', width: '200px' }}>
         <div>
@@ -36,8 +39,12 @@ export const Task: React.FC<TaskPropsType> = React.memo(({
           />
         </div>
         <div>
-          <IconButton onClick={removeTask} disabled={isDisabled}>
-            <Delete />
+          <IconButton onClick={() => setOpenConfirm(!openConfirm)} disabled={isDisabled}>
+            <Confirm
+              open={openConfirm}
+              setOpen={setOpenConfirm}
+              confirm={removeTask}
+            />
           </IconButton>
         </div>
       </div>

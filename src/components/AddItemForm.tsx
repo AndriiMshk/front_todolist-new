@@ -49,4 +49,4 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({ onClick
       </IconButton>
     </div>
   );
-})
+});

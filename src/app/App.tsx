@@ -32,19 +32,19 @@ function App() {
     top: '60px',
   });
 
-    window.onscroll = () => {
-      if (window.scrollY > 60) {
-        setLinearProgressStyle({
-          position: 'fixed',
-          top: '0px',
-        });
-      } else {
-        setLinearProgressStyle({
-          position: 'absolute',
-          top: '60px',
-        });
-      }
-    };
+  window.onscroll = () => {
+    if (window.scrollY > 60) {
+      setLinearProgressStyle({
+        position: 'fixed',
+        top: '0px',
+      });
+    } else {
+      setLinearProgressStyle({
+        position: 'absolute',
+        top: '60px',
+      });
+    }
+  };
 
   const logoutHandler = useCallback(() => {
     dispatch(logoutTC(false));

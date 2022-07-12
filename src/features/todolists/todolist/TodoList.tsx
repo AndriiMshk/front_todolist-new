@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { EditableSpan } from '../../../components/EditableSpan';
 import { AddItemForm } from '../../../components/AddItemForm';
 import { Button, IconButton } from '@mui/material';
-import { Delete } from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '../../../app/store';
 import { addTaskTC, removeTaskTC, setTasksTC, updateTaskTC } from './tasks-reducer';
 import { Task } from './task/Task';
@@ -16,7 +15,7 @@ type TodoListPropsType = {
   changeTodoListTitle: (title: string) => void
 }
 
-const TodoList: React.FC<TodoListPropsType> = React.memo((
+export const TodoList: React.FC<TodoListPropsType> = React.memo((
   {
     todoList,
     deleteTodoList,
@@ -57,9 +56,9 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
       }, [tasks]);
 
     const removeTask = useCallback((todoListId: string, taskId: string) =>
-      (window.confirm('Are you sure?') && dispatch(removeTaskTC(todoListId, taskId))), [todoList.id]);
+      (dispatch(removeTaskTC(todoListId, taskId))), [todoList.id]);
 
-  const [open, setOpen] = React.useState(false);
+    const [openConfirm, setOpenConfirm] = useState(false);
 
     return (
       <div>
@@ -77,10 +76,14 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
               refactor={(title) => changeTodoListTitle(title)}
             />
             <IconButton
-              onClick={() => deleteTodoList(todoList.id)}
+              onClick={() => setOpenConfirm(!openConfirm)}
               disabled={todoList.status === AppStatusType.loading}
             >
-              <Confirm open={open} setOpen={setOpen}/>
+              <Confirm
+                open={openConfirm}
+                setOpen={setOpenConfirm}
+                confirm={() => deleteTodoList(todoList.id)}
+              />
             </IconButton>
           </div>
         </div>
@@ -122,8 +125,6 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
     );
   },
 );
-
-export default TodoList;
 
 
 

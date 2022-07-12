@@ -1,7 +1,7 @@
 import { AddTodoListACType, RemoveTodoListACType, SetTodoListsACType } from '../todoList-reducer';
 import { AppStatusType, TasksType, TaskTypeAPI, TaskTypePriority, TaskTypeStatus } from '../../../api/TypesAPI';
 import { todoListsApi } from '../../../api/API';
-import { RootType, ThunkTypes } from '../../../app/store';
+import { RootStateType, ThunkTypes } from '../../../app/store';
 import { setAppStatusAC } from '../../../app/app-reducer';
 import { handleAppError, handleNetworkError } from '../../../helpers/error-utils';
 import axios from 'axios';
@@ -126,7 +126,7 @@ export const addTaskTC = (todoListId: string, title: string): ThunkTypes => (
   }
 );
 export const updateTaskTC = (todoListId: string, taskId: string, taskModel: UpdateTaskModelType): ThunkTypes => (
-  (async(dispatch, getState: () => RootType) => {
+  (async(dispatch, getState: () => RootStateType) => {
     dispatch(updateTaskAC(todoListId, taskId, { isDisabled: true }));
     dispatch(setAppStatusAC(AppStatusType.loading));
     const task = getState().tasks[todoListId].find(el => el.id === taskId);

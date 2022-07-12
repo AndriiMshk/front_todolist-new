@@ -10,7 +10,7 @@ import {
 } from './todoList-reducer';
 import { Grid, Paper } from '@mui/material';
 import { AddItemForm } from '../../components/AddItemForm';
-import TodoList from './todolist/TodoList';
+import { TodoList } from './todolist/TodoList';
 import { Navigate } from 'react-router-dom';
 
 export const TodoLists: React.FC = () => {
@@ -29,7 +29,7 @@ export const TodoLists: React.FC = () => {
     dispatch(addTodoListTC(newTodoList)), []);
 
   const deleteTodoListHandler = useCallback((todoListId: string) =>
-      (window.confirm('Are you sure?') && dispatch(removeTodoListTC(todoListId))), []);
+    (dispatch(removeTodoListTC(todoListId))), []);
 
   const changeFilterHandler = useCallback(
     (todoListId: string, filter: FilterValuesType) =>

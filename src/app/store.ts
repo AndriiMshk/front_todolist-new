@@ -14,20 +14,17 @@ const rootReducer = combineReducers({
   },
 );
 
-export type ThunkTypes<ReturnType = void> = ThunkAction<ReturnType, RootType, unknown, ActionTypes>
-export type DispatchType = ThunkDispatch<RootType, unknown, ActionTypes>
+export type ThunkTypes<ReturnType = void> = ThunkAction<ReturnType, RootStateType, unknown, RootActionTypes>
+export type DispatchType = ThunkDispatch<RootStateType, unknown, RootActionTypes>
 export const useAppDispatch = () => useDispatch<DispatchType>();
-export const useAppSelector: TypedUseSelectorHook<RootType> = useSelector;
+export const useAppSelector: TypedUseSelectorHook<RootStateType> = useSelector;
 
-export type RootType = ReturnType<typeof rootReducer>
-export type ActionTypes =
+export type RootStateType = ReturnType<typeof rootReducer>
+export type RootActionTypes =
   | AppActionsType
   | TodoListsActionsType
   | TasksActionsType
   | LoginActionsType
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
-
-// @ts-ignore
-window.store = store;
 
