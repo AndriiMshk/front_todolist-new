@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/store';
 import { addTaskTC, removeTaskTC, setTasksTC, updateTaskTC } from './tasks-reducer';
 import { Task } from './task/Task';
 import { AppStatusType, FilterValuesType, TaskTypeStatus, TodoListType } from '../../../api/TypesAPI';
+import { Confirm } from '../../../components/Confirm';
 
 type TodoListPropsType = {
   todoList: TodoListType
@@ -58,6 +59,8 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
     const removeTask = useCallback((todoListId: string, taskId: string) =>
       (window.confirm('Are you sure?') && dispatch(removeTaskTC(todoListId, taskId))), [todoList.id]);
 
+  const [open, setOpen] = React.useState(false);
+
     return (
       <div>
         <div>
@@ -77,7 +80,7 @@ const TodoList: React.FC<TodoListPropsType> = React.memo((
               onClick={() => deleteTodoList(todoList.id)}
               disabled={todoList.status === AppStatusType.loading}
             >
-              <Delete />
+              <Confirm open={open} setOpen={setOpen}/>
             </IconButton>
           </div>
         </div>

@@ -32,9 +32,8 @@ function App() {
     top: '60px',
   });
 
-  useEffect(() => {
     window.onscroll = () => {
-      if (window.pageYOffset > 60) {
+      if (window.scrollY > 60) {
         setLinearProgressStyle({
           position: 'fixed',
           top: '0px',
@@ -46,8 +45,6 @@ function App() {
         });
       }
     };
-  });
-  window
 
   const logoutHandler = useCallback(() => {
     dispatch(logoutTC(false));
