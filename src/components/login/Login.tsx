@@ -35,6 +35,7 @@ export const Login: React.FC = () => {
     },
     onSubmit: values => {
       dispatch(loginTC(values));
+      formik.resetForm()
     },
   });
 
@@ -52,7 +53,6 @@ export const Login: React.FC = () => {
                 <TextField
                   label={'Email'}
                   margin={'normal'}
-                  autoComplete={'off'}
                   {...formik.getFieldProps('email')}
                   error={!!formik.errors.email}
                   helperText={formik.errors.email && formik.errors.email}

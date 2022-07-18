@@ -7,6 +7,7 @@ import { handleAppError, handleNetworkError } from '../../helpers/error-utils';
 
 export type LoginReducerStateType = {
   isLogin: boolean
+  name: string
 }
 
 export type LoginActionsType =
@@ -15,6 +16,7 @@ export type LoginActionsType =
 
 const initialState: LoginReducerStateType = {
   isLogin: false,
+  name: '',
 };
 
 export const loginReducer = (state: LoginReducerStateType = initialState, action: LoginActionsType):
@@ -22,14 +24,16 @@ export const loginReducer = (state: LoginReducerStateType = initialState, action
   switch (action.type) {
     case 'LOGIN/SET-IS-LOGIN':
     case 'LOGIN/SET-IS-LOGOUT':
-      return { ...state, isLogin: action.isLogin };
+      return { ...state, isLogin: action.isLogin, name: action.name };
     default:
       return state;
   }
 };
 
-export const loginAC = (isLogin: boolean) => ({ type: 'LOGIN/SET-IS-LOGIN', isLogin } as const);
-export const logoutAC = (isLogin: boolean) => ({ type: 'LOGIN/SET-IS-LOGOUT', isLogin } as const);
+export const loginAC = (isLogin: boolean, name: string) =>
+  ({ type: 'LOGIN/SET-IS-LOGIN', isLogin, name } as const);
+export const logoutAC = (isLogin: boolean, name: string) =>
+  ({ type: 'LOGIN/SET-IS-LOGOUT', isLogin, name } as const);
 
 export type loginACType = ReturnType<typeof loginAC>
 export type logoutACType = ReturnType<typeof logoutAC>
@@ -40,7 +44,7 @@ export const loginTC = (params: LoginParamsType): ThunkTypes => (
     try {
       const res = await authApi.login(params);
       if (res.data.resultCode === 0) {
-        dispatch(loginAC(true));
+        dispatch(loginAC(true, params.email));
         dispatch(setAppStatusAC(AppStatusType.succeeded));
       } else {
         handleAppError(res.data, dispatch);
@@ -60,7 +64,7 @@ export const logoutTC = (isLogin: boolean): ThunkTypes => (
     dispatch(setAppStatusAC(AppStatusType.loading));
     try {
       await authApi.logout();
-      dispatch(logoutAC(isLogin));
+      dispatch(logoutAC(isLogin, ''));
       dispatch(setAppStatusAC(AppStatusType.succeeded));
 
     } catch (err) {

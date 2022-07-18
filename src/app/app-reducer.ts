@@ -51,9 +51,9 @@ export const setAppInitializedTC = (): ThunkTypes => (
     try {
       const res = await authApi.authMe();
       if (res.data.resultCode === 0) {
-        dispatch(loginAC(true));
+        dispatch(loginAC(true, res.data.data.email));
       } else {
-        dispatch(loginAC(false));
+        dispatch(loginAC(false, ''));
       }
       dispatch(setAppInitializedAC(true));
     } catch (err) {

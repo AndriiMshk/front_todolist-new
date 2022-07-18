@@ -21,6 +21,7 @@ function App() {
   const status = useAppSelector(state => state.app.status);
   const isLogin = useAppSelector(state => state.login.isLogin);
   const isInitialized = useAppSelector(state => state.app.isInitialized);
+  const name = useAppSelector(state => state.login.name)
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -61,7 +62,7 @@ function App() {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="relative">
+        <AppBar position="relative" style={{height: '64px'}}>
           <Toolbar>
             <IconButton
               size="large"
@@ -73,7 +74,7 @@ function App() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              My TodoLists
+              {name}
             </Typography>
             {!isLogin
               ? <Button color="inherit">Login</Button>
