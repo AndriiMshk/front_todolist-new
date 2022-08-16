@@ -1,4 +1,4 @@
-import { loginAC, loginReducer, LoginReducerStateType } from '../components/login/login-reducer';
+import { login, loginReducer, LoginReducerStateType } from '../components/login/login-reducer';
 
 let startState: LoginReducerStateType
 
@@ -11,6 +11,6 @@ beforeEach(()=> {
 
 
 test('LOGIN/SET-IS-LOGIN', ()=> {
-  const endState = loginReducer(startState, loginAC(true, 'YO'))
+  const endState = loginReducer(startState, login(true, 'YO'))
   expect(endState.isLogin).toBe(true)
 })

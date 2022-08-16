@@ -1,17 +1,13 @@
 import axios, { AxiosResponse } from 'axios';
 import { UpdateTaskModelType } from '../components/todolists/tasks/tasks-reducer';
-import { GetTasksResponse, LoginParamsType, ResponseType, TaskTypeAPI, TodoListType } from './TypesAPI';
+import { GetTasksResponse, LoginParamsType, ResponseType, TaskTypeAPI, TodoListType } from './typesAPI';
 
-const settings = {
+const instance = axios.create({
+  baseURL: 'https://social-network.samuraijs.com/api/1.1/',
   withCredentials: true,
   headers: {
     'API-KEY': 'abb3a345-b7d8-4f0f-8c61-af2582f7869f',
   },
-};
-
-const instance = axios.create({
-  baseURL: 'https://social-network.samuraijs.com/api/1.1/',
-  ...settings,
 });
 
 export const todoListsApi = {

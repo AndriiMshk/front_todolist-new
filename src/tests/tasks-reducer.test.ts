@@ -7,13 +7,12 @@ import {
   updateTaskAC,
 } from '../components/todolists/tasks/tasks-reducer';
 import {
-  AppStatusType,
   FilterValuesType,
   TasksType,
   TaskTypePriority,
   TaskTypeStatus,
   TodoListType,
-} from '../api/TypesAPI';
+} from '../api/typesAPI';
 import { setTodoListsAC } from '../components/todolists/todoList-reducer';
 
 test('DELETE-TASK', () => {
@@ -209,11 +208,11 @@ test('SET-TODOLISTS', () => {
   const todoLists: TodoListType[] = [
     {
       id: todolistID1, title: 'What to learn',
-      filter: FilterValuesType.all, addedDate: '', order: 0, status: AppStatusType.idle,
+      filter: FilterValuesType.all, addedDate: '', order: 0, isDisabled: false,
     },
     {
       id: todolistID2, title: 'What to buy',
-      filter: FilterValuesType.all, addedDate: '', order: 0, status: AppStatusType.idle,
+      filter: FilterValuesType.all, addedDate: '', order: 0, isDisabled: false,
     },
   ];
 

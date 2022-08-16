@@ -1,5 +1,5 @@
 import { appReducer, AppReducerStateType, setAppErrorAC, setAppInitializedAC, setAppStatusAC } from '../app/app-reducer';
-import { AppStatusType } from '../api/TypesAPI';
+import { AppStatusType } from '../api/typesAPI';
 
 let startState: AppReducerStateType
 

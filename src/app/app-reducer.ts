@@ -1,24 +1,9 @@
-import { AppStatusType } from '../api/TypesAPI';
+import { AppStatusType } from '../api/typesAPI';
 import { ThunkTypes } from './store';
 import { authApi } from '../api/API';
-import { loginAC } from '../components/login/login-reducer';
-import { handleNetworkError } from '../helpers/error-utils';
+import { login } from '../components/login/login-reducer';
+import { handleAppError, handleNetworkError } from '../helpers/error-utils';
 import axios from 'axios';
-
-export type AppReducerStateType = {
-  status: AppStatusType
-  error: string | null
-  isInitialized: boolean
-}
-
-export type SetErrorACType = ReturnType<typeof setAppErrorAC>
-export type SetStatusACType = ReturnType<typeof setAppStatusAC>
-export type SetInitializedACType = ReturnType<typeof setAppInitializedAC>
-
-export type AppActionsType =
-  | SetErrorACType
-  | SetStatusACType
-  | SetInitializedACType
 
 const initialState: AppReducerStateType = {
   status: AppStatusType.idle,
@@ -47,13 +32,14 @@ export const setAppInitializedAC = (isInitialized: boolean) => ({
 } as const);
 
 export const setAppInitializedTC = (): ThunkTypes => (
-  async(dispatch) => {
+  async dispatch => {
     try {
       const res = await authApi.authMe();
       if (res.data.resultCode === 0) {
-        dispatch(loginAC(true, res.data.data.email));
+        dispatch(login(true, res.data.data.email));
       } else {
-        dispatch(loginAC(false, ''));
+        dispatch(login(false, ''));
+        handleAppError(res.data, dispatch);
       }
       dispatch(setAppInitializedAC(true));
     } catch (err) {
@@ -63,4 +49,19 @@ export const setAppInitializedTC = (): ThunkTypes => (
     }
   }
 );
+
+export type AppReducerStateType = {
+  status: AppStatusType
+  error: string | null
+  isInitialized: boolean
+}
+
+export type SetErrorACType = ReturnType<typeof setAppErrorAC>
+export type SetStatusACType = ReturnType<typeof setAppStatusAC>
+export type SetInitializedACType = ReturnType<typeof setAppInitializedAC>
+
+export type AppActionsType =
+  | SetErrorACType
+  | SetStatusACType
+  | SetInitializedACType
 

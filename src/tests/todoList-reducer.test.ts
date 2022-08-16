@@ -3,18 +3,18 @@ import {
   addTodoListAC,
   removeTodoListAC,
   setTodoListsAC,
-  todoListReducer, updateTodoListAC,
+  todoListReducer,
+  updateTodoListAC,
 } from '../components/todolists/todoList-reducer';
-import { AppStatusType, FilterValuesType, TodoListType } from '../api/TypesAPI';
-
+import { FilterValuesType, TodoListType } from '../api/typesAPI';
 
 test('TODOLIST/REMOVE-TODOLIST', () => {
   let todolistID1 = v1();
   let todolistID2 = v1();
 
   const startState: TodoListType[] = [
-    { id: todolistID1, title: 'What to learn', filter: FilterValuesType.all, addedDate: '', order: 0, status: AppStatusType.idle },
-    { id: todolistID2, title: 'What to buy', filter: FilterValuesType.all, addedDate: '', order: 0, status: AppStatusType.idle },
+    { id: todolistID1, title: 'What to learn', filter: FilterValuesType.all, addedDate: '', order: 0, isDisabled: false },
+    { id: todolistID2, title: 'What to buy', filter: FilterValuesType.all, addedDate: '', order: 0, isDisabled: false },
   ];
   const endState = todoListReducer(startState, removeTodoListAC(todolistID1));
 
@@ -27,8 +27,8 @@ test('TODOLIST/ADD-TODOLIST', () => {
   let newTodoListTitle = 'New';
 
   const startState: TodoListType[] = [
-    { id: todolistID1, title: 'What to learn', filter: FilterValuesType.all, addedDate: '', order: 0, status: AppStatusType.idle },
-    { id: todolistID2, title: 'What to buy', filter: FilterValuesType.all, addedDate: '', order: 0, status: AppStatusType.idle },
+    { id: todolistID1, title: 'What to learn', filter: FilterValuesType.all, addedDate: '', order: 0, isDisabled: false },
+    { id: todolistID2, title: 'What to buy', filter: FilterValuesType.all, addedDate: '', order: 0, isDisabled: false },
   ];
 
   const endState = todoListReducer(startState, addTodoListAC({ ...startState[0], title:  newTodoListTitle}));
@@ -42,8 +42,8 @@ test('TODOLIST/CHANGE-FILTER', () => {
 
 
   const startState: TodoListType[] = [
-    { id: todolistID1, title: 'What to learn', filter: FilterValuesType.all, addedDate: '', order: 0, status: AppStatusType.idle },
-    { id: todolistID2, title: 'What to buy', filter: FilterValuesType.all, addedDate: '', order: 0, status: AppStatusType.idle },
+    { id: todolistID1, title: 'What to learn', filter: FilterValuesType.all, addedDate: '', order: 0, isDisabled: false },
+    { id: todolistID2, title: 'What to buy', filter: FilterValuesType.all, addedDate: '', order: 0, isDisabled: false },
   ];
 
   const endState = todoListReducer(startState, updateTodoListAC(todolistID1, { filter: FilterValuesType.active }));
@@ -56,8 +56,8 @@ test('TODOLIST/CHANGE-TODOLIST-TITLE', () => {
   let newTodoLIstTitle = 'NEW';
 
   const startState: TodoListType[] = [
-    { id: todolistID1, title: 'What to learn', filter: FilterValuesType.all, addedDate: '', order: 0, status: AppStatusType.idle },
-    { id: todolistID2, title: 'What to buy', filter: FilterValuesType.all, addedDate: '', order: 0, status: AppStatusType.idle },
+    { id: todolistID1, title: 'What to learn', filter: FilterValuesType.all, addedDate: '', order: 0, isDisabled: false },
+    { id: todolistID2, title: 'What to buy', filter: FilterValuesType.all, addedDate: '', order: 0,isDisabled: false },
   ];
 
   const endState = todoListReducer(startState, updateTodoListAC(todolistID1, { title: newTodoLIstTitle }));
@@ -69,8 +69,8 @@ test('SET-TODOLISTS', () => {
   let todolistID2 = v1();
   const startState: TodoListType[] = [];
   const newState: TodoListType[] = [
-    { id: todolistID1, title: 'What to learn', filter: FilterValuesType.all, addedDate: '', order: 0, status: AppStatusType.idle },
-    { id: todolistID2, title: 'What to buy', filter: FilterValuesType.all, addedDate: '', order: 0, status: AppStatusType.idle },
+    { id: todolistID1, title: 'What to learn', filter: FilterValuesType.all, addedDate: '', order: 0, isDisabled: false },
+    { id: todolistID2, title: 'What to buy', filter: FilterValuesType.all, addedDate: '', order: 0, isDisabled: false },
   ];
 
   const endState = todoListReducer(startState, setTodoListsAC(newState));

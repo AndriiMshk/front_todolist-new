@@ -20,7 +20,7 @@ export type TodoListTypeAPI = {
 
 export type TodoListType = TodoListTypeAPI & {
   filter: FilterValuesType
-  status: AppStatusType
+  isDisabled?: boolean
 }
 
 export type TaskTypeAPI = {

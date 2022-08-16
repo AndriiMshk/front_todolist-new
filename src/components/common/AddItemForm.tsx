@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { IconButton, TextField } from '@mui/material';
 import { ControlPoint } from '@mui/icons-material';
 
-type AddItemFormPropsType = {
-  onClick: (newTitle: string) => void
-  disabled?: boolean
-}
-export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({ onClick, disabled }) => {
+export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo((
+  { onClick, isDisabled },
+) => {
 
   const [newTitle, setNewTitle] = useState<string>('');
   const [error, setError] = useState<boolean>(false);
@@ -30,19 +28,19 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({ onClick
   return (
     <div style={{ height: '70px' }}>
       <TextField
-        disabled={disabled}
-        variant={'outlined'}
-        label={'Enter title'}
+        disabled={isDisabled}
+        variant="outlined"
+        label="Enter title"
         value={newTitle}
-        onChange={(event) => setNewTitle(event.target.value)}
-        onKeyPress={(event) => pressEnterHandler(event.key)}
+        onChange={event => setNewTitle(event.target.value)}
+        onKeyPress={event => pressEnterHandler(event.key)}
         error={error}
         helperText={error ? 'error' : ''}
-        autoComplete={'off'}
+        autoComplete="off"
       />
       <IconButton
-        disabled={disabled}
-        color={'primary'}
+        disabled={isDisabled}
+        color="primary"
         onClick={addTitleHandler}
       >
         <ControlPoint />
@@ -50,3 +48,8 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({ onClick
     </div>
   );
 });
+
+type AddItemFormPropsType = {
+  onClick: (newTitle: string) => void
+  isDisabled?: boolean
+}

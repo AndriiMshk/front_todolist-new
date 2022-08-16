@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -6,15 +6,11 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import { Delete } from '@mui/icons-material';
 
-type ConfirmPropsType = {
-  setOpen: (open: boolean) => void
-  confirm: () => void
-  open: boolean
-}
+export const Confirm: React.FC<ConfirmPropsType> = React.memo((
+  { isOpen, setOpen, confirm },
+) => {
 
-export const Confirm: React.FC<ConfirmPropsType> = React.memo(({ open, setOpen, confirm }) => {
-
-  const agree = () => {
+  const confirmHandler = () => {
     setOpen(false);
     confirm();
   };
@@ -22,7 +18,7 @@ export const Confirm: React.FC<ConfirmPropsType> = React.memo(({ open, setOpen, 
   return (
     <div>
       <Delete onClick={() => setOpen(true)} />
-      <Dialog open={open} onClose={() => setOpen(false)}>
+      <Dialog open={isOpen} onClose={() => setOpen(false)}>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Are you sure?
@@ -30,9 +26,15 @@ export const Confirm: React.FC<ConfirmPropsType> = React.memo(({ open, setOpen, 
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)}>No</Button>
-          <Button onClick={agree} autoFocus>Yes</Button>
+          <Button onClick={confirmHandler} autoFocus>Yes</Button>
         </DialogActions>
       </Dialog>
     </div>
   );
 });
+
+type ConfirmPropsType = {
+  setOpen: (isOpen: boolean) => void
+  confirm: () => void
+  isOpen: boolean
+}

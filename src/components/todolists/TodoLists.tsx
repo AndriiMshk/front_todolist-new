@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/store';
-import { FilterValuesType } from '../../api/TypesAPI';
+import { FilterValuesType } from '../../api/typesAPI';
 import {
   addTodoListTC,
   removeTodoListTC,
@@ -16,6 +16,7 @@ import { Navigate } from 'react-router-dom';
 export const TodoLists: React.FC = () => {
 
   const dispatch = useAppDispatch();
+
   const todoLists = useAppSelector(state => state.todoLists);
   const isLogin = useAppSelector(state => state.login.isLogin);
 
@@ -31,17 +32,15 @@ export const TodoLists: React.FC = () => {
   const deleteTodoListHandler = useCallback((todoListId: string) =>
     (dispatch(removeTodoListTC(todoListId))), []);
 
-  const changeFilterHandler = useCallback(
-    (todoListId: string, filter: FilterValuesType) =>
-      dispatch(updateTodoListAC(todoListId, { filter })), []);
+  const changeFilterHandler = useCallback((todoListId: string, filter: FilterValuesType) =>
+    dispatch(updateTodoListAC(todoListId, { filter })), []);
 
-  const changeTodoListTitleHandler = useCallback(
-    (todoListId: string, title: string) => {
-      const currentTodoList = todoLists.find(el => el.id === todoListId);
-      if (title !== currentTodoList?.title) {
-        dispatch(updateTodoListTC(todoListId, title));
-      }
-    }, [todoLists]);
+  const changeTodoListTitleHandler = useCallback((todoListId: string, title: string) => {
+    const currentTodoList = todoLists.find(el => el.id === todoListId);
+    if (title !== currentTodoList?.title) {
+      dispatch(updateTodoListTC(todoListId, title));
+    }
+  }, [todoLists]);
 
   if (!isLogin) {
     return <Navigate to="/login" replace />;
@@ -75,7 +74,7 @@ export const TodoLists: React.FC = () => {
                   todoList={el}
                   deleteTodoList={() => deleteTodoListHandler(el.id)}
                   changeFilterHandler={(filter: FilterValuesType) => changeFilterHandler(el.id, filter)}
-                  changeTodoListTitle={(title) => changeTodoListTitleHandler(el.id, title)}
+                  changeTodoListTitle={title => changeTodoListTitleHandler(el.id, title)}
                 />
               </Paper>
             </Grid>

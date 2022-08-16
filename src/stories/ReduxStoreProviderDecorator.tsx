@@ -4,7 +4,7 @@ import { v1 } from 'uuid';
 import { applyMiddleware, combineReducers, legacy_createStore as createStore } from 'redux';
 import { tasksReducer } from '../components/todolists/tasks/tasks-reducer';
 import { todoListReducer } from '../components/todolists/todoList-reducer';
-import { TaskTypePriority, TaskTypeStatus } from '../api/TypesAPI';
+import { TaskTypePriority, TaskTypeStatus } from '../api/typesAPI';
 import { appReducer } from '../app/app-reducer';
 import thunk from 'redux-thunk';
 import { loginReducer } from '../components/login/login-reducer';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import { EditableSpan } from '../../../common/EditableSpan';
 import { IconButton } from '@mui/material';
-import { TaskTypeStatus } from '../../../../api/TypesAPI';
+import { TaskTypeStatus } from '../../../../api/typesAPI';
 import { Confirm } from '../../../common/Confirm';
 
 type TaskPropsType = {
@@ -35,13 +35,13 @@ export const Task: React.FC<TaskPropsType> = React.memo(({
           <EditableSpan
             title={title}
             refactor={(title) => changeTaskTitle(title)}
-            disabled={isDisabled}
+            isDisabled={isDisabled}
           />
         </div>
         <div>
           <IconButton onClick={() => setOpenConfirm(!openConfirm)} disabled={isDisabled}>
             <Confirm
-              open={openConfirm}
+              isOpen={openConfirm}
               setOpen={setOpenConfirm}
               confirm={removeTask}
             />
