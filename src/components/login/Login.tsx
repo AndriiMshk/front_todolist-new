@@ -1,13 +1,15 @@
 import React from 'react';
-import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, TextField } from '@mui/material';
+import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, TextField } from '@mui/material';
 import { useFormik } from 'formik';
-import { useAppDispatch, useAppSelector } from '../../app/store';
-import { loginTC } from './login-reducer';
+import { useAppSelector } from '../../app/store';
 import { Navigate } from 'react-router-dom';
+import { loginActions } from './';
+import { useActions } from '../common/hooks/useActions';
 
 export const Login: React.FC = () => {
 
-  const dispatch = useAppDispatch();
+  const { login } = useActions(loginActions);
+
   const isLogin = useAppSelector(state => state.login.isLogin);
 
   const formik = useFormik({
@@ -34,7 +36,7 @@ export const Login: React.FC = () => {
       rememberMe: false,
     },
     onSubmit: values => {
-      dispatch(loginTC(values));
+      login(values);
       formik.resetForm();
     },
   });
@@ -49,12 +51,6 @@ export const Login: React.FC = () => {
         <Grid item xs={4}>
           <form onSubmit={formik.handleSubmit}>
             <FormControl>
-              <FormLabel>
-                <p>To log in get registered<a href="https://social-network.samuraijs.com/" target="_blank">here</a></p>
-                <p>or use common test account credentials:</p>
-                <p>Email: free@samuraijs.com</p>
-                <p>Password: free</p>
-              </FormLabel>
               <FormGroup>
                 <TextField
                   label="Email"

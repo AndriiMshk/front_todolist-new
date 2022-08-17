@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IconButton, TextField } from '@mui/material';
+import { Grid, IconButton, TextField } from '@mui/material';
 import { ControlPoint } from '@mui/icons-material';
 
 export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo((
@@ -26,7 +26,7 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo((
   };
 
   return (
-    <div style={{ height: '70px' }}>
+    <Grid container>
       <TextField
         disabled={isDisabled}
         variant="outlined"
@@ -45,7 +45,7 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo((
       >
         <ControlPoint />
       </IconButton>
-    </div>
+    </Grid>
   );
 });
 

@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { UpdateTaskModelType } from '../components/todolists/tasks/tasks-reducer';
+import { UpdateTaskModelType } from '../components/todolists/tasks/bll/tasks-reducer';
 import { GetTasksResponse, LoginParamsType, ResponseType, TaskTypeAPI, TodoListType } from './typesAPI';
 
 const instance = axios.create({

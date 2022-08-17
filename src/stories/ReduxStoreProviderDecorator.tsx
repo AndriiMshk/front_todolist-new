@@ -2,12 +2,12 @@ import { Provider } from 'react-redux';
 import React from 'react';
 import { v1 } from 'uuid';
 import { applyMiddleware, combineReducers, legacy_createStore as createStore } from 'redux';
-import { tasksReducer } from '../components/todolists/tasks/tasks-reducer';
-import { todoListReducer } from '../components/todolists/todoList-reducer';
+import { tasksReducer } from '../components/todolists/tasks/bll/tasks-reducer';
+import { todoListReducer } from '../components/todolists/bll/todoList-reducer';
 import { TaskTypePriority, TaskTypeStatus } from '../api/typesAPI';
-import { appReducer } from '../app/app-reducer';
+import { appReducer } from '../app/bll/app-reducer';
 import thunk from 'redux-thunk';
-import { loginReducer } from '../components/login/login-reducer';
+import { loginReducer } from '../components/login/bll/login-reducer';
 
 const rootReducer = combineReducers({
   tasks: tasksReducer,

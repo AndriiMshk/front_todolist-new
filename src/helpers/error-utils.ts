@@ -1,6 +1,9 @@
 import { AppStatusType, ResponseType } from '../api/typesAPI';
 import { Dispatch } from 'redux';
-import { setAppErrorAC, setAppStatusAC, SetErrorACType, SetStatusACType } from '../app/app-reducer';
+import { SetErrorACType, SetStatusACType } from '../app/bll/app-reducer';
+import { appActions } from '../app';
+
+const { setAppStatusAC, setAppErrorAC } = appActions;
 
 export const handleAppError = <Data>(
   data: ResponseType<Data>, dispatch: Dispatch<SetStatusACType | SetErrorACType>) => {

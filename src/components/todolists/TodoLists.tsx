@@ -1,46 +1,23 @@
 import React, { useCallback, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/store';
-import { FilterValuesType } from '../../api/typesAPI';
-import {
-  addTodoListTC,
-  removeTodoListTC,
-  setTodoListsTC,
-  updateTodoListAC,
-  updateTodoListTC,
-} from './todoList-reducer';
-import { Grid, Paper } from '@mui/material';
-import { AddItemForm } from '../common/AddItemForm';
-import { Tasks } from './tasks/Tasks';
 import { Navigate } from 'react-router-dom';
+import { todoListActions } from './';
+import { useAppSelector } from '../../app/store';
+import { useActions } from '../common/hooks/useActions';
+import { Tasks } from './tasks/Tasks';
+import { AddItemForm } from '../common/components/AddItemForm';
+import { Grid } from '@mui/material';
 
 export const TodoLists: React.FC = () => {
 
-  const dispatch = useAppDispatch();
+  const { addTodoList, setTodoLists } = useActions(todoListActions);
 
   const todoLists = useAppSelector(state => state.todoLists);
   const isLogin = useAppSelector(state => state.login.isLogin);
 
-  useEffect(() => {
-    if (isLogin) {
-      dispatch(setTodoListsTC());
-    }
-  }, []);
+  useEffect(() => {isLogin && setTodoLists();}, []);
 
   const addTodoListHandler = useCallback((newTodoList: string) =>
-    dispatch(addTodoListTC(newTodoList)), []);
-
-  const deleteTodoListHandler = useCallback((todoListId: string) =>
-    (dispatch(removeTodoListTC(todoListId))), []);
-
-  const changeFilterHandler = useCallback((todoListId: string, filter: FilterValuesType) =>
-    dispatch(updateTodoListAC(todoListId, { filter })), []);
-
-  const changeTodoListTitleHandler = useCallback((todoListId: string, title: string) => {
-    const currentTodoList = todoLists.find(el => el.id === todoListId);
-    if (title !== currentTodoList?.title) {
-      dispatch(updateTodoListTC(todoListId, title));
-    }
-  }, [todoLists]);
+    addTodoList(newTodoList), []);
 
   if (!isLogin) {
     return <Navigate to="/login" replace />;
@@ -48,38 +25,9 @@ export const TodoLists: React.FC = () => {
 
   return (
     <>
-      <Grid container style={{ padding: '20px' }}>
-        <AddItemForm
-          onClick={addTodoListHandler}
-        />
-      </Grid>
+      <AddItemForm onClick={addTodoListHandler} />
       <Grid container spacing={3}>
-        {todoLists.map(el => {
-          return (
-            <Grid
-              item
-              key={el.id}
-            >
-              <Paper
-                style={{
-                  padding: '10px',
-                  minHeight: '400px',
-                  minWidth: '300px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  height: '100%', alignItems: 'center',
-                }}>
-                <Tasks
-                  todoList={el}
-                  deleteTodoList={() => deleteTodoListHandler(el.id)}
-                  changeFilterHandler={(filter: FilterValuesType) => changeFilterHandler(el.id, filter)}
-                  changeTodoListTitle={title => changeTodoListTitleHandler(el.id, title)}
-                />
-              </Paper>
-            </Grid>
-          );
-        })}
+        {todoLists.map(el => <Tasks key={el.id} todoList={el} />)}
       </Grid>
     </>
   );
