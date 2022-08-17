@@ -1,10 +1,10 @@
 import { appActions } from '../../../app';
-import { loginActions } from '../';
 import { AppStatusType, LoginParamsType } from '../../../api/typesAPI';
 import { ThunkTypes } from '../../../app/store';
 import { authApi } from '../../../api/API';
 import { handleAppError, handleNetworkError } from '../../../helpers/error-utils';
 import axios from 'axios';
+import { loginActions } from './login-reducer';
 
 const login = (params: LoginParamsType): ThunkTypes => (
   async dispatch => {

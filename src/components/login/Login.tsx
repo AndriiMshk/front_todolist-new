@@ -1,10 +1,10 @@
 import React from 'react';
-import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, TextField } from '@mui/material';
-import { useFormik } from 'formik';
-import { useAppSelector } from '../../app/store';
 import { Navigate } from 'react-router-dom';
+import { useFormik } from 'formik';
 import { loginActions } from './';
+import { useAppSelector } from '../../app/store';
 import { useActions } from '../common/hooks/useActions';
+import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, TextField } from '@mui/material';
 
 export const Login: React.FC = () => {
 
@@ -46,9 +46,7 @@ export const Login: React.FC = () => {
   }
 
   return (
-    <>
-      <Grid container justifyContent="center">
-        <Grid item xs={4}>
+      <Grid container justifyContent="center" item xs={4}>
           <form onSubmit={formik.handleSubmit}>
             <FormControl>
               <FormGroup>
@@ -80,8 +78,6 @@ export const Login: React.FC = () => {
               </FormGroup>
             </FormControl>
           </form>
-        </Grid>
       </Grid>
-    </>
   );
 };

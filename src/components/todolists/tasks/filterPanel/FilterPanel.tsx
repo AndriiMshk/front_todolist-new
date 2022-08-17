@@ -3,20 +3,22 @@ import { todoListActions } from '../../index';
 import { FilterValuesType } from '../../../../api/typesAPI';
 import { useActions } from '../../../common/hooks/useActions';
 import { Button } from '@mui/material';
+import style from './filterPanel.module.scss';
 
 export const FilterPanel: React.FC<FilterPanelPropsType> = ({ filter, todoListId }) => {
 
   const { updateTodoListAC } = useActions(todoListActions);
 
   const renderFilterButton = (buttonFilter: FilterValuesType, text: string) =>
-    <Button variant={filter === buttonFilter ? 'outlined' : 'text'}
+    <Button color={filter === buttonFilter ? 'secondary' : 'primary'}
             onClick={() => updateTodoListAC(todoListId, { filter: buttonFilter })}
-            color="primary">
+            variant="text"
+    >
       {text}
     </Button>;
 
   return (
-    <div>
+    <div className={style.main}>
       {renderFilterButton(FilterValuesType.all, 'ALL')}
       {renderFilterButton(FilterValuesType.completed, 'Completed')}
       {renderFilterButton(FilterValuesType.active, 'Active')}

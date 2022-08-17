@@ -6,6 +6,7 @@ import { Confirm } from '../../../common/components/Confirm';
 import { EditableSpan } from '../../../common/components/EditableSpan';
 import { IconButton } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
+import style from './task.module.scss'
 
 export const Task: React.FC<TaskPropsType> = React.memo(({ task }) => {
 
@@ -27,8 +28,8 @@ export const Task: React.FC<TaskPropsType> = React.memo(({ task }) => {
     const removeTaskHandlerHandler = useCallback(() => removeTask(todoListId, id), []);
 
     return (
-      <div>
-        <div>
+      <div className={style.main}>
+        <div className={style.title}>
           <Checkbox
             checked={status === TaskTypeStatus.Completed}
             onChange={event => onChangeTaskStatusHandler(todoListId, id, event.target.checked)}

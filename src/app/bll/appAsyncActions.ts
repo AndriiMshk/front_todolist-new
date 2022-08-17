@@ -3,7 +3,7 @@ import { authApi } from '../../api/API';
 import { loginActions } from '../../components/login';
 import { handleAppError, handleNetworkError } from '../../helpers/error-utils';
 import axios from 'axios';
-import { appActions } from '../index';
+import { appActions } from './app-reducer';
 
 const setAppInitialized = (): ThunkTypes => (
   async dispatch => {

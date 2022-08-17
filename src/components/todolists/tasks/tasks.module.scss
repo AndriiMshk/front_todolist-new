@@ -1,0 +1,36 @@
+.main {
+	min-width: 300px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	.title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		word-break: break-all;
+		padding: 10px;
+		width: 100%;
+		position: relative;
+		margin-bottom: 10px;
+		span {
+			display: block;
+			width: 210px;
+		}
+		button {
+			margin: 0 0 0 15px;
+			padding: 10px;
+			position: absolute;
+			top: 10px;
+			right: 10px;
+		}
+	}
+	ul {
+		width: 100%;
+		padding: 0;
+		list-style-type: none;
+	}
+	.empty {
+		margin: 20px 0;
+	}
+}

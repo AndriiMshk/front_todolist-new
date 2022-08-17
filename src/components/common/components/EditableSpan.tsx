@@ -33,7 +33,7 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo((
     editMode
       ? <TextField
         disabled={isDisabled}
-        variant={'standard'}
+        variant='standard'
         value={newTitle}
         onChange={event => {setTitle(event.target.value);}}
         onBlur={onChangeHandler}

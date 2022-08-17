@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { Grid, IconButton, TextField } from '@mui/material';
+import { IconButton, TextField } from '@mui/material';
 import { ControlPoint } from '@mui/icons-material';
 
-export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo((
-  { onClick, isDisabled },
-) => {
+export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({ onClick, isDisabled }) => {
 
   const [newTitle, setNewTitle] = useState<string>('');
   const [error, setError] = useState<boolean>(false);
@@ -26,7 +24,7 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo((
   };
 
   return (
-    <Grid container>
+    <div>
       <TextField
         disabled={isDisabled}
         variant="outlined"
@@ -45,7 +43,7 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo((
       >
         <ControlPoint />
       </IconButton>
-    </Grid>
+    </div>
   );
 });
 

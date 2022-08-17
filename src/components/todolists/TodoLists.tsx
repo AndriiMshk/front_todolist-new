@@ -5,7 +5,7 @@ import { useAppSelector } from '../../app/store';
 import { useActions } from '../common/hooks/useActions';
 import { Tasks } from './tasks/Tasks';
 import { AddItemForm } from '../common/components/AddItemForm';
-import { Grid } from '@mui/material';
+import style from './todoListl.module.scss';
 
 export const TodoLists: React.FC = () => {
 
@@ -24,11 +24,11 @@ export const TodoLists: React.FC = () => {
   }
 
   return (
-    <>
+    <div className={style.main}>
       <AddItemForm onClick={addTodoListHandler} />
-      <Grid container spacing={3}>
+      <div className={style.container}>
         {todoLists.map(el => <Tasks key={el.id} todoList={el} />)}
-      </Grid>
-    </>
+      </div>
+    </div>
   );
 };
