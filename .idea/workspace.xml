@@ -12,7 +12,8 @@
   <component name="ChangeListManager">
     <list default="true" id="aaf05ec1-b4c1-480d-9f5b-c6b6ff6fb748" name="Default Changelist" comment="refactor test and styles">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/todolists/todoListl.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todolists/todoListl.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/API.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/API.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login/Login.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +30,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="toolkid" />
@@ -134,26 +136,23 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="TODOLIST/REMOVE-TODOLIST" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
       <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$" />
       <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/tests/todoList-reducer.test.ts" />
-      <test-names>
-        <test-name value="TODOLIST/REMOVE-TODOLIST" />
-      </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start" />
         <item itemvalue="Jest.SET-TODOLISTS" />
         <item itemvalue="Jest.TODOLIST/CHANGE-TODOLIST-TITLE" />
         <item itemvalue="Jest.TODOLIST/CHANGE-FILTER" />
         <item itemvalue="Jest.TODOLIST/ADD-TODOLIST" />
-        <item itemvalue="Jest.TODOLIST/REMOVE-TODOLIST" />
       </list>
     </recent_temporary>
   </component>
@@ -213,7 +212,7 @@
       <workItem from="1660674609029" duration="4876000" />
       <workItem from="1660730656482" duration="27706000" />
       <workItem from="1660812730098" duration="10874000" />
-      <workItem from="1660825777694" duration="627000" />
+      <workItem from="1660825777694" duration="1239000" />
     </task>
     <task id="LOCAL-00001" summary="thunk and action dispatch types">
       <created>1656848548221</created>
@@ -320,7 +319,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660825545355</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="refactor test and styles">
+      <created>1660826674357</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1660826674357</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -380,38 +386,38 @@
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="770" y="295" key="FileChooserDialogImpl/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656587487336" />
-    <state width="1899" height="218" key="GridCell.Tab.0.bottom" timestamp="1660825679414">
+    <state width="1899" height="153" key="GridCell.Tab.0.bottom" timestamp="1660827275642">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1899" height="196" key="GridCell.Tab.0.bottom/1920.6.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1658137340630" />
-    <state width="1899" height="218" key="GridCell.Tab.0.bottom/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825679414" />
+    <state width="1899" height="153" key="GridCell.Tab.0.bottom/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660827275642" />
     <state width="1837" height="208" key="GridCell.Tab.0.bottom/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1657013961356" />
     <state width="1453" height="223" key="GridCell.Tab.0.bottom/62.0.1474.864/-1280.0.1280.1024@62.0.1474.864" timestamp="1654028686235" />
     <state width="1197" height="274" key="GridCell.Tab.0.bottom/62.0.1474.864/1982.0.1218.1024@1982.0.1218.1024" timestamp="1655748729578" />
     <state width="1197" height="274" key="GridCell.Tab.0.bottom/62.0.1474.864/1982.0.1218.1024@62.0.1474.864" timestamp="1655669402989" />
-    <state width="1899" height="218" key="GridCell.Tab.0.center" timestamp="1660825679414">
+    <state width="1899" height="153" key="GridCell.Tab.0.center" timestamp="1660827275642">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1899" height="196" key="GridCell.Tab.0.center/1920.6.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1658137340630" />
-    <state width="1899" height="218" key="GridCell.Tab.0.center/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825679414" />
+    <state width="1899" height="153" key="GridCell.Tab.0.center/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660827275642" />
     <state width="1837" height="208" key="GridCell.Tab.0.center/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1657013961356" />
     <state width="1453" height="223" key="GridCell.Tab.0.center/62.0.1474.864/-1280.0.1280.1024@62.0.1474.864" timestamp="1654028686235" />
     <state width="1197" height="274" key="GridCell.Tab.0.center/62.0.1474.864/1982.0.1218.1024@1982.0.1218.1024" timestamp="1655748729578" />
     <state width="1197" height="274" key="GridCell.Tab.0.center/62.0.1474.864/1982.0.1218.1024@62.0.1474.864" timestamp="1655669402989" />
-    <state width="1899" height="218" key="GridCell.Tab.0.left" timestamp="1660825679414">
+    <state width="1899" height="153" key="GridCell.Tab.0.left" timestamp="1660827275641">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1899" height="196" key="GridCell.Tab.0.left/1920.6.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1658137340630" />
-    <state width="1899" height="218" key="GridCell.Tab.0.left/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825679414" />
+    <state width="1899" height="153" key="GridCell.Tab.0.left/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660827275641" />
     <state width="1837" height="208" key="GridCell.Tab.0.left/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1657013961356" />
     <state width="1453" height="223" key="GridCell.Tab.0.left/62.0.1474.864/-1280.0.1280.1024@62.0.1474.864" timestamp="1654028686235" />
     <state width="1197" height="274" key="GridCell.Tab.0.left/62.0.1474.864/1982.0.1218.1024@1982.0.1218.1024" timestamp="1655748729578" />
     <state width="1197" height="274" key="GridCell.Tab.0.left/62.0.1474.864/1982.0.1218.1024@62.0.1474.864" timestamp="1655669402989" />
-    <state width="1899" height="218" key="GridCell.Tab.0.right" timestamp="1660825679414">
+    <state width="1899" height="153" key="GridCell.Tab.0.right" timestamp="1660827275642">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1899" height="196" key="GridCell.Tab.0.right/1920.6.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1658137340630" />
-    <state width="1899" height="218" key="GridCell.Tab.0.right/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825679414" />
+    <state width="1899" height="153" key="GridCell.Tab.0.right/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660827275642" />
     <state width="1837" height="208" key="GridCell.Tab.0.right/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1657013961356" />
     <state width="1453" height="223" key="GridCell.Tab.0.right/62.0.1474.864/-1280.0.1280.1024@62.0.1474.864" timestamp="1654028686235" />
     <state width="1197" height="274" key="GridCell.Tab.0.right/62.0.1474.864/1982.0.1218.1024@1982.0.1218.1024" timestamp="1655748729578" />
@@ -480,15 +486,15 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="267" y="87" key="MergeDialog/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825609359" />
-    <state x="848" y="393" width="389" height="264" key="MultipleFileMergeDialog" timestamp="1660825609364">
+    <state x="848" y="393" width="389" height="264" key="MultipleFileMergeDialog" timestamp="1660826698935">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="848" y="393" width="389" height="264" key="MultipleFileMergeDialog/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825609364" />
-    <state x="538" y="252" key="Vcs.Push.Dialog.v2" timestamp="1660825623607">
+    <state x="848" y="393" width="389" height="264" key="MultipleFileMergeDialog/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660826698935" />
+    <state x="538" y="252" key="Vcs.Push.Dialog.v2" timestamp="1660826709236">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="538" y="250" key="Vcs.Push.Dialog.v2/1920.6.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1658137457138" />
-    <state x="538" y="252" key="Vcs.Push.Dialog.v2/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825623607" />
+    <state x="538" y="252" key="Vcs.Push.Dialog.v2/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660826709236" />
     <state x="583" y="260" key="Vcs.Push.Dialog.v2/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656848551771" />
     <state x="121" y="112" width="1680" height="817" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1657643483737">
       <screen x="0" y="0" width="1920" height="1040" />

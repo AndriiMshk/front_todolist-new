@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { loginActions } from './';
 import { useAppSelector } from '../../app/store';
 import { useActions } from '../common/hooks/useActions';
-import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, TextField } from '@mui/material';
+import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, TextField } from '@mui/material';
 
 export const Login: React.FC = () => {
 
@@ -46,38 +46,42 @@ export const Login: React.FC = () => {
   }
 
   return (
-      <Grid container justifyContent="center" item xs={4}>
-          <form onSubmit={formik.handleSubmit}>
-            <FormControl>
-              <FormGroup>
-                <TextField
-                  label="Email"
-                  margin="normal"
-                  {...formik.getFieldProps('email')}
-                  error={!!formik.errors.email}
-                  helperText={formik.errors.email}
-                />
-                <TextField
-                  label="Password"
-                  margin="normal"
-                  autoComplete="off"
-                  type="password"
-                  {...formik.getFieldProps('password')}
-                  error={!!formik.errors.password}
-                  helperText={formik.errors.password}
-                />
-                <FormControlLabel
-                  label="Remember me"
-                  control={
-                    <Checkbox
-                      {...formik.getFieldProps('rememberMe')}
-                      checked={formik.values.rememberMe}
-                    />}
-                />
-                <Button type="submit" variant="contained" color="primary">Login</Button>
-              </FormGroup>
-            </FormControl>
-          </form>
-      </Grid>
+    <Grid container justifyContent="center" item xs={4}>
+      <form onSubmit={formik.handleSubmit}>
+        <FormControl>
+          <FormGroup>
+            <FormLabel>
+              <p>Email: 70688kv@ukr.net</p>
+              <p>Password: 123123123123</p>
+            </FormLabel>
+            <TextField
+              label="Email"
+              margin="normal"
+              {...formik.getFieldProps('email')}
+              error={!!formik.errors.email}
+              helperText={formik.errors.email}
+            />
+            <TextField
+              label="Password"
+              margin="normal"
+              autoComplete="off"
+              type="password"
+              {...formik.getFieldProps('password')}
+              error={!!formik.errors.password}
+              helperText={formik.errors.password}
+            />
+            <FormControlLabel
+              label="Remember me"
+              control={
+                <Checkbox
+                  {...formik.getFieldProps('rememberMe')}
+                  checked={formik.values.rememberMe}
+                />}
+            />
+            <Button type="submit" variant="contained" color="primary">Login</Button>
+          </FormGroup>
+        </FormControl>
+      </form>
+    </Grid>
   );
 };
