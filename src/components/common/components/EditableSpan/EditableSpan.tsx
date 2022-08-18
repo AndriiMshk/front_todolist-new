@@ -22,6 +22,10 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo((
     if (event.key === 'Enter') {
       onChangeHandler();
     }
+    if (event.key === 'Escape') {
+      setEditMode(false);
+      setTitle(title);
+    }
   };
 
   const setEditModeHandler = () => {
@@ -39,7 +43,7 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo((
         value={newTitle}
         onChange={event => {setTitle(event.target.value);}}
         onBlur={onChangeHandler}
-        onKeyPress={onPressKeyHandler}
+        onKeyDown={onPressKeyHandler}
         autoFocus
         multiline
         className={style.input}
