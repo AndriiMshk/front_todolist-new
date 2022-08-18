@@ -23,6 +23,7 @@ const setTasks = (todoListId: string): ThunkTypes => (
     }
   }
 );
+
 const addTask = (todoListId: string, title: string): ThunkTypes => (
   async dispatch => {
     dispatch(setAppStatusAC(AppStatusType.loading));
@@ -41,6 +42,7 @@ const addTask = (todoListId: string, title: string): ThunkTypes => (
     }
   }
 );
+
 const removeTask = (todoListId: string, taskId: string): ThunkTypes => (
   async dispatch => {
     dispatch(updateTaskAC(todoListId, taskId, { isDisabled: true }));
@@ -61,6 +63,7 @@ const removeTask = (todoListId: string, taskId: string): ThunkTypes => (
     dispatch(updateTaskAC(todoListId, taskId, { isDisabled: false }));
   }
 );
+
 const updateTask = (todoListId: string, taskId: string, taskModel: UpdateTaskModelType): ThunkTypes => (
   (async(dispatch, getState: () => RootStateType) => {
     dispatch(updateTaskAC(todoListId, taskId, { isDisabled: true }));

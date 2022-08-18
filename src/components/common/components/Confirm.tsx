@@ -6,9 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import { Delete } from '@mui/icons-material';
 
-export const Confirm: React.FC<ConfirmPropsType> = React.memo((
-  { isOpen, setOpen, confirm },
-) => {
+export const Confirm: React.FC<ConfirmPropsType> = React.memo(({ isOpen, setOpen, confirm }) => {
 
   const confirmHandler = () => {
     setOpen(false);
@@ -20,7 +18,7 @@ export const Confirm: React.FC<ConfirmPropsType> = React.memo((
       <Delete onClick={() => setOpen(true)} />
       <Dialog open={isOpen} onClose={() => setOpen(false)}>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText>
             Are you sure?
           </DialogContentText>
         </DialogContent>

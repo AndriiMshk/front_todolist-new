@@ -23,9 +23,8 @@ const removeTodoListAC = (todoListId: string) => ({ type: 'TODOLIST/REMOVE-TODOL
 const addTodoListAC = (todoList: TodoListType) => ({ type: 'TODOLIST/ADD-TODOLIST', todoList } as const);
 const setTodoListsAC = (todoLists: TodoListType[]) =>
   ({ type: 'TODOLIST/SET-TODOLISTS', payload: todoLists } as const);
-const updateTodoListAC = (todoListId: string, todoListModel: UpdateTodoListModelType) => (
-  { type: 'TODOLIST/UPDATE-TODOLIST', todoListId, todoListModel } as const
-);
+const updateTodoListAC = (todoListId: string, todoListModel: UpdateTodoListModelType) =>
+  ({ type: 'TODOLIST/UPDATE-TODOLIST', todoListId, todoListModel } as const);
 
 export const todoListActions = {
   removeTodoListAC,

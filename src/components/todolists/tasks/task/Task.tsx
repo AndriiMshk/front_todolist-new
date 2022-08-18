@@ -3,7 +3,7 @@ import { tasksActions } from '../index';
 import { TaskTypeAPI, TaskTypeStatus } from '../../../../api/typesAPI';
 import { useActions } from '../../../common/hooks/useActions';
 import { Confirm } from '../../../common/components/Confirm';
-import { EditableSpan } from '../../../common/components/EditableSpan';
+import { EditableSpan } from '../../../common/components/EditableSpan/EditableSpan';
 import { IconButton } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import style from './task.module.scss'

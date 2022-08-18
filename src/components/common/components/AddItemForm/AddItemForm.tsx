@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { IconButton, TextField } from '@mui/material';
-import { ControlPoint } from '@mui/icons-material';
+import style from './addItemForm.module.scss'
 
 export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({ onClick, isDisabled }) => {
 
@@ -24,7 +25,7 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({ onClick
   };
 
   return (
-    <div>
+    <div className={style.main}>
       <TextField
         disabled={isDisabled}
         variant="outlined"
@@ -41,7 +42,7 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({ onClick
         color="primary"
         onClick={addTitleHandler}
       >
-        <ControlPoint />
+        <AddBoxIcon />
       </IconButton>
     </div>
   );

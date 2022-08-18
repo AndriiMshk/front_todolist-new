@@ -40,7 +40,4 @@ const logout = (isLogin: boolean): ThunkTypes => (
   }
 );
 
-export const loginAsyncActions = {
-  login,
-  logout
-}
+export const loginAsyncActions = { login, logout };

@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { useAppSelector } from '../../app/store';
+import { AppStatusType } from '../../api/typesAPI';
 import { loginActions } from '../login';
 import { useActions } from '../common/hooks/useActions';
 import Typography from '@mui/material/Typography';
@@ -9,7 +10,6 @@ import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import style from './header.module.scss';
-import { AppStatusType } from '../../api/typesAPI';
 
 export const Header: React.FC = () => {
 
@@ -24,9 +24,7 @@ export const Header: React.FC = () => {
     <Box sx={{ flexGrow: 1 }} className={style.main}>
       <AppBar>
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {name}
-          </Typography>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>{name}</Typography>
           {!isLogin
             ? <Button color="inherit">Login</Button>
             : <Button
@@ -34,10 +32,7 @@ export const Header: React.FC = () => {
               color="inherit"
             >Exit</Button>}
         </Toolbar>
-        {status === AppStatusType.loading &&
-        <div className={style.loadingLine}>
-          <LinearProgress />
-        </div>}
+        {status === AppStatusType.loading && <div className={style.loadingLine}><LinearProgress /></div>}
       </AppBar>
     </Box>
   );

@@ -6,10 +6,10 @@ import { FilterValuesType, TaskTypeStatus, TodoListType } from '../../../api/typ
 import { Task } from './task/Task';
 import { Confirm } from '../../common/components/Confirm';
 import { useActions } from '../../common/hooks/useActions';
-import { AddItemForm } from '../../common/components/AddItemForm';
-import { EditableSpan } from '../../common/components/EditableSpan';
-import { IconButton, Paper } from '@mui/material';
 import { FilterPanel } from './filterPanel/FilterPanel';
+import { AddItemForm } from '../../common/components/AddItemForm/AddItemForm';
+import { EditableSpan } from '../../common/components/EditableSpan/EditableSpan';
+import { IconButton, Paper } from '@mui/material';
 import style from './tasks.module.scss';
 
 export const Tasks: React.FC<TasksPropsType> = React.memo(({ todoList }) => {
@@ -21,13 +21,14 @@ export const Tasks: React.FC<TasksPropsType> = React.memo(({ todoList }) => {
 
     const tasks = useAppSelector(state => (state.tasks[todoList.id]));
 
-    useEffect(() => {setTasks(todoList.id);}, []);
-
     const deleteTodoListHandler = useCallback(() =>
       removeTodoList(todoList.id), [todoList]);
 
     const changeTodoListTitleHandler = useCallback((todoListId: string, title: string) =>
       updateTodoList(todoListId, title), [todoList]);
+
+    const addTaskHandler = useCallback((newTitle: string) =>
+      addTask(todoList.id, newTitle), [todoList.id]);
 
     let currentTasks = tasks;
     if (todoList.filter === FilterValuesType.active) {
@@ -37,24 +38,21 @@ export const Tasks: React.FC<TasksPropsType> = React.memo(({ todoList }) => {
       currentTasks = tasks.filter(task => task.status === TaskTypeStatus.Completed);
     }
 
-    const addTaskHandler = useCallback((newTitle: string) =>
-      addTask(todoList.id, newTitle), [todoList.id]);
+    useEffect(() => {setTasks(todoList.id);}, []);
 
     return (
       <Paper className={style.main}>
-        <div>
-          <div className={style.title}>
-            <EditableSpan
-              isDisabled={todoList.isDisabled}
-              title={todoList.title}
-              refactor={title => changeTodoListTitleHandler(todoList.id, title)}
-            />
-            <IconButton onClick={() => setOpenConfirm(!openConfirm)} disabled={todoList.isDisabled}>
-              <Confirm isOpen={openConfirm} setOpen={setOpenConfirm} confirm={deleteTodoListHandler} />
-            </IconButton>
-          </div>
-          <AddItemForm isDisabled={todoList.isDisabled} onClick={addTaskHandler} />
+        <div className={style.title}>
+          <EditableSpan
+            isDisabled={todoList.isDisabled}
+            title={todoList.title}
+            refactor={title => changeTodoListTitleHandler(todoList.id, title)}
+          />
+          <IconButton onClick={() => setOpenConfirm(!openConfirm)} disabled={todoList.isDisabled} size="small">
+            <Confirm isOpen={openConfirm} setOpen={setOpenConfirm} confirm={deleteTodoListHandler} />
+          </IconButton>
         </div>
+        <AddItemForm isDisabled={todoList.isDisabled} onClick={addTaskHandler} />
         {currentTasks.length
           ? <ul>{currentTasks && currentTasks.map(el => <Task key={el.id} task={el} />)}</ul>
           : <div className={style.empty}>List is empty</div>}

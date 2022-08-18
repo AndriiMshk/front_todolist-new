@@ -21,7 +21,9 @@ const setTodoLists = (): ThunkTypes => (
         handleNetworkError(err.message, dispatch);
       }
     }
-  });
+  }
+);
+
 const addTodoList = (title: string): ThunkTypes => (
   async dispatch => {
     dispatch(setAppStatusAC(AppStatusType.loading));
@@ -38,7 +40,9 @@ const addTodoList = (title: string): ThunkTypes => (
         handleNetworkError(err.message, dispatch);
       }
     }
-  });
+  }
+);
+
 const removeTodoList = (todoListId: string): ThunkTypes => (
   async dispatch => {
     dispatch(setAppStatusAC(AppStatusType.loading));
@@ -57,7 +61,9 @@ const removeTodoList = (todoListId: string): ThunkTypes => (
       }
     }
     dispatch(updateTodoListAC(todoListId, { isDisabled: false }));
-  });
+  }
+);
+
 const updateTodoList = (todoListId: string, title: string): ThunkTypes => (
   async dispatch => {
     dispatch(updateTodoListAC(todoListId, { isDisabled: true }));

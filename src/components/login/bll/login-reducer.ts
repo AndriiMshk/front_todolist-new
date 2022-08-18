@@ -15,9 +15,7 @@ export const loginReducer = (state: LoginReducerStateType = initialState, action
 
 const loginAC = (isLogin: boolean, name: string) => ({ type: 'LOGIN/SET-IS-LOGIN', isLogin, name } as const);
 
-export const loginActions = {
-  loginAC,
-};
+export const loginActions = { loginAC };
 
 export type LoginReducerStateType = {
   isLogin: boolean

@@ -10,28 +10,36 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aaf05ec1-b4c1-480d-9f5b-c6b6ff6fb748" name="Default Changelist" comment="logic refactor without styles &amp; tests">
-      <change afterPath="$PROJECT_DIR$/src/app/app.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/header/header.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/todolists/tasks/filterPanel/filterPanel.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/todolists/tasks/task/task.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/todolists/tasks/tasks.module.scss" afterDir="false" />
+    <list default="true" id="aaf05ec1-b4c1-480d-9f5b-c6b6ff6fb748" name="Default Changelist" comment="refactor styles">
+      <change afterPath="$PROJECT_DIR$/src/components/common/components/AddItemForm/addItemForm.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/common/components/EditableSpan/editableSpan.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/common/styles/mixins.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todolists/todoListl.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/bll/appAsyncActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/bll/appAsyncActions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/components/AddItemForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/components/AddItemForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/components/EditableSpan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/components/EditableSpan.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/components/AddItemForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/components/AddItemForm/AddItemForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/components/Confirm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/components/Confirm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/components/EditableSpan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/components/EditableSpan/EditableSpan.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/hooks/useActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/hooks/useActions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header/header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/header.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/login/bll/login-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login/bll/login-reducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/login/bll/loginAsyncActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login/bll/loginAsyncActions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/todolists/TodoLists.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todolists/TodoLists.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/todolists/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todolists/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/todolists/bll/todoList-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todolists/bll/todoList-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/todolists/bll/todoListAsyncActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todolists/bll/todoListAsyncActions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/todolists/tasks/Tasks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todolists/tasks/Tasks.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/todolists/tasks/filterPanel/FilterPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todolists/tasks/filterPanel/FilterPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/todolists/tasks/bll/tasksAsyncActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todolists/tasks/bll/tasksAsyncActions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/todolists/tasks/task/Task.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todolists/tasks/task/Task.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/todolists/tasks/tasks.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todolists/tasks/tasks.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/todolists/todoListl.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todolists/todoListl.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/storiesExamples/AddItemForm.stories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/storiesExamples/AddItemForm.stories.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/storiesExamples/EditableSpan.stories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/storiesExamples/EditableSpan.stories.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/appReducer.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/appReducer.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/loginReducer.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/loginReducer.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/tasks-reducer.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/tasks-reducer.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/todoList-reducer.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/todoList-reducer.test.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +73,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/todolists/tasks/filterPanel" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/common/components/EditableSpan" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -78,12 +86,12 @@
     <property name="ts.external.directory.path" value="D:\Code\incubator\todolist dimuch\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Code\incubator\todolist dimuch\src\components\todolists\tasks\filterPanel" />
-      <recent name="D:\Code\incubator\todolist dimuch\src\components\todolists\tasks\task" />
-      <recent name="D:\Code\incubator\todolist dimuch\src\components\todolists\tasks" />
-      <recent name="D:\Code\incubator\todolist dimuch\src\components\header" />
-      <recent name="D:\Code\incubator\todolist dimuch\src\tests" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Code\incubator\todolist dimuch\src\components\common\components\AddItemForm" />
+      <recent name="D:\Code\incubator\todolist dimuch\src\components\common\components\EditableSpan" />
+      <recent name="D:\Code\incubator\todolist dimuch\src\components\todolists\tasks\bll" />
+      <recent name="D:\Code\incubator\todolist dimuch\src\components\todolists\bll" />
+      <recent name="D:\Code\incubator\todolist dimuch\src\components\login\bll" />
     </key>
     <key name="es6.move.members.recent.items">
       <recent name="D:\Code\incubator\todolist dimuch\src\features\TodoLists.tsx" />
@@ -92,84 +100,87 @@
       <recent name="D:\Code\incubator\todolist dimuch\src\todoList-api-test\Tasks-api.tsx" />
       <recent name="D:\Code\incubator\todolist dimuch\src\TodoLists-api.tsx" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Code\incubator\todolist dimuch\src\components\todolists\tasks\bll" />
-      <recent name="D:\Code\incubator\todolist dimuch\src\components\todolists\bll" />
-      <recent name="D:\Code\incubator\todolist dimuch\src\components\login\bll" />
-      <recent name="D:\Code\incubator\todolist dimuch\src\app\bll" />
-      <recent name="D:\Code\incubator\todolist dimuch\src\components\common\components" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Code\incubator\todolist dimuch\src\components\common\components\EditableSpan" />
+      <recent name="D:\Code\incubator\todolist dimuch\src\components\todolists\tasks\filterPanel" />
+      <recent name="D:\Code\incubator\todolist dimuch\src\components\todolists\tasks\task" />
+      <recent name="D:\Code\incubator\todolist dimuch\src\components\todolists\tasks" />
+      <recent name="D:\Code\incubator\todolist dimuch\src\components\header" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
-    <configuration name="ADD-TASK" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Jest.SET-TODOLISTS">
+    <configuration name="SET-TODOLISTS" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/tests/tasks-reducer.test.ts" />
-      <test-names>
-        <test-name value="ADD-TASK" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="CHANGE-TASK-TITLE" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/tests/tasks-reducer.test.ts" />
-      <test-names>
-        <test-name value="CHANGE-TASK-TITLE" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="SET-TASKS" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/tests/tasks-reducer.test.ts" />
-      <test-names>
-        <test-name value="SET-TASKS" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="SET-TODOLISTS (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/tests/tasks-reducer.test.ts" />
+      <test-file value="$PROJECT_DIR$/src/tests/todoList-reducer.test.ts" />
       <test-names>
         <test-name value="SET-TODOLISTS" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start" />
-      </scripts>
+    <configuration name="TODOLIST/ADD-TODOLIST" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
       <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/tests/todoList-reducer.test.ts" />
+      <test-names>
+        <test-name value="TODOLIST/ADD-TODOLIST" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="TODOLIST/CHANGE-FILTER" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/tests/todoList-reducer.test.ts" />
+      <test-names>
+        <test-name value="TODOLIST/CHANGE-FILTER" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="TODOLIST/CHANGE-TODOLIST-TITLE" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/tests/todoList-reducer.test.ts" />
+      <test-names>
+        <test-name value="TODOLIST/CHANGE-TODOLIST-TITLE" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="TODOLIST/REMOVE-TODOLIST" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/tests/todoList-reducer.test.ts" />
+      <test-names>
+        <test-name value="TODOLIST/REMOVE-TODOLIST" />
+      </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
-        <item itemvalue="Jest.SET-TODOLISTS (1)" />
-        <item itemvalue="Jest.SET-TASKS" />
-        <item itemvalue="Jest.CHANGE-TASK-TITLE" />
-        <item itemvalue="Jest.ADD-TASK" />
+        <item itemvalue="Jest.SET-TODOLISTS" />
+        <item itemvalue="Jest.TODOLIST/CHANGE-TODOLIST-TITLE" />
+        <item itemvalue="Jest.TODOLIST/CHANGE-FILTER" />
+        <item itemvalue="Jest.TODOLIST/ADD-TODOLIST" />
+        <item itemvalue="Jest.TODOLIST/REMOVE-TODOLIST" />
       </list>
     </recent_temporary>
   </component>
@@ -227,7 +238,8 @@
       <workItem from="1658088976694" duration="43000" />
       <workItem from="1658136172173" duration="1358000" />
       <workItem from="1660674609029" duration="4876000" />
-      <workItem from="1660730656482" duration="27162000" />
+      <workItem from="1660730656482" duration="27706000" />
+      <workItem from="1660812730098" duration="10704000" />
     </task>
     <task id="LOCAL-00001" summary="thunk and action dispatch types">
       <created>1656848548221</created>
@@ -320,7 +332,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660742080178</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="refactor styles">
+      <created>1660758826515</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1660758826515</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,7 +381,8 @@
     <MESSAGE value="some refactor" />
     <MESSAGE value="logic refactor without styles" />
     <MESSAGE value="logic refactor without styles &amp; tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="logic refactor without styles &amp; tests" />
+    <MESSAGE value="refactor styles" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor styles" />
   </component>
   <component name="WindowStateProjectService">
     <state x="791" y="417" key="#ESLint" timestamp="1660674687980">
@@ -378,95 +398,107 @@
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="770" y="295" key="FileChooserDialogImpl/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656587487336" />
-    <state width="1899" height="153" key="GridCell.Tab.0.bottom" timestamp="1660743519934">
+    <state width="1899" height="153" key="GridCell.Tab.0.bottom" timestamp="1660825503665">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1899" height="196" key="GridCell.Tab.0.bottom/1920.6.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1658137340630" />
-    <state width="1899" height="153" key="GridCell.Tab.0.bottom/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660743519934" />
+    <state width="1899" height="153" key="GridCell.Tab.0.bottom/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825503665" />
     <state width="1837" height="208" key="GridCell.Tab.0.bottom/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1657013961356" />
     <state width="1453" height="223" key="GridCell.Tab.0.bottom/62.0.1474.864/-1280.0.1280.1024@62.0.1474.864" timestamp="1654028686235" />
     <state width="1197" height="274" key="GridCell.Tab.0.bottom/62.0.1474.864/1982.0.1218.1024@1982.0.1218.1024" timestamp="1655748729578" />
     <state width="1197" height="274" key="GridCell.Tab.0.bottom/62.0.1474.864/1982.0.1218.1024@62.0.1474.864" timestamp="1655669402989" />
-    <state width="1899" height="153" key="GridCell.Tab.0.center" timestamp="1660743519934">
+    <state width="1899" height="153" key="GridCell.Tab.0.center" timestamp="1660825503665">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1899" height="196" key="GridCell.Tab.0.center/1920.6.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1658137340630" />
-    <state width="1899" height="153" key="GridCell.Tab.0.center/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660743519934" />
+    <state width="1899" height="153" key="GridCell.Tab.0.center/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825503665" />
     <state width="1837" height="208" key="GridCell.Tab.0.center/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1657013961356" />
     <state width="1453" height="223" key="GridCell.Tab.0.center/62.0.1474.864/-1280.0.1280.1024@62.0.1474.864" timestamp="1654028686235" />
     <state width="1197" height="274" key="GridCell.Tab.0.center/62.0.1474.864/1982.0.1218.1024@1982.0.1218.1024" timestamp="1655748729578" />
     <state width="1197" height="274" key="GridCell.Tab.0.center/62.0.1474.864/1982.0.1218.1024@62.0.1474.864" timestamp="1655669402989" />
-    <state width="1899" height="153" key="GridCell.Tab.0.left" timestamp="1660743519934">
+    <state width="1899" height="153" key="GridCell.Tab.0.left" timestamp="1660825503665">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1899" height="196" key="GridCell.Tab.0.left/1920.6.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1658137340630" />
-    <state width="1899" height="153" key="GridCell.Tab.0.left/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660743519934" />
+    <state width="1899" height="153" key="GridCell.Tab.0.left/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825503665" />
     <state width="1837" height="208" key="GridCell.Tab.0.left/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1657013961356" />
     <state width="1453" height="223" key="GridCell.Tab.0.left/62.0.1474.864/-1280.0.1280.1024@62.0.1474.864" timestamp="1654028686235" />
     <state width="1197" height="274" key="GridCell.Tab.0.left/62.0.1474.864/1982.0.1218.1024@1982.0.1218.1024" timestamp="1655748729578" />
     <state width="1197" height="274" key="GridCell.Tab.0.left/62.0.1474.864/1982.0.1218.1024@62.0.1474.864" timestamp="1655669402989" />
-    <state width="1899" height="153" key="GridCell.Tab.0.right" timestamp="1660743519934">
+    <state width="1899" height="153" key="GridCell.Tab.0.right" timestamp="1660825503665">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1899" height="196" key="GridCell.Tab.0.right/1920.6.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1658137340630" />
-    <state width="1899" height="153" key="GridCell.Tab.0.right/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660743519934" />
+    <state width="1899" height="153" key="GridCell.Tab.0.right/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825503665" />
     <state width="1837" height="208" key="GridCell.Tab.0.right/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1657013961356" />
     <state width="1453" height="223" key="GridCell.Tab.0.right/62.0.1474.864/-1280.0.1280.1024@62.0.1474.864" timestamp="1654028686235" />
     <state width="1197" height="274" key="GridCell.Tab.0.right/62.0.1474.864/1982.0.1218.1024@1982.0.1218.1024" timestamp="1655748729578" />
     <state width="1197" height="274" key="GridCell.Tab.0.right/62.0.1474.864/1982.0.1218.1024@62.0.1474.864" timestamp="1655669402989" />
-    <state width="1837" height="364" key="GridCell.Tab.1.bottom" timestamp="1656182392875">
-      <screen x="62" y="0" width="1858" height="1080" />
+    <state width="1899" height="218" key="GridCell.Tab.1.bottom" timestamp="1660825141948">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1899" height="218" key="GridCell.Tab.1.bottom/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825141948" />
     <state width="1837" height="364" key="GridCell.Tab.1.bottom/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656182392875" />
-    <state width="1837" height="364" key="GridCell.Tab.1.center" timestamp="1656182392875">
-      <screen x="62" y="0" width="1858" height="1080" />
+    <state width="1899" height="218" key="GridCell.Tab.1.center" timestamp="1660825141948">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1899" height="218" key="GridCell.Tab.1.center/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825141948" />
     <state width="1837" height="364" key="GridCell.Tab.1.center/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656182392875" />
-    <state width="1837" height="364" key="GridCell.Tab.1.left" timestamp="1656182392875">
-      <screen x="62" y="0" width="1858" height="1080" />
+    <state width="1899" height="218" key="GridCell.Tab.1.left" timestamp="1660825141948">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1899" height="218" key="GridCell.Tab.1.left/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825141948" />
     <state width="1837" height="364" key="GridCell.Tab.1.left/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656182392875" />
-    <state width="1837" height="364" key="GridCell.Tab.1.right" timestamp="1656182392875">
-      <screen x="62" y="0" width="1858" height="1080" />
+    <state width="1899" height="218" key="GridCell.Tab.1.right" timestamp="1660825141948">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1899" height="218" key="GridCell.Tab.1.right/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825141948" />
     <state width="1837" height="364" key="GridCell.Tab.1.right/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656182392875" />
-    <state width="1837" height="364" key="GridCell.Tab.2.bottom" timestamp="1656182392875">
-      <screen x="62" y="0" width="1858" height="1080" />
+    <state width="1899" height="218" key="GridCell.Tab.2.bottom" timestamp="1660825141949">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1899" height="218" key="GridCell.Tab.2.bottom/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825141949" />
     <state width="1837" height="364" key="GridCell.Tab.2.bottom/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656182392875" />
-    <state width="1837" height="364" key="GridCell.Tab.2.center" timestamp="1656182392875">
-      <screen x="62" y="0" width="1858" height="1080" />
+    <state width="1899" height="218" key="GridCell.Tab.2.center" timestamp="1660825141949">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1899" height="218" key="GridCell.Tab.2.center/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825141949" />
     <state width="1837" height="364" key="GridCell.Tab.2.center/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656182392875" />
-    <state width="1837" height="364" key="GridCell.Tab.2.left" timestamp="1656182392875">
-      <screen x="62" y="0" width="1858" height="1080" />
+    <state width="1899" height="218" key="GridCell.Tab.2.left" timestamp="1660825141949">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1899" height="218" key="GridCell.Tab.2.left/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825141949" />
     <state width="1837" height="364" key="GridCell.Tab.2.left/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656182392875" />
-    <state width="1837" height="364" key="GridCell.Tab.2.right" timestamp="1656182392875">
-      <screen x="62" y="0" width="1858" height="1080" />
+    <state width="1899" height="218" key="GridCell.Tab.2.right" timestamp="1660825141949">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1899" height="218" key="GridCell.Tab.2.right/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825141949" />
     <state width="1837" height="364" key="GridCell.Tab.2.right/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656182392875" />
-    <state width="1837" height="364" key="GridCell.Tab.3.bottom" timestamp="1656182392875">
-      <screen x="62" y="0" width="1858" height="1080" />
+    <state width="1899" height="218" key="GridCell.Tab.3.bottom" timestamp="1660825141949">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1899" height="218" key="GridCell.Tab.3.bottom/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825141949" />
     <state width="1837" height="364" key="GridCell.Tab.3.bottom/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656182392875" />
-    <state width="1837" height="364" key="GridCell.Tab.3.center" timestamp="1656182392875">
-      <screen x="62" y="0" width="1858" height="1080" />
+    <state width="1899" height="218" key="GridCell.Tab.3.center" timestamp="1660825141949">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1899" height="218" key="GridCell.Tab.3.center/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825141949" />
     <state width="1837" height="364" key="GridCell.Tab.3.center/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656182392875" />
-    <state width="1837" height="364" key="GridCell.Tab.3.left" timestamp="1656182392875">
-      <screen x="62" y="0" width="1858" height="1080" />
+    <state width="1899" height="218" key="GridCell.Tab.3.left" timestamp="1660825141949">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1899" height="218" key="GridCell.Tab.3.left/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825141949" />
     <state width="1837" height="364" key="GridCell.Tab.3.left/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656182392875" />
-    <state width="1837" height="364" key="GridCell.Tab.3.right" timestamp="1656182392875">
-      <screen x="62" y="0" width="1858" height="1080" />
+    <state width="1899" height="218" key="GridCell.Tab.3.right" timestamp="1660825141949">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1899" height="218" key="GridCell.Tab.3.right/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660825141949" />
     <state width="1837" height="364" key="GridCell.Tab.3.right/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656182392875" />
-    <state x="538" y="252" key="Vcs.Push.Dialog.v2" timestamp="1660742092889">
+    <state x="538" y="252" key="Vcs.Push.Dialog.v2" timestamp="1660758827492">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="538" y="250" key="Vcs.Push.Dialog.v2/1920.6.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1658137457138" />
-    <state x="538" y="252" key="Vcs.Push.Dialog.v2/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660742092889" />
+    <state x="538" y="252" key="Vcs.Push.Dialog.v2/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660758827492" />
     <state x="583" y="260" key="Vcs.Push.Dialog.v2/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656848551771" />
     <state x="121" y="112" width="1680" height="817" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1657643483737">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -479,10 +511,11 @@
       <screen x="1982" y="0" width="1218" height="1024" />
     </state>
     <state x="2074" y="92" width="1034" height="840" key="com.intellij.history.integration.ui.views.FileHistoryDialog/62.0.1474.864/1982.0.1218.1024@1982.0.1218.1024" timestamp="1655738269249" />
-    <state x="454" y="145" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1657643735010">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="454" y="146" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1660820549220">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="454" y="145" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1920.6.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1657643735010" />
+    <state x="454" y="146" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660820549220" />
     <state x="501" y="151" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656660894537" />
     <state x="411" y="121" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/62.0.1474.864/-1280.0.1280.1024@62.0.1474.864" timestamp="1653321336621" />
     <state x="2270" y="143" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/62.0.1474.864/1982.0.1218.1024@1982.0.1218.1024" timestamp="1655722195543" />
@@ -490,13 +523,15 @@
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="800" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1961.6.1239.720/62.0.1858.1080@62.0.1858.1080" timestamp="1656848446516" />
-    <state x="418" y="53" width="1237" height="851" key="dock-window-1" timestamp="1652873185057">
-      <screen x="62" y="0" width="1474" height="864" />
+    <state x="2113" y="6" width="860" height="737" key="dock-window-1" timestamp="1660820634805">
+      <screen x="1920" y="6" width="1280" height="700" />
     </state>
+    <state x="2113" y="6" width="860" height="737" key="dock-window-1/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660820634805" />
     <state x="418" y="53" width="1237" height="851" key="dock-window-1/62.0.1474.864/-1280.0.1280.1024@62.0.1474.864" timestamp="1652873185057" />
-    <state x="2194" y="30" width="907" height="994" key="find.popup" timestamp="1655741425701">
-      <screen x="1982" y="0" width="1218" height="1024" />
+    <state x="334" y="30" width="1430" height="1020" key="find.popup" timestamp="1660819974540">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state x="334" y="30" width="1430" height="1020" key="find.popup/1920.6.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1660819974540" />
     <state x="2194" y="30" width="907" height="994" key="find.popup/62.0.1474.864/1982.0.1218.1024@1982.0.1218.1024" timestamp="1655741425701" />
     <state x="559" y="246" key="run.anything.popup" timestamp="1656682813398">
       <screen x="62" y="0" width="1858" height="1080" />
