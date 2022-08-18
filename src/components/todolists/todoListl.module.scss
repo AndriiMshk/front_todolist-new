@@ -5,7 +5,7 @@
 	width: 100%;
 	@include flex(center, column, center);
 	.container {
-		height: 80vh;
+		height: 76vh;
 		width: 90%;
 		@include flex(flex-start, row, flex-start);
 		flex-wrap: nowrap;
