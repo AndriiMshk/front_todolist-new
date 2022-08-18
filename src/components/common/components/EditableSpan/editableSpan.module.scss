@@ -1,4 +1,19 @@
-.main {
+.title {
 	cursor: pointer;
+	line-height: initial;
+	font-family: monospace;
+	font-size: large;
+	padding: 4px 0;
+	letter-spacing: initial;
+	width: 190px;
 }
 
+.input {
+	width: 190px;
+	textarea {
+		line-height: initial;
+		font-family: monospace;
+		font-size: large;
+		letter-spacing: initial;
+	}
+}

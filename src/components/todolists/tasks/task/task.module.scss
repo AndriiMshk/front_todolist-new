@@ -1,6 +1,7 @@
 .main {
 	position: relative;
 	width: 100%;
+	margin: 5px 0;
 	.title {
 		width: 100%;
 		position: relative;
@@ -11,7 +12,7 @@
 			display: inline-block;
 			word-break: break-all;
 			&:nth-child(2) {
-				width: 210px;
+				width: 190px;
 			}
 		}
 	}

@@ -20,10 +20,10 @@
 			border-radius: 10px;
 		}
 		&::-webkit-scrollbar-thumb {
-			background: #1976D2;
+			background-color: #1976d2;
 			border-radius: 10px;
 			&:hover {
-				background: grey;
+				background-color: grey;
 			}
 		}
 		@media screen and (max-width: 800px) {

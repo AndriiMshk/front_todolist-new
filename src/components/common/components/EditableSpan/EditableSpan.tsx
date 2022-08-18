@@ -40,8 +40,11 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo((
         onChange={event => {setTitle(event.target.value);}}
         onBlur={onChangeHandler}
         onKeyPress={onPressKeyHandler}
-        autoFocus />
-      : <span className={style.main} onDoubleClick={setEditModeHandler}>{title}</span>
+        autoFocus
+        multiline
+        className={style.input}
+      />
+      : <span className={style.title} onDoubleClick={setEditModeHandler}>{title}</span>
   );
 });
 
